@@ -2,19 +2,19 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Nez;
-
 namespace Robot_1
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Core
+    public class Game1 : Game
     {
+        GraphicsDeviceManager graphicDevice;
         SpriteBatch spriteBatch;
 
         public Game1()
         {
+            graphicDevice = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
