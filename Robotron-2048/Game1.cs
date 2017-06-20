@@ -2,19 +2,19 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Nez;
-
 namespace Robotron_2048
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Core
+    public class Game1 : Game
     {
+        GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        
         public Game1()
         {
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
