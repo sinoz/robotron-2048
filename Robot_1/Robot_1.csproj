@@ -65,7 +65,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nez-master\Nez.Portable\Nez.csproj">
+    <ProjectReference Include="..\Nez-PCL\Nez.Portable\Nez.csproj">
       <Project>{60b7197d-d0d5-405c-90a2-a56903e9b039}</Project>
       <Name>Nez</Name>
     </ProjectReference>

@@ -13,7 +13,7 @@ namespace Robot_1
     {
         SpriteBatch spriteBatch;
 
-        public Game1() // test
+        public Game1()
         {
             Content.RootDirectory = "Content";
         }
