@@ -10,7 +10,7 @@ namespace Robotron_2048
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        Stage stage;
         
         public Game1()
         {
@@ -28,6 +28,9 @@ namespace Robotron_2048
         {
             // TODO: Add your initialization logic here
 
+            stage = new Stage(GraphicsDevice);
+            stage.transitionInto(new MainMenu());
+
             base.Initialize();
         }
 
@@ -37,9 +40,6 @@ namespace Robotron_2048
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
             // TODO: use this.Content to load your game content here
         }
 
@@ -62,8 +62,8 @@ namespace Robotron_2048
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
-
+            stage.Update();
+            
             base.Update(gameTime);
         }
 
@@ -75,7 +75,7 @@ namespace Robotron_2048
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            stage.Draw();
 
             base.Draw(gameTime);
         }
