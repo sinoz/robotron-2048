@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Robotron_2048.Source.Model;
-using Robotron_2048.Source.Util;
 
 namespace Robotron_2048.Source.Scene
 {
