@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Robotron_2048
+namespace Robotron_2048.Source.Scene
 {
     /// <summary>
     /// A stage in charge of a scenery, updating and drawing subordinate widgets.

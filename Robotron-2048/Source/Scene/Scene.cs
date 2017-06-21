@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Robotron_2048
+namespace Robotron_2048.Source.Scene
 {
     /// <summary>
     /// Describes the different types of behaviours of a scene on a stage.

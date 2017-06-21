@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Robotron_2048
+namespace Robotron_2048.Source.Scene
 {
     /// <summary>
     /// Describes a main menu scene.

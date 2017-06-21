@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Robotron_2048
+using Robotron_2048.Source.Scene;
+
+namespace Robotron_2048.Source.Model
 {
     /// <summary>
     /// A fired bullet interpolating in a specific direction.

@@ -3,7 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Robotron_2048
+using Robotron_2048.Source.Scene;
+
+namespace Robotron_2048.Source
 {
     /// <summary>
     /// This is the main type for your game.

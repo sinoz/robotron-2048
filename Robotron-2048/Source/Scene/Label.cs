@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Robotron_2048
+namespace Robotron_2048.Source.Scene
 {
     /// <summary>
-    /// A drawable and updatable entity.
+    /// A Widget that presents some text.
     /// </summary>
-    interface Entity : Drawable, Updatable
+    sealed class Label : Widget
     {
         // TODO
     }

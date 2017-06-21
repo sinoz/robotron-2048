@@ -8,7 +8,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Robotron_2048
+using Robotron_2048.Source.Model;
+using Robotron_2048.Source.Util;
+
+namespace Robotron_2048.Source.Scene
 {
     /// <summary>
     /// The game scene.

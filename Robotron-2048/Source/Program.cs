@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Robotron_2048
+namespace Robotron_2048.Source
 {
     /// <summary>
     /// The main class.

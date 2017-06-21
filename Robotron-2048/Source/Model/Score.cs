@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Robotron_2048
+using Robotron_2048.Source.Scene;
+
+namespace Robotron_2048.Source.Model
 {
     /// <summary>
     /// Keeps track of the player's score whilst in game.
