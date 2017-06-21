@@ -35,14 +35,28 @@ namespace Robotron_2048
         public static Texture2D characterDownTex, characterUpTex, characterLeftTex, characterRightTex;
 
         /// <summary>
+        /// The set resolution of the application.
+        /// </summary>
+        public static int appWidth, appHeight;
+
+        /// <summary>
+        /// The default width and height of the application on the desktop.
+        /// </summary>
+        public const int DesktopWidth = 800, DesktopHeight = 600;
+
+        /// <summary>
         /// Creates a new game.
         /// </summary>
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
 
-            graphics.PreferredBackBufferHeight = 600;
-            graphics.PreferredBackBufferWidth = 800;
+            // TODO check if on windows or android
+            graphics.PreferredBackBufferHeight = DesktopHeight;
+            graphics.PreferredBackBufferWidth = DesktopWidth;
+
+            appWidth = graphics.PreferredBackBufferWidth;
+            appHeight = graphics.PreferredBackBufferHeight;
 
             Content.RootDirectory = "Content";
         }

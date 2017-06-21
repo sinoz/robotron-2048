@@ -47,7 +47,7 @@ namespace Robotron_2048
         private int millisecondsPerFrame = 100;
 
         /// <summary>
-        /// The coordinates of this character. TODO there's a better way to do this
+        /// The coordinates of this character.
         /// </summary>
         private Vector2 position = new Vector2(200, 200);
 
@@ -127,14 +127,14 @@ namespace Robotron_2048
                 y = 0;
             }
 
-            if (y > 600 - Texture.Height)
+            if (y > Game1.appHeight - Texture.Height)
             {
-                y = 600 - Texture.Height;
+                y = Game1.appHeight - Texture.Height;
             }
 
-            if (x > 800 - (Texture.Width / 3))
+            if (x > Game1.appWidth - (Texture.Width / 3))
             {
-                x = 800 - (Texture.Width / 3);
+                x = Game1.appWidth - (Texture.Width / 3);
             }
 
             position.X = x;
@@ -151,9 +151,7 @@ namespace Robotron_2048
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int) position.X, (int) position.Y, width, height);
 
-            batch.Begin();
             batch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
-            batch.End();
         }
     }
 }

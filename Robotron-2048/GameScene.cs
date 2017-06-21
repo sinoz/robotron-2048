@@ -61,6 +61,9 @@ namespace Robotron_2048
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
+            entityBatch.Begin();
+            character.Draw(entityBatch, gameTime);
+
             if (bullets.Count > 0)
             {
                 int count = 0;
@@ -68,12 +71,14 @@ namespace Robotron_2048
                 {
                     Bullet bullet = bullets[count];
                     
-                    bullet.Draw(batch, gameTime);
+                    bullet.Draw(entityBatch, gameTime);
                 }
             }
+            entityBatch.End();
 
-            character.Draw(entityBatch, gameTime);
+            batch.Begin();
             score.Draw(batch, gameTime);
+            batch.End();
         }
 
         public override void Update(GameTime gameTime)
