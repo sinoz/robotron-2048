@@ -16,11 +16,6 @@ namespace Robotron_2048
     sealed class GameScene : Scene
     {
         /// <summary>
-        /// The default velocity at which a character can move across the screen.
-        /// </summary>
-        const int CharacterVelocity = 350;
-
-        /// <summary>
         /// The sprite batch specifically for this game scene to draw the game character
         /// and other entities on.
         /// </summary>
@@ -54,28 +49,43 @@ namespace Robotron_2048
             this.graphicsDevice = device;
 
             this.entityBatch = new SpriteBatch(device);
-            this.character = new Character(Game1.characterDownTex, 1, 3, CharacterVelocity);
+            this.character = new Character();
 
             this.score = new Score();
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            entityBatch.Begin();
-            character.Draw(entityBatch, gameTime);
+            DrawEntities(batch, gameTime);
+            DrawScore(batch, gameTime);
+        }
 
+        private void DrawEntities(SpriteBatch batch, GameTime gameTime)
+        {
+            entityBatch.Begin();
+
+            #region Drawing the player character
+            character.Draw(entityBatch, gameTime);
+            #endregion
+
+            #region Drawing the fired bullets
             if (bullets.Count > 0)
             {
                 int count = 0;
                 while (count < bullets.Count)
                 {
                     Bullet bullet = bullets[count];
-                    
+
                     bullet.Draw(entityBatch, gameTime);
                 }
             }
-            entityBatch.End();
+            #endregion
 
+            entityBatch.End();
+        }
+
+        private void DrawScore(SpriteBatch batch, GameTime gameTime)
+        {
             batch.Begin();
             score.Draw(batch, gameTime);
             batch.End();
@@ -83,6 +93,13 @@ namespace Robotron_2048
 
         public override void Update(GameTime gameTime)
         {
+            UpdateEntities(gameTime);
+            TransitionToMainMenuOnKey(gameTime);
+        }
+
+        private void UpdateEntities(GameTime gameTime)
+        {
+            #region Updating of Bullets
             if (bullets.Count > 0)
             {
                 int count = 0;
@@ -94,9 +111,15 @@ namespace Robotron_2048
                     bullet.Update(gameTime);
                 }
             }
+            #endregion
 
+            #region Updating of the player character
             character.Update(gameTime);
+            #endregion
+        }
 
+        private void TransitionToMainMenuOnKey(GameTime gameTime)
+        {
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 getStage().TransitionInto(new MainMenu(graphicsDevice));

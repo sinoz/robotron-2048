@@ -36,6 +36,11 @@ namespace Robotron_2048
 
         public override void Update(GameTime gameTime)
         {
+            TransitionToGameSceneOnKey(gameTime);
+        }
+
+        private void TransitionToGameSceneOnKey(GameTime gameTime)
+        {
             if (Keyboard.GetState().IsKeyDown(Keys.Back))
             {
                 getStage().TransitionInto(new GameScene(graphicsDevice));

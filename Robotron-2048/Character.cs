@@ -16,29 +16,34 @@ namespace Robotron_2048
     sealed class Character : Entity
     {
         /// <summary>
-        /// The current texture frame.
+        /// The default velocity at which a character can move across the screen.
         /// </summary>
-        public Texture2D Texture { get; set; }
+        public const int MovementVelocity = 350;
 
         /// <summary>
         /// The rows.
         /// </summary>
-        public int Rows { get; set; }
+        public const int Rows = 1;
 
         /// <summary>
         /// The columns.
         /// </summary>
-        public int Columns { get; set; }
+        public const int Columns = 3;
+
+        /// <summary>
+        /// The total amount of frames to transition across.
+        /// </summary>
+        private const int TotalAmtOfFrames = Rows * Columns;
+
+        /// <summary>
+        /// The current texture frame.
+        /// </summary>
+        public Texture2D Texture = Game1.characterDownTex;
 
         /// <summary>
         /// The current frame being rendered.
         /// </summary>
         private int currentFrame;
-
-        /// <summary>
-        /// The total amount of frames to transition across.
-        /// </summary>
-        private int totalFrames;
         
         /// <summary>
         /// The time since the last frame.
@@ -52,26 +57,9 @@ namespace Robotron_2048
         private Vector2 position = new Vector2(200, 200);
 
         /// <summary>
-        /// The velocity at which the character moves.
+        /// The velocity at which the character can currently move.
         /// </summary>
-        int velocity;
-
-        /// <summary>
-        /// Creates a new character.
-        /// </summary>
-        /// <param name="batch">The SpriteBatch to draw this character onto. </param>
-        /// <param name="texture">The initial texture frame.</param>
-        /// <param name="rows">The rows.</param>
-        /// <param name="columns">The columns.</param>
-        public Character(Texture2D texture, int rows, int columns, int velocity)
-        {
-            this.Texture = texture;
-            this.Rows = rows;
-            this.Columns = columns;
-            this.currentFrame = 0;
-            this.totalFrames = Rows * Columns;
-            this.velocity = velocity;
-        }
+        private int velocity = MovementVelocity;
         
         public void Update(GameTime gameTime)
         {
@@ -84,7 +72,7 @@ namespace Robotron_2048
                 currentFrame++;
                 timeSinceLastFrame = 0;
 
-                if (currentFrame == totalFrames)
+                if (currentFrame == TotalAmtOfFrames)
                 {
                     currentFrame = 0;
                 }
