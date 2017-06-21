@@ -13,7 +13,7 @@ namespace Robotron_2048.Source.Model
     /// <summary>
     /// A fired bullet interpolating in a specific direction.
     /// </summary>
-    sealed class Bullet : Entity
+    sealed class Bullet : IEntity
     {
         /// <summary>
         /// The character that fired this bullet.

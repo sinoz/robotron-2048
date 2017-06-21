@@ -14,7 +14,7 @@ namespace Robotron_2048.Source.Model
     /// <summary>
     /// Keeps track of the player's score whilst in game.
     /// </summary>
-    sealed class Score : Drawable
+    sealed class Score : Scene.IDrawable
     {
         /// <summary>
         /// The score value.

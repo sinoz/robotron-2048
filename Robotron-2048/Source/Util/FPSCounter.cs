@@ -14,7 +14,7 @@ namespace Robotron_2048.Source.Util
     /// A frame-per-second counter to keep track of the application's
     /// overall graphical performance.
     /// </summary>
-    sealed class FPSCounter : Updatable
+    sealed class FPSCounter : IUpdatable
     {
         /// <summary>
         /// The time span in between FPS updating.

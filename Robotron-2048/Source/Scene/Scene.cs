@@ -12,7 +12,7 @@ namespace Robotron_2048.Source.Scene
     /// <summary>
     /// Describes the different types of behaviours of a scene on a stage.
     /// </summary>
-    abstract class Scene : Drawable, Updatable {
+    abstract class Scene : IDrawable, IUpdatable {
         /// <summary>
         /// The stage reference.
         /// </summary>

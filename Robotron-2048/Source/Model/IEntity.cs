@@ -11,7 +11,7 @@ namespace Robotron_2048.Source.Model
     /// <summary>
     /// A drawable and updatable entity.
     /// </summary>
-    interface Entity : Drawable, Updatable
+    interface IEntity : IDrawable, IUpdatable
     {
         // TODO
     }

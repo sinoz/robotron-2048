@@ -15,7 +15,7 @@ namespace Robotron_2048.Source.Model
     /// <summary>
     /// The player character.
     /// </summary>
-    sealed class Character : Entity
+    sealed class Character : IEntity
     {
         /// <summary>
         /// The default velocity at which a character can move across the screen.

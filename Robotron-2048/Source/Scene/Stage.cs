@@ -77,7 +77,7 @@ namespace Robotron_2048.Source.Scene
     /// <summary>
     /// A drawable element.
     /// </summary>
-    interface Drawable
+    interface IDrawable
     {
         /// <summary>
         /// Draws the element onto the specified SpriteBatch.
@@ -88,7 +88,7 @@ namespace Robotron_2048.Source.Scene
     /// <summary>
     /// An updatable element.
     /// </summary>
-    interface Updatable
+    interface IUpdatable
     {
         /// <summary>
         /// Updates this element.
