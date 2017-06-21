@@ -31,10 +31,7 @@ namespace Practicing
         /// </summary>
         protected override void Initialize()
         {
-            Texture2D textureW = Content.Load<Texture2D>("Image/robotronguyup");
-            Texture2D textureS = Content.Load<Texture2D>("Image/robotronguydown");
-            Texture2D textureA = Content.Load<Texture2D>("Image/robotronguyleft");
-            Texture2D textureD = Content.Load<Texture2D>("Image/robotronguyright");
+
             // TODO: Add your initialization logic here
 
             base.Initialize();
@@ -48,8 +45,8 @@ namespace Practicing
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Texture2D texture = Content.Load<Texture2D>("Image/robotronguy");
-            ourCharacter = new Character(texture, 1, 12);
+            Texture2D texture = Content.Load<Texture2D>("Image/robotronguydown");
+            ourCharacter = new Character(texture, 1, 3);
             
 
             // TODO: use this.Content to load your game content here
@@ -84,24 +81,27 @@ namespace Practicing
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 start_pos_Y -= 4;
-                ourCharacter = new Character(textureW, 1, 3);
+                //ourCharacter = new Character(textureW, 1, 3);
+                ourCharacter.Texture = textureW;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 start_pos_Y += 4;
-                ourCharacter = new Character(textureS, 1, 3);
+                //ourCharacter = new Character(textureS, 1, 3);
+                ourCharacter.Texture = textureS;
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 start_pos_X -= 4;
-                ourCharacter = new Character(textureA, 1, 3);
-
+                //ourCharacter = new Character(textureA, 1, 3);
+                ourCharacter.Texture = textureA;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 start_pos_X += 4;
-                ourCharacter = new Character(textureD, 1, 3);
+                //ourCharacter = new Character(textureD, 1, 3);
+                ourCharacter.Texture = textureD;
 
             }
             
