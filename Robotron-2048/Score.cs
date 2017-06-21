@@ -17,7 +17,7 @@ namespace Robotron_2048
         /// <summary>
         /// The score value.
         /// </summary>
-        private int value = 100;
+        private int value { get; set; }
 
         /// <summary>
         /// The draw position of the score.
@@ -36,6 +36,34 @@ namespace Robotron_2048
         {
             // TODO replace with Label
             batch.DrawString(Main.font, "Score: " + value, position, Color.White);
+        }
+
+        /// <summary>
+        /// Increments the current score by the specified amount.
+        /// </summary>
+        /// <param name="amount">The amount to increment by, set to 1 by default.</param>
+        public void Increment(int amount = 1)
+        {
+            if (amount <= 0)
+            {
+                amount = 1;
+            }
+
+            value += amount;
+        }
+
+        /// <summary>
+        /// Decrements the current score by the specified amount.
+        /// </summary>
+        /// <param name="amount">The amount to decrement by, set to 1 by default.</param>
+        public void Decrement(int amount = 1)
+        {
+            if (amount <= 0)
+            {
+                amount = 1;
+            }
+
+            value -= amount;
         }
     }
 }
