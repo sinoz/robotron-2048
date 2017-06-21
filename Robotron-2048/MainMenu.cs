@@ -29,22 +29,7 @@ namespace Robotron_2048
             this.graphicsDevice = graphicsDevice;
         }
 
-        public override void Hide()
-        {
-            // TODO
-        }
-
-        public override void Show()
-        {
-            // TODO
-        }
-
-        public override void Dispose()
-        {
-            // TODO
-        }
-
-        public override void Draw(GameTime gameTime)
+        public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
             // TODO
         }

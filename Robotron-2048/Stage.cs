@@ -12,17 +12,17 @@ namespace Robotron_2048
     /// <summary>
     /// A stage in charge of a scenery, updating and drawing subordinate widgets.
     /// </summary>
-    sealed class Stage : Drawable, Updatable
+    sealed class Stage
     {
         /// <summary>
         /// The rendering batch.
         /// </summary>
-        public readonly SpriteBatch batch;
+        private readonly SpriteBatch batch;
 
         /// <summary>
         /// The current Scene acting on this stage.
         /// </summary>
-        Scene scene;
+        private Scene scene;
 
         /// <summary>
         /// Creates a new Stage.
@@ -42,13 +42,13 @@ namespace Robotron_2048
         {
             if (this.scene != null)
             {
-                scene.Hide();
+                // TODO scene.Hide();
             }
 
             this.scene = scene;
             scene.setStage(this);
 
-            scene.Show();
+            // TODO scene.Show();
         }
 
         /// <summary>
@@ -56,7 +56,11 @@ namespace Robotron_2048
         /// </summary>
         public void Draw(GameTime gameTime)
         {
-            scene.Draw(gameTime);
+            batch.Begin();
+            batch.Draw(Game1.gameBackground, new Rectangle(new Point(0, 0), new Point(Game1.gameBackground.Width, Game1.gameBackground.Height)), Color.White);
+            batch.End();
+
+            scene.Draw(batch, gameTime);
         }
 
         /// <summary>
@@ -69,34 +73,34 @@ namespace Robotron_2048
     }
 
     /// <summary>
-    /// TODO
+    /// A drawable element.
     /// </summary>
     interface Drawable
     {
         /// <summary>
-        /// TODO
+        /// Draws the element onto the specified SpriteBatch.
         /// </summary>
-        void Draw(GameTime gameTime);
+        void Draw(SpriteBatch batch, GameTime gameTime);
     }
 
     /// <summary>
-    /// TODO
+    /// An updatable element.
     /// </summary>
     interface Updatable
     {
         /// <summary>
-        /// TODO
+        /// Updates this element.
         /// </summary>
         void Update(GameTime gameTime);
     }
 
     /// <summary>
-    /// TODO
+    /// A disposable element.
     /// </summary>
     interface Disposable
     {
         /// <summary>
-        /// TODO
+        /// Disposes all of the resources for the element.
         /// </summary>
         void Dispose();
     }

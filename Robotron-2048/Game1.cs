@@ -20,6 +20,16 @@ namespace Robotron_2048
         Stage stage;
 
         /// <summary>
+        /// The default SpriteFont to utilize for drawing labels.
+        /// </summary>
+        public static SpriteFont font;
+
+        /// <summary>
+        /// The game scene background texture.
+        /// </summary>
+        public static Texture2D gameBackground;
+
+        /// <summary>
         /// All of the character textures.
         /// </summary>
         public static Texture2D characterDownTex, characterUpTex, characterLeftTex, characterRightTex;
@@ -30,8 +40,10 @@ namespace Robotron_2048
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+
             graphics.PreferredBackBufferHeight = 600;
             graphics.PreferredBackBufferWidth = 800;
+
             Content.RootDirectory = "Content";
         }
 
@@ -49,6 +61,8 @@ namespace Robotron_2048
             characterUpTex = Content.Load<Texture2D>("Image/robotronguyup");
             characterLeftTex = Content.Load<Texture2D>("Image/robotronguyleft");
             characterRightTex = Content.Load<Texture2D>("Image/robotronguyright");
+            gameBackground = Content.Load<Texture2D>("Image/Stars");
+            font = Content.Load<SpriteFont>("Score");
 
             // TODO: Add your initialization logic here
 

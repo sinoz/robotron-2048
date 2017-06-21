@@ -27,7 +27,7 @@ namespace Robotron_2048
     }
     
     /// <summary>
-    /// TODO
+    /// A Widget that is presented as a button for the user to click on.
     /// </summary>
     sealed class Button : Widget
     {
@@ -35,10 +35,35 @@ namespace Robotron_2048
     }
 
     /// <summary>
-    /// TODO
+    /// A Widget that presents some text.
     /// </summary>
     sealed class Label : Widget
     {
         // TODO
+    }
+
+    /// <summary>
+    /// A type of Button that takes a label to present inside of it.
+    /// </summary>
+    sealed class TextButton : Widget
+    {
+        /// <summary>
+        /// The button.
+        /// </summary>
+        private Button button;
+
+        /// <summary>
+        /// The presented label inside of this button.
+        /// </summary>
+        private Label label;
+
+        /// <summary>
+        /// Creates a TextButton. 
+        /// </summary>
+        public TextButton()
+        {
+            this.button = new Button();
+            this.label = new Label();
+        }
     }
 }

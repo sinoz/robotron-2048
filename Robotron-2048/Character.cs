@@ -13,7 +13,7 @@ namespace Robotron_2048
     /// <summary>
     /// The player character.
     /// </summary>
-    sealed class Character : Updatable, Drawable
+    sealed class Character : Entity
     {
         /// <summary>
         /// The current texture frame.
@@ -29,11 +29,6 @@ namespace Robotron_2048
         /// The columns.
         /// </summary>
         public int Columns { get; set; }
-
-        /// <summary>
-        /// The sprite batch to draw this character on.
-        /// </summary>
-        private readonly SpriteBatch batch;
 
         /// <summary>
         /// The current frame being rendered.
@@ -54,8 +49,7 @@ namespace Robotron_2048
         /// <summary>
         /// The coordinates of this character. TODO there's a better way to do this
         /// </summary>
-        int x = 200;
-        int y = 200;
+        private Vector2 position = new Vector2(200, 200);
 
         /// <summary>
         /// The velocity at which the character moves.
@@ -69,10 +63,9 @@ namespace Robotron_2048
         /// <param name="texture">The initial texture frame.</param>
         /// <param name="rows">The rows.</param>
         /// <param name="columns">The columns.</param>
-        public Character(SpriteBatch batch, Texture2D texture, int rows, int columns, int velocity)
+        public Character(Texture2D texture, int rows, int columns, int velocity)
         {
             this.Texture = texture;
-            this.batch = batch;
             this.Rows = rows;
             this.Columns = columns;
             this.currentFrame = 0;
@@ -97,6 +90,9 @@ namespace Robotron_2048
                 }
             }
 
+            var x = position.X;
+            var y = position.Y;
+
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 y -= (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
@@ -120,22 +116,40 @@ namespace Robotron_2048
                 x += (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
                 Texture = Game1.characterRightTex;
             }
-            if(x < 0){ x = 0; }
-            if (y < 0) { y = 0; }
-            if (y > 600 - Texture.Height) { y = 600 - Texture.Height; }
-            if (x > 800 - (Texture.Width/3)) { x = 800 - (Texture.Width/3); }
+            
+            if (x < 0)
+            {
+                x = 0;
+            }
 
+            if (y < 0)
+            {
+                y = 0;
+            }
+
+            if (y > 600 - Texture.Height)
+            {
+                y = 600 - Texture.Height;
+            }
+
+            if (x > 800 - (Texture.Width / 3))
+            {
+                x = 800 - (Texture.Width / 3);
+            }
+
+            position.X = x;
+            position.Y = y;
         }
         
-        public void Draw(GameTime gameTime)
+        public void Draw(SpriteBatch batch, GameTime gameTime)
         {
             int width = Texture.Width / Columns;
             int height = Texture.Height / Rows;
-            int row = (int)((float)currentFrame / Columns);
+            int row = (int) ((float) currentFrame / Columns);
             int column = currentFrame % Columns;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
-            Rectangle destinationRectangle = new Rectangle(x, y, width, height);
+            Rectangle destinationRectangle = new Rectangle((int) position.X, (int) position.Y, width, height);
 
             batch.Begin();
             batch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);

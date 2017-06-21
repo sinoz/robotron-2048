@@ -24,7 +24,7 @@ namespace Robotron_2048
         /// The sprite batch specifically for this game scene to draw the game character
         /// and other entities on.
         /// </summary>
-        public readonly SpriteBatch batch;
+        private readonly SpriteBatch entityBatch;
 
         /// <summary>
         /// The graphics device.
@@ -32,9 +32,19 @@ namespace Robotron_2048
         private readonly GraphicsDevice graphicsDevice;
 
         /// <summary>
+        /// The list of fired bullets.
+        /// </summary>
+        private IList<Bullet> bullets = new List<Bullet>();
+
+        /// <summary>
         /// The game character.
         /// </summary>
         private Character character;
+
+        /// <summary>
+        /// The score of the player.
+        /// </summary>
+        private Score score;
 
         /// <summary>
         /// Creates a new game scene.
@@ -42,39 +52,50 @@ namespace Robotron_2048
         public GameScene(GraphicsDevice device)
         {
             this.graphicsDevice = device;
-            this.batch = new SpriteBatch(device);
 
-            this.character = new Character(batch, Game1.characterDownTex, 1, 3, CharacterVelocity);
+            this.entityBatch = new SpriteBatch(device);
+            this.character = new Character(Game1.characterDownTex, 1, 3, CharacterVelocity);
+
+            this.score = new Score();
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            character.Draw(gameTime);
+            if (bullets.Count > 0)
+            {
+                int count = 0;
+                while (count < bullets.Count)
+                {
+                    Bullet bullet = bullets[count];
+                    
+                    bullet.Draw(batch, gameTime);
+                }
+            }
+
+            character.Draw(entityBatch, gameTime);
+            score.Draw(batch, gameTime);
         }
 
         public override void Update(GameTime gameTime)
         {
+            if (bullets.Count > 0)
+            {
+                int count = 0;
+                while (count < bullets.Count)
+                {
+                    Bullet bullet = bullets[count];
+
+                    // TODO check if bullet should be removed
+                    bullet.Update(gameTime);
+                }
+            }
+
             character.Update(gameTime);
 
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 getStage().TransitionInto(new MainMenu(graphicsDevice));
             }
-        }
-
-        public override void Hide()
-        {
-            // TODO
-        }
-
-        public override void Show()
-        {
-            // TODO
-        }
-
-        public override void Dispose()
-        {
-            // TODO
         }
     }
 }

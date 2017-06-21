@@ -19,9 +19,9 @@ namespace Robotron_2048
         private Stage stage;
 
         /// <summary>
-        /// Returns a reference to the stage.
+        /// Returns the stage.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The stage.</returns>
         public Stage getStage()
         {
             return stage;
@@ -35,29 +35,14 @@ namespace Robotron_2048
         {
             this.stage = stage;
         }
-        
-        /// <summary>
-        /// TODO
-        /// </summary>
-        public abstract void Hide();
-        
-        /// <summary>
-        /// TODO
-        /// </summary>
-        public abstract void Show();
 
         /// <summary>
-        /// Disposes off all of the resources this scene is entitled to.
+        /// Draws this scene onto the given SpriteBatch.
         /// </summary>
-        public abstract void Dispose();
+        public abstract void Draw(SpriteBatch batch, GameTime gameTime);
 
         /// <summary>
-        /// TODO
-        /// </summary>
-        public abstract void Draw(GameTime gameTime);
-
-        /// <summary>
-        /// TODO
+        /// Updates this scene.
         /// </summary>
         public abstract void Update(GameTime gameTime);
     }
