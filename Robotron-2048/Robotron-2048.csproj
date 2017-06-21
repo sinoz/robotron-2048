@@ -45,10 +45,10 @@
     <Compile Include="Source\Model\Bullet.cs" />
     <Compile Include="Source\Model\Character.cs" />
     <Compile Include="Source\Model\Entity.cs" />
-    <Compile Include="Source\Main.cs" />
+    <Compile Include="Source\RobotronGame.cs" />
     <Compile Include="Source\Scene\GameScene.cs" />
     <Compile Include="Source\Scene\MainMenu.cs" />
-    <Compile Include="Source\Program.cs" />
+    <Compile Include="Source\Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Scene\Scene.cs" />
     <Compile Include="Source\Model\Score.cs" />
@@ -56,6 +56,7 @@
     <Compile Include="Source\Scene\Label.cs" />
     <Compile Include="Source\Scene\Stage.cs" />
     <Compile Include="Source\Scene\TextButton.cs" />
+    <Compile Include="Source\Util\FPSCounter.cs" />
     <Compile Include="Source\Util\SpriteBatchExtensions.cs" />
     <Compile Include="Source\Scene\Widget.cs" />
   </ItemGroup>

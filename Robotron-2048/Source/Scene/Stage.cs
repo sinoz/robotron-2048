@@ -27,7 +27,7 @@ namespace Robotron_2048.Source.Scene
         /// <summary>
         /// Creates a new Stage.
         /// </summary>
-        /// <param name="device"></param>
+        /// <param name="device">The graphics device.</param>
         public Stage(GraphicsDevice device)
         {
             this.batch = new SpriteBatch(device);
@@ -56,9 +56,11 @@ namespace Robotron_2048.Source.Scene
         /// </summary>
         public void Draw(GameTime gameTime)
         {
+            #region Drawing of the background
             batch.Begin();
-            batch.Draw(Main.gameBackground, new Rectangle(new Point(0, 0), new Point(Main.gameBackground.Width, Main.gameBackground.Height)), Color.White);
+            batch.Draw(RobotronGame.gameBackground, new Rectangle(new Point(0, 0), new Point(RobotronGame.gameBackground.Width, RobotronGame.gameBackground.Height)), Color.White);
             batch.End();
+            #endregion
 
             scene.Draw(batch, gameTime);
         }
@@ -92,16 +94,5 @@ namespace Robotron_2048.Source.Scene
         /// Updates this element.
         /// </summary>
         void Update(GameTime gameTime);
-    }
-
-    /// <summary>
-    /// A disposable element.
-    /// </summary>
-    interface Disposable
-    {
-        /// <summary>
-        /// Disposes all of the resources for the element.
-        /// </summary>
-        void Dispose();
     }
 }

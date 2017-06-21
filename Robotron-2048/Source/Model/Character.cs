@@ -40,7 +40,7 @@ namespace Robotron_2048.Source.Model
         /// <summary>
         /// The current texture frame.
         /// </summary>
-        private Texture2D currentTexture = Main.characterDownTex;
+        private Texture2D currentTexture = RobotronGame.characterDownTex;
 
         /// <summary>
         /// The current frame being rendered.
@@ -86,25 +86,25 @@ namespace Robotron_2048.Source.Model
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 y -= (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                currentTexture = Main.characterUpTex;
+                currentTexture = RobotronGame.characterUpTex;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 y += (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                currentTexture = Main.characterDownTex;
+                currentTexture = RobotronGame.characterDownTex;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 x -= (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                currentTexture = Main.characterLeftTex;
+                currentTexture = RobotronGame.characterLeftTex;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 x += (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                currentTexture = Main.characterRightTex;
+                currentTexture = RobotronGame.characterRightTex;
             }
             
             if (x < 0)
@@ -117,14 +117,14 @@ namespace Robotron_2048.Source.Model
                 y = 0;
             }
 
-            if (y > Main.appHeight - currentTexture.Height)
+            if (y > RobotronGame.appHeight - currentTexture.Height)
             {
-                y = Main.appHeight - currentTexture.Height;
+                y = RobotronGame.appHeight - currentTexture.Height;
             }
 
-            if (x > Main.appWidth - (currentTexture.Width / 3))
+            if (x > RobotronGame.appWidth - (currentTexture.Width / 3))
             {
-                x = Main.appWidth - (currentTexture.Width / 3);
+                x = RobotronGame.appWidth - (currentTexture.Width / 3);
             }
 
             position.X = x;

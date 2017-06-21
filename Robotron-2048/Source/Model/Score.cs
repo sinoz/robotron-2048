@@ -37,7 +37,7 @@ namespace Robotron_2048.Source.Model
         public void Draw(SpriteBatch batch, GameTime gameTime)
         {
             // TODO replace with Label
-            batch.DrawString(Main.font, "Score: " + value, position, Color.White);
+            batch.DrawString(RobotronGame.font, "Score: " + value, position, Color.White);
         }
 
         /// <summary>
