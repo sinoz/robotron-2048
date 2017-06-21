@@ -30,6 +30,8 @@ namespace Robotron_2048
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 800;
             Content.RootDirectory = "Content";
         }
 
@@ -51,7 +53,7 @@ namespace Robotron_2048
             // TODO: Add your initialization logic here
 
             stage = new Stage(GraphicsDevice);
-            stage.transitionInto(new GameScene(GraphicsDevice));
+            stage.TransitionInto(new GameScene(GraphicsDevice));
 
             base.Initialize();
         }

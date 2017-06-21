@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Robotron_2048
 {
@@ -26,6 +27,11 @@ namespace Robotron_2048
         public readonly SpriteBatch batch;
 
         /// <summary>
+        /// The graphics device.
+        /// </summary>
+        private readonly GraphicsDevice graphicsDevice;
+
+        /// <summary>
         /// The game character.
         /// </summary>
         private Character character;
@@ -35,7 +41,9 @@ namespace Robotron_2048
         /// </summary>
         public GameScene(GraphicsDevice device)
         {
+            this.graphicsDevice = device;
             this.batch = new SpriteBatch(device);
+
             this.character = new Character(batch, Game1.characterDownTex, 1, 3, CharacterVelocity);
         }
 
@@ -47,6 +55,11 @@ namespace Robotron_2048
         public override void Update(GameTime gameTime)
         {
             character.Update(gameTime);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            {
+                getStage().TransitionInto(new MainMenu(graphicsDevice));
+            }
         }
 
         public override void Hide()

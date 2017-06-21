@@ -12,8 +12,9 @@ namespace Practicing
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        static int start_pos_X = 200;
-        static int start_pos_Y = 200;
+        static float start_pos_X = 200;
+        static float start_pos_Y = 200;
+        public float speedX = 125f;
 
         private Character ourCharacter;
 
@@ -71,6 +72,11 @@ namespace Practicing
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
+            var delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+
+
             // TODO: Add your update logic here
             ourCharacter.Update(gameTime);
             Texture2D textureW = Content.Load<Texture2D>("Image/robotronguyup");
@@ -80,26 +86,26 @@ namespace Practicing
 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                start_pos_Y -= 4;
+                start_pos_Y -= speedX * delta;
                 //ourCharacter = new Character(textureW, 1, 3);
                 ourCharacter.Texture = textureW;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                start_pos_Y += 4;
+                start_pos_Y += speedX * delta;
                 //ourCharacter = new Character(textureS, 1, 3);
                 ourCharacter.Texture = textureS;
 
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                start_pos_X -= 4;
+                start_pos_X -= speedX * delta;
                 //ourCharacter = new Character(textureA, 1, 3);
                 ourCharacter.Texture = textureA;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                start_pos_X += 4;
+                start_pos_X += speedX * delta;
                 //ourCharacter = new Character(textureD, 1, 3);
                 ourCharacter.Texture = textureD;
 

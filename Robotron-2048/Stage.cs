@@ -38,7 +38,7 @@ namespace Robotron_2048
         /// of its subordinates hidden from the stage.
         /// </summary>
         /// <param name="scene">The Scene to transition into.</param>
-        public void transitionInto(Scene scene)
+        public void TransitionInto(Scene scene)
         {
             if (this.scene != null)
             {
@@ -46,6 +46,7 @@ namespace Robotron_2048
             }
 
             this.scene = scene;
+            scene.setStage(this);
 
             scene.Show();
         }

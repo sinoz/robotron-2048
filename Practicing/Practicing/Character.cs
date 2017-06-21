@@ -11,6 +11,9 @@ namespace Practicing
 {
     class Character
     {
+
+        public int score;
+
         public Texture2D Texture { get; set; }
 
         public int Rows { get; set; }

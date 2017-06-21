@@ -120,6 +120,11 @@ namespace Robotron_2048
                 x += (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
                 Texture = Game1.characterRightTex;
             }
+            if(x < 0){ x = 0; }
+            if (y < 0) { y = 0; }
+            if (y > 600 - Texture.Height) { y = 600 - Texture.Height; }
+            if (x > 800 - (Texture.Width/3)) { x = 800 - (Texture.Width/3); }
+
         }
         
         public void Draw(GameTime gameTime)

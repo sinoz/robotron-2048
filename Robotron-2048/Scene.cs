@@ -14,6 +14,29 @@ namespace Robotron_2048
     /// </summary>
     abstract class Scene : Drawable, Updatable {
         /// <summary>
+        /// The stage reference.
+        /// </summary>
+        private Stage stage;
+
+        /// <summary>
+        /// Returns a reference to the stage.
+        /// </summary>
+        /// <returns></returns>
+        public Stage getStage()
+        {
+            return stage;
+        }
+
+        /// <summary>
+        /// Assigns this scene to the specified stage.
+        /// </summary>
+        /// <param name="stage">The stage this scene is asssigned to.</param>
+        public void setStage(Stage stage)
+        {
+            this.stage = stage;
+        }
+        
+        /// <summary>
         /// TODO
         /// </summary>
         public abstract void Hide();
