@@ -57,7 +57,7 @@ namespace Robotron_2048
         public void Draw(GameTime gameTime)
         {
             batch.Begin();
-            batch.Draw(Game1.gameBackground, new Rectangle(new Point(0, 0), new Point(Game1.gameBackground.Width, Game1.gameBackground.Height)), Color.White);
+            batch.Draw(Main.gameBackground, new Rectangle(new Point(0, 0), new Point(Main.gameBackground.Width, Main.gameBackground.Height)), Color.White);
             batch.End();
 
             scene.Draw(batch, gameTime);

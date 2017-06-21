@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -7,17 +8,32 @@ namespace Robotron_2048
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public sealed class Main : Game
     {
         /// <summary>
         /// The graphics device manager.
         /// </summary>
-        GraphicsDeviceManager graphics;
+        private GraphicsDeviceManager graphics;
 
         /// <summary>
         /// The stage.
         /// </summary>
-        Stage stage;
+        private Stage stage;
+
+        /// <summary>
+        /// The default window title.
+        /// </summary>
+        private string defaultWindowTitle;
+
+        /// <summary>
+        /// The time span in between FPS updating.
+        /// </summary>
+        private TimeSpan fpsCounterElapsedTime = TimeSpan.Zero;
+
+        /// <summary>
+        /// The FPS counter.
+        /// </summary>
+        private int fpsCounter = 0;
 
         /// <summary>
         /// The default SpriteFont to utilize for drawing labels.
@@ -47,7 +63,7 @@ namespace Robotron_2048
         /// <summary>
         /// Creates a new game.
         /// </summary>
-        public Game1()
+        public Main()
         {
             graphics = new GraphicsDeviceManager(this);
 
@@ -57,6 +73,9 @@ namespace Robotron_2048
 
             appWidth = graphics.PreferredBackBufferWidth;
             appHeight = graphics.PreferredBackBufferHeight;
+
+            Window.Title = "Robotron-2048";
+            defaultWindowTitle = Window.Title;
 
             Content.RootDirectory = "Content";
         }
@@ -126,7 +145,20 @@ namespace Robotron_2048
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            
+
+            #region FPS Counting - Borrowed code from Nez
+            fpsCounter++;
+            fpsCounterElapsedTime += gameTime.ElapsedGameTime;
+            if (fpsCounterElapsedTime >= TimeSpan.FromSeconds(1))
+            {
+                var totalMemory = (GC.GetTotalMemory(false) / 1048576f).ToString("F");
+                Window.Title = string.Format("{0} {1} fps - {2} MB", defaultWindowTitle, fpsCounter, totalMemory);
+
+                fpsCounter = 0;
+                fpsCounterElapsedTime -= TimeSpan.FromSeconds(1);
+            }
+            #endregion
+
             stage.Draw(gameTime);
 
             base.Draw(gameTime);

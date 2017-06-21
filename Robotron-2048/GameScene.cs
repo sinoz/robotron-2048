@@ -99,6 +99,10 @@ namespace Robotron_2048
 
         private void UpdateEntities(GameTime gameTime)
         {
+            #region Adding new bullets
+            // TODO
+            #endregion
+
             #region Updating of Bullets
             if (bullets.Count > 0)
             {

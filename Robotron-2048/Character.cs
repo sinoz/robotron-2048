@@ -38,7 +38,7 @@ namespace Robotron_2048
         /// <summary>
         /// The current texture frame.
         /// </summary>
-        public Texture2D Texture = Game1.characterDownTex;
+        private Texture2D currentTexture = Main.characterDownTex;
 
         /// <summary>
         /// The current frame being rendered.
@@ -84,25 +84,25 @@ namespace Robotron_2048
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 y -= (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                Texture = Game1.characterUpTex;
+                currentTexture = Main.characterUpTex;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 y += (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                Texture = Game1.characterDownTex;
+                currentTexture = Main.characterDownTex;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 x -= (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                Texture = Game1.characterLeftTex;
+                currentTexture = Main.characterLeftTex;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 x += (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                Texture = Game1.characterRightTex;
+                currentTexture = Main.characterRightTex;
             }
             
             if (x < 0)
@@ -115,14 +115,14 @@ namespace Robotron_2048
                 y = 0;
             }
 
-            if (y > Game1.appHeight - Texture.Height)
+            if (y > Main.appHeight - currentTexture.Height)
             {
-                y = Game1.appHeight - Texture.Height;
+                y = Main.appHeight - currentTexture.Height;
             }
 
-            if (x > Game1.appWidth - (Texture.Width / 3))
+            if (x > Main.appWidth - (currentTexture.Width / 3))
             {
-                x = Game1.appWidth - (Texture.Width / 3);
+                x = Main.appWidth - (currentTexture.Width / 3);
             }
 
             position.X = x;
@@ -131,15 +131,15 @@ namespace Robotron_2048
         
         public void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            int width = Texture.Width / Columns;
-            int height = Texture.Height / Rows;
+            int width = currentTexture.Width / Columns;
+            int height = currentTexture.Height / Rows;
             int row = (int) ((float) currentFrame / Columns);
             int column = currentFrame % Columns;
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int) position.X, (int) position.Y, width, height);
 
-            batch.Draw(Texture, destinationRectangle, sourceRectangle, Color.White);
+            batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
         }
     }
 }
