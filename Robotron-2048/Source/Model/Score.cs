@@ -24,20 +24,19 @@ namespace Robotron_2048.Source.Model
         /// <summary>
         /// The draw position of the score.
         /// </summary>
-        private readonly Vector2 position;
+        private readonly Label scoreLabel;
 
         /// <summary>
         /// Creates a new Score.
         /// </summary>
         public Score()
         {
-            position = new Vector2(15, 5);
+            scoreLabel = new Label("Score: " + value, 15, 5);
         }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            // TODO replace with Label
-            batch.DrawString(RobotronGame.font, "Score: " + value, position, Color.White);
+            scoreLabel.Draw(batch, gameTime);
         }
 
         /// <summary>
@@ -52,6 +51,8 @@ namespace Robotron_2048.Source.Model
             }
 
             value += amount;
+
+            Refresh();
         }
 
         /// <summary>
@@ -66,6 +67,16 @@ namespace Robotron_2048.Source.Model
             }
 
             value -= amount;
+
+            Refresh();
+        }
+
+        /// <summary>
+        /// Refreshes the Label's text contents to display the player's current score.
+        /// </summary>
+        private void Refresh()
+        {
+            scoreLabel.Text = "Score: " + value;
         }
     }
 }

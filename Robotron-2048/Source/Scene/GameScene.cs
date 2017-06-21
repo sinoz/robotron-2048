@@ -62,6 +62,11 @@ namespace Robotron_2048.Source.Scene
             DrawScore(batch, gameTime);
         }
 
+        /// <summary>
+        /// Draws all of the entities such as player characters and bullets.
+        /// </summary>
+        /// <param name="batch">The SpriteBatch to draw the entities on.</param>
+        /// <param name="gameTime">The delta time.</param>
         private void DrawEntities(SpriteBatch batch, GameTime gameTime)
         {
             entityBatch.Begin();
@@ -86,6 +91,11 @@ namespace Robotron_2048.Source.Scene
             entityBatch.End();
         }
 
+        /// <summary>
+        /// Draws the player's current score.
+        /// </summary>
+        /// <param name="batch">The SpriteBatch to draw the player's score on. </param>
+        /// <param name="gameTime">The delta time.</param>
         private void DrawScore(SpriteBatch batch, GameTime gameTime)
         {
             batch.Begin();
@@ -99,6 +109,10 @@ namespace Robotron_2048.Source.Scene
             TransitionToMainMenuOnKey(gameTime);
         }
 
+        /// <summary>
+        /// Updates the entities.
+        /// </summary>
+        /// <param name="gameTime">The delta time.</param>
         private void UpdateEntities(GameTime gameTime)
         {
             #region Adding new bullets
@@ -124,6 +138,10 @@ namespace Robotron_2048.Source.Scene
             #endregion
         }
 
+        /// <summary>
+        /// Transitions into the main menu scene when the user has pressed the 'Enter' key.
+        /// </summary>
+        /// <param name="gameTime">The delta time.</param>
         private void TransitionToMainMenuOnKey(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
