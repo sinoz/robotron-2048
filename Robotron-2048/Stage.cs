@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Robotron_2048
@@ -16,7 +17,7 @@ namespace Robotron_2048
         /// <summary>
         /// The rendering batch.
         /// </summary>
-        SpriteBatch batch;
+        public readonly SpriteBatch batch;
 
         /// <summary>
         /// The current Scene acting on this stage.
@@ -52,17 +53,17 @@ namespace Robotron_2048
         /// <summary>
         /// Draws the stage.
         /// </summary>
-        public void Draw()
+        public void Draw(GameTime gameTime)
         {
-            scene.Draw();
+            scene.Draw(gameTime);
         }
 
         /// <summary>
         /// Updates the stage.
         /// </summary>
-        public void Update()
+        public void Update(GameTime gameTime)
         {
-            scene.Update();
+            scene.Update(gameTime);
         }
     }
 
@@ -74,7 +75,7 @@ namespace Robotron_2048
         /// <summary>
         /// TODO
         /// </summary>
-        void Draw();
+        void Draw(GameTime gameTime);
     }
 
     /// <summary>
@@ -85,7 +86,7 @@ namespace Robotron_2048
         /// <summary>
         /// TODO
         /// </summary>
-        void Update();
+        void Update(GameTime gameTime);
     }
 
     /// <summary>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Robotron_2048
@@ -30,42 +31,11 @@ namespace Robotron_2048
         /// <summary>
         /// TODO
         /// </summary>
-        public abstract void Draw();
+        public abstract void Draw(GameTime gameTime);
 
         /// <summary>
         /// TODO
         /// </summary>
-        public abstract void Update();
-    }
-
-    /// <summary>
-    /// Describes a main menu scene.
-    /// </summary>
-    sealed class MainMenu : Scene
-    {
-        public override void Hide()
-        {
-            // TODO
-        }
-
-        public override void Show()
-        {
-            // TODO
-        }
-
-        public override void Dispose()
-        {
-            // TODO
-        }
-
-        public override void Draw()
-        {
-            // TODO
-        }
-
-        public override void Update()
-        {
-            // TODO
-        }
+        public abstract void Update(GameTime gameTime);
     }
 }

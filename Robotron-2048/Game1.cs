@@ -9,9 +9,24 @@ namespace Robotron_2048
     /// </summary>
     public class Game1 : Game
     {
+        /// <summary>
+        /// The graphics device manager.
+        /// </summary>
         GraphicsDeviceManager graphics;
+
+        /// <summary>
+        /// The stage.
+        /// </summary>
         Stage stage;
-        
+
+        /// <summary>
+        /// All of the character textures.
+        /// </summary>
+        public static Texture2D characterDownTex, characterUpTex, characterLeftTex, characterRightTex;
+
+        /// <summary>
+        /// Creates a new game.
+        /// </summary>
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -26,10 +41,17 @@ namespace Robotron_2048
         /// </summary>
         protected override void Initialize()
         {
+            // For now we load content here until we find a solution to a NPE caused by
+            // Initialize() being called before LoadContent()
+            characterDownTex = Content.Load<Texture2D>("Image/robotronguydown");
+            characterUpTex = Content.Load<Texture2D>("Image/robotronguyup");
+            characterLeftTex = Content.Load<Texture2D>("Image/robotronguyleft");
+            characterRightTex = Content.Load<Texture2D>("Image/robotronguyright");
+
             // TODO: Add your initialization logic here
 
             stage = new Stage(GraphicsDevice);
-            stage.transitionInto(new MainMenu());
+            stage.transitionInto(new GameScene(GraphicsDevice));
 
             base.Initialize();
         }
@@ -40,7 +62,7 @@ namespace Robotron_2048
         /// </summary>
         protected override void LoadContent()
         {
-            // TODO: use this.Content to load your game content here
+            // TODO: Load all of your content here
         }
 
         /// <summary>
@@ -61,8 +83,8 @@ namespace Robotron_2048
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
-            stage.Update();
+            
+            stage.Update(gameTime);
             
             base.Update(gameTime);
         }
@@ -73,9 +95,9 @@ namespace Robotron_2048
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            stage.Draw();
+            GraphicsDevice.Clear(Color.Black);
+            
+            stage.Draw(gameTime);
 
             base.Draw(gameTime);
         }
