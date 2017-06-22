@@ -114,12 +114,60 @@ namespace Robotron_2048.Source.Scene
             score.Draw(batch, gameTime);
             batch.End();
         }
-
+            int Bullet_X = 0;
+            int Bullet_Y = 1;
         public override void Update(GameTime gameTime)
         {
+
+           
+
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                Bullet_Y = -1;
+                Bullet_X = 0;
+            }
+            
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                Bullet_Y = 1;
+                Bullet_X = 0;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                Bullet_X = 1;
+                Bullet_Y = 0;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                Bullet_X = -1;
+                Bullet_Y = 0;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.W) && Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                Bullet_Y = -1;
+                Bullet_X = 1;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.S) && Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                Bullet_Y = 1;
+                Bullet_X = 1;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.W) && Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                Bullet_Y = -1;
+                Bullet_X = -1;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.A) && Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                Bullet_Y = 1;
+                Bullet_X = -1;
+            }
+
             UpdateEntities(gameTime);
             TransitionToMainMenuOnKey(gameTime);
+
         }
+
 
         /// <summary>
         /// Updates the entities.
@@ -127,11 +175,15 @@ namespace Robotron_2048.Source.Scene
         /// <param name="gameTime">The delta time.</param>
         private void UpdateEntities(GameTime gameTime)
         {
+
             #region Adding new bullets
             timeSinceLastbullet += gameTime.ElapsedGameTime.Milliseconds;
             if (timeSinceLastbullet > millisecondsPerbullet)
             {
-                bullets.Add(new Bullet(character, new Vector2(1, 0)));
+                
+                
+
+                bullets.Add(new Bullet(character, new Vector2(Bullet_X, Bullet_Y)));
                 timeSinceLastbullet = 0;
             }
             #endregion
