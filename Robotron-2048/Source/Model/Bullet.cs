@@ -59,6 +59,12 @@ namespace Robotron_2048.Source.Model
             this.color = Color.White;
         }
 
+        public bool shouldBeRemoved()
+        {
+            return position.X < -Bullet.Length || position.Y < -Bullet.Length
+                        || position.X > RobotronGame.appWidth || position.Y > RobotronGame.appHeight;
+        }
+
         public void Draw(SpriteBatch batch, GameTime gameTime)
         {
             batch.DrawLine(position, new Vector2(position.X + (direction.X * Length), position.Y + (direction.Y * Length)), color);

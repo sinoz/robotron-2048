@@ -57,6 +57,8 @@ namespace Robotron_2048.Source.Scene
             this.score = new Score();
             
             bullets.Add(new Bullet(character, new Vector2(1, 0)));
+            bullets.Add(new Bullet(character, new Vector2(0, 1)));
+            bullets.Add(new Bullet(character, new Vector2(1, 1)));
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
@@ -131,14 +133,12 @@ namespace Robotron_2048.Source.Scene
                 while (count < bullets.Count)
                 {
                     Bullet bullet = bullets[count];
-                    if (bullet.position.X < -Bullet.Length || bullet.position.Y <- Bullet.Length
-                        || bullet.position.X > RobotronGame.appWidth || bullet.position.Y > RobotronGame.appHeight)
+                    if (bullet.shouldBeRemoved())
                     {
                         bullets.Remove(bullet);
                     }
                     else
                     {
-                        // TODO check if bullet should be removed
                         bullet.Update(gameTime);
                     }
 
