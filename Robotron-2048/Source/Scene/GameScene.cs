@@ -55,6 +55,11 @@ namespace Robotron_2048.Source.Scene
         private Character character;
 
         /// <summary>
+        /// The enemy Robots.
+        /// </summary>
+        private Robot robot;
+
+        /// <summary>
         /// The score of the player.
         /// </summary>
         private Score score;
@@ -68,6 +73,7 @@ namespace Robotron_2048.Source.Scene
 
             this.entityBatch = new SpriteBatch(device);
             this.character = new Character();
+            this.robot = new Robot();
 
             this.score = new Score();
         }
@@ -89,6 +95,10 @@ namespace Robotron_2048.Source.Scene
 
             #region Drawing the player character
             character.Draw(entityBatch, gameTime);
+            #endregion
+
+            #region Drawing the enemy robots
+            robot.Draw(entityBatch, gameTime);
             #endregion
 
             #region Drawing the fired bullets
@@ -214,6 +224,9 @@ namespace Robotron_2048.Source.Scene
 
             #region Updating of the player character
             character.Update(gameTime);
+            #endregion
+            #region
+            robot.Update(gameTime);
             #endregion
         }
 

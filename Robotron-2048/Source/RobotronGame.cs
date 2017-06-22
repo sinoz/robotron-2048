@@ -54,6 +54,10 @@ namespace Robotron_2048.Source
         public static Texture2D characterDownTex, characterUpTex, characterLeftTex, characterRightTex;
 
         /// <summary>
+        /// All of the Robot textures.
+        /// </summary>
+        public static Texture2D RobotTex;
+        /// <summary>
         /// The set resolution of the application.
         /// </summary>
         public static int appWidth, appHeight;
@@ -105,8 +109,11 @@ namespace Robotron_2048.Source
             characterUpTex = Content.Load<Texture2D>("Image/robotronguyup");
             characterLeftTex = Content.Load<Texture2D>("Image/robotronguyleft");
             characterRightTex = Content.Load<Texture2D>("Image/robotronguyright");
+
+            RobotTex = Content.Load<Texture2D>("Image/RobotTex");
             gameBackground = Content.Load<Texture2D>("Image/Stars");
             font = Content.Load<SpriteFont>("Score");
+
         }
 
         /// <summary>

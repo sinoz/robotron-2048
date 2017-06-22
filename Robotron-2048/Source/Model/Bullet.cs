@@ -25,7 +25,7 @@ namespace Robotron_2048.Source.Model
         /// <summary>
         /// The velocity at which the bullet moves in a specific direction.
         /// </summary>
-        public const int MovementVelocity = 400;
+        public const int MovementVelocity = 550;
 
         /// <summary>
         /// The character that fired this bullet.
@@ -54,7 +54,7 @@ namespace Robotron_2048.Source.Model
         public Bullet(Character character, Vector2 direction)
         {
             this.character = character;
-            this.position = new Vector2(character.position.X, character.position.Y);
+            this.position = new Vector2(character.position.X + 20, character.position.Y + 10);
             this.direction = direction;
             this.color = Color.White;
         }
@@ -66,7 +66,7 @@ namespace Robotron_2048.Source.Model
         public bool shouldBeRemoved()
         {
             return position.X < -Bullet.Length || position.Y < -Bullet.Length
-                        || position.X > RobotronGame.appWidth || position.Y > RobotronGame.appHeight;
+                        || position.X > RobotronGame.appWidth || position.Y > RobotronGame.appHeight;   
         }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)

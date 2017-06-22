@@ -45,6 +45,7 @@
     <Compile Include="Source\Model\Bullet.cs" />
     <Compile Include="Source\Model\Character.cs" />
     <Compile Include="Source\Model\IEntity.cs" />
+    <Compile Include="Source\Model\Robot.cs" />
     <Compile Include="Source\RobotronGame.cs" />
     <Compile Include="Source\Scene\GameScene.cs" />
     <Compile Include="Source\Scene\MainMenu.cs" />
