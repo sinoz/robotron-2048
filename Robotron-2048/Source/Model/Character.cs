@@ -99,6 +99,7 @@ namespace Robotron_2048.Source.Model
             {
                 x -= (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
                 currentTexture = RobotronGame.characterLeftTex;
+                
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.D))
