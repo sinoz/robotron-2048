@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Robotron_2048.Source.Scene;
 
+using Robotron_2048.Source.Util;
+
 namespace Robotron_2048.Source.Model
 {
     /// <summary>
@@ -16,9 +18,19 @@ namespace Robotron_2048.Source.Model
     sealed class Bullet : IEntity
     {
         /// <summary>
+        /// The default length of a bullet line.
+        /// </summary>
+        public const int Length = 20;
+
+        /// <summary>
         /// The character that fired this bullet.
         /// </summary>
         private readonly Character character;
+
+        /// <summary>
+        /// The current position of this bullet.
+        /// </summary>
+        private Vector2 position { get; set; }
 
         /// <summary>
         /// Creates a new Bullet.
@@ -27,11 +39,12 @@ namespace Robotron_2048.Source.Model
         public Bullet(Character character)
         {
             this.character = character;
+            this.position = character.position;
         }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            // TODO
+            batch.DrawLine(position, new Vector2(position.X, position.Y + Length), Color.Red);
         }
 
         public void Update(GameTime gameTime)

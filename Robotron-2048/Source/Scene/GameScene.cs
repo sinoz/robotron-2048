@@ -55,6 +55,8 @@ namespace Robotron_2048.Source.Scene
             this.character = new Character();
 
             this.score = new Score();
+
+            bullets.Add(new Bullet(character ));
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
@@ -85,6 +87,7 @@ namespace Robotron_2048.Source.Scene
                     Bullet bullet = bullets[count];
 
                     bullet.Draw(entityBatch, gameTime);
+                    count += 1;
                 }
             }
             #endregion
@@ -130,6 +133,7 @@ namespace Robotron_2048.Source.Scene
 
                     // TODO check if bullet should be removed
                     bullet.Update(gameTime);
+                    count += 1;
                 }
             }
             #endregion
