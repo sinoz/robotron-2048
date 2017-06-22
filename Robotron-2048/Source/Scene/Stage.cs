@@ -46,7 +46,7 @@ namespace Robotron_2048.Source.Scene
             }
 
             this.scene = scene;
-            scene.setStage(this);
+            scene.stage = this;
 
             // TODO scene.Show();
         }

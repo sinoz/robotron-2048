@@ -43,7 +43,7 @@ namespace Robotron_2048.Source.Scene
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Back))
             {
-                getStage().TransitionInto(new GameScene(graphicsDevice));
+                stage.TransitionInto(new GameScene(graphicsDevice));
             }
         }
     }

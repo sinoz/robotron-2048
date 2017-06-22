@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Robotron_2048.Source.Model;
+using Robotron_2048.Source.Util;
 
 namespace Robotron_2048.Source.Scene
 {
@@ -87,7 +88,7 @@ namespace Robotron_2048.Source.Scene
                 }
             }
             #endregion
-
+            
             entityBatch.End();
         }
 
@@ -146,7 +147,7 @@ namespace Robotron_2048.Source.Scene
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
-                getStage().TransitionInto(new MainMenu(graphicsDevice));
+                stage.TransitionInto(new MainMenu(graphicsDevice));
             }
         }
     }

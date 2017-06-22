@@ -16,25 +16,7 @@ namespace Robotron_2048.Source.Scene
         /// <summary>
         /// The stage reference.
         /// </summary>
-        private Stage stage;
-
-        /// <summary>
-        /// Returns the stage.
-        /// </summary>
-        /// <returns>The stage.</returns>
-        public Stage getStage()
-        {
-            return stage;
-        }
-
-        /// <summary>
-        /// Assigns this scene to the specified stage.
-        /// </summary>
-        /// <param name="stage">The stage this scene is asssigned to.</param>
-        public void setStage(Stage stage)
-        {
-            this.stage = stage;
-        }
+        public Stage stage { get; set; }
 
         /// <summary>
         /// Draws this scene onto the given SpriteBatch.
