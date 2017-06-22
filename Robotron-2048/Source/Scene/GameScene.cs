@@ -60,16 +60,10 @@ namespace Robotron_2048.Source.Scene
             this.character = new Character();
 
             this.score = new Score();
-<<<<<<< HEAD
-            
+  
             bullets.Add(new Bullet(character, new Vector2(1, 0)));
             bullets.Add(new Bullet(character, new Vector2(0, 1)));
             bullets.Add(new Bullet(character, new Vector2(1, 1)));
-=======
-
-
-
->>>>>>> 838e20df5a049fc566c13f4d005ee7d8605b2ba6
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
