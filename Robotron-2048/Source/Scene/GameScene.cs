@@ -34,10 +34,20 @@ namespace Robotron_2048.Source.Scene
         /// </summary>
         private IList<Bullet> bullets = new List<Bullet>();
 
+        /// <summary>
+        /// The time elapsed since the last bullet was fired.
+        /// </summary>
         private int timeSinceLastbullet = 0;
 
+        /// <summary>
+        /// The time span between firing bullets.
+        /// </summary>
         private int millisecondsPerbullet = 250;
-       
+
+        /// <summary>
+        /// The last direction bullets moved towards.
+        /// </summary>
+        private int lastBulletDirectionX = 0, lastBulletDirectionY = 1;
 
         /// <summary>
         /// The game character.
@@ -60,10 +70,6 @@ namespace Robotron_2048.Source.Scene
             this.character = new Character();
 
             this.score = new Score();
-  
-            bullets.Add(new Bullet(character, new Vector2(1, 0)));
-            bullets.Add(new Bullet(character, new Vector2(0, 1)));
-            bullets.Add(new Bullet(character, new Vector2(1, 1)));
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
@@ -114,76 +120,73 @@ namespace Robotron_2048.Source.Scene
             score.Draw(batch, gameTime);
             batch.End();
         }
-            int Bullet_X = 0;
-            int Bullet_Y = 1;
+
         public override void Update(GameTime gameTime)
         {
-
-           
-
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
-            {
-                Bullet_Y = -1;
-                Bullet_X = 0;
-            }
-            
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
-            {
-                Bullet_Y = 1;
-                Bullet_X = 0;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
-            {
-                Bullet_X = 1;
-                Bullet_Y = 0;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
-            {
-                Bullet_X = -1;
-                Bullet_Y = 0;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.W) && Keyboard.GetState().IsKeyDown(Keys.D))
-            {
-                Bullet_Y = -1;
-                Bullet_X = 1;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.S) && Keyboard.GetState().IsKeyDown(Keys.D))
-            {
-                Bullet_Y = 1;
-                Bullet_X = 1;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.W) && Keyboard.GetState().IsKeyDown(Keys.A))
-            {
-                Bullet_Y = -1;
-                Bullet_X = -1;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.A) && Keyboard.GetState().IsKeyDown(Keys.S))
-            {
-                Bullet_Y = 1;
-                Bullet_X = -1;
-            }
-
             UpdateEntities(gameTime);
             TransitionToMainMenuOnKey(gameTime);
-
         }
-
-
+        
         /// <summary>
         /// Updates the entities.
         /// </summary>
         /// <param name="gameTime">The delta time.</param>
         private void UpdateEntities(GameTime gameTime)
         {
-
             #region Adding new bullets
+            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            {
+                lastBulletDirectionY = -1;
+                lastBulletDirectionX = 0;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                lastBulletDirectionY = 1;
+                lastBulletDirectionX = 0;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                lastBulletDirectionX = 1;
+                lastBulletDirectionY = 0;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                lastBulletDirectionX = -1;
+                lastBulletDirectionY = 0;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.W) && Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                lastBulletDirectionY = -1;
+                lastBulletDirectionX = 1;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.S) && Keyboard.GetState().IsKeyDown(Keys.D))
+            {
+                lastBulletDirectionY = 1;
+                lastBulletDirectionX = 1;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.W) && Keyboard.GetState().IsKeyDown(Keys.A))
+            {
+                lastBulletDirectionY = -1;
+                lastBulletDirectionX = -1;
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.A) && Keyboard.GetState().IsKeyDown(Keys.S))
+            {
+                lastBulletDirectionY = 1;
+                lastBulletDirectionX = -1;
+            }
+
             timeSinceLastbullet += gameTime.ElapsedGameTime.Milliseconds;
             if (timeSinceLastbullet > millisecondsPerbullet)
             {
-                
-                
+                bullets.Add(new Bullet(character, new Vector2(lastBulletDirectionX, lastBulletDirectionY)));
 
-                bullets.Add(new Bullet(character, new Vector2(Bullet_X, Bullet_Y)));
                 timeSinceLastbullet = 0;
             }
             #endregion
