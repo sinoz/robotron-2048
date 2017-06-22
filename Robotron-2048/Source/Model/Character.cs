@@ -20,7 +20,7 @@ namespace Robotron_2048.Source.Model
         /// <summary>
         /// The default velocity at which a character can move across the screen.
         /// </summary>
-        public const int MovementVelocity = 350;
+        public const int MovementVelocity = 150;
 
         /// <summary>
         /// The rows.

@@ -34,6 +34,11 @@ namespace Robotron_2048.Source.Scene
         /// </summary>
         private IList<Bullet> bullets = new List<Bullet>();
 
+        private int timeSinceLastbullet = 0;
+
+        private int millisecondsPerbullet = 250;
+       
+
         /// <summary>
         /// The game character.
         /// </summary>
@@ -55,10 +60,16 @@ namespace Robotron_2048.Source.Scene
             this.character = new Character();
 
             this.score = new Score();
+<<<<<<< HEAD
             
             bullets.Add(new Bullet(character, new Vector2(1, 0)));
             bullets.Add(new Bullet(character, new Vector2(0, 1)));
             bullets.Add(new Bullet(character, new Vector2(1, 1)));
+=======
+
+
+
+>>>>>>> 838e20df5a049fc566c13f4d005ee7d8605b2ba6
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
@@ -123,7 +134,12 @@ namespace Robotron_2048.Source.Scene
         private void UpdateEntities(GameTime gameTime)
         {
             #region Adding new bullets
-            // TODO
+            timeSinceLastbullet += gameTime.ElapsedGameTime.Milliseconds;
+            if (timeSinceLastbullet > millisecondsPerbullet)
+            {
+                bullets.Add(new Bullet(character, new Vector2(1, 0)));
+                timeSinceLastbullet = 0;
+            }
             #endregion
 
             #region Updating of Bullets
