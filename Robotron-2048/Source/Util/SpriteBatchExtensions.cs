@@ -14,26 +14,27 @@ namespace Robotron_2048.Source.Util
     /// </summary>
     static class SpriteBatchExtensions
     {
-        #region Computing a single pixel in the form of a Texture to use to draw lines. - Borrowed code from MonoGame.Extended
+        #region Computation of single pixels in the form of Textures to use to draw lines. - Borrowed code from MonoGame.Extended
         /// <summary>
-        /// The produced single pixel texture.
+        /// A dictionary of pixels in Texture2D forms mapped to their respective color.
         /// </summary>
-        private static Texture2D singlePixelTexture;
+        private static Dictionary<Color, Texture2D> pixels = new Dictionary<Color, Texture2D>();
 
         /// <summary>
         /// Computes a single pixel in the form of a Texture2D instance.
         /// </summary>
         /// <param name="spriteBatch">The SpriteBatch to produce the pixel Texture2D with.</param>
         /// <returns></returns>
-        private static Texture2D GetTexture(SpriteBatch spriteBatch)
+        private static Texture2D GetTexture(SpriteBatch spriteBatch, Color color)
         {
-            if (singlePixelTexture == null)
+            Texture2D texture = pixels[color];
+            if (texture == null)
             {
-                singlePixelTexture = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-                singlePixelTexture.SetData(new[] { Color.White });
+                texture = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+                texture.SetData(new[] { color });
             }
 
-            return singlePixelTexture;
+            return texture;
         }
         #endregion
 
@@ -59,7 +60,7 @@ namespace Robotron_2048.Source.Util
             var origin = new Vector2(0f, 0.5f);
             var scale = new Vector2(length, thickness);
 
-            spriteBatch.Draw(GetTexture(spriteBatch), point, null, color, angle, origin, scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(GetTexture(spriteBatch, color), point, null, color, angle, origin, scale, SpriteEffects.None, 0);
         }
         #endregion
     }

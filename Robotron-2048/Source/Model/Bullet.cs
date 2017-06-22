@@ -54,11 +54,15 @@ namespace Robotron_2048.Source.Model
         public Bullet(Character character, Vector2 direction)
         {
             this.character = character;
-            this.position = new Vector2(character.position.X , character.position.Y);
+            this.position = new Vector2(character.position.X, character.position.Y);
             this.direction = direction;
             this.color = Color.White;
         }
 
+        /// <summary>
+        /// Returns whether this bullet should be removed from the screen.
+        /// </summary>
+        /// <returns>Whether the bullet is a candidate for removal.</returns>
         public bool shouldBeRemoved()
         {
             return position.X < -Bullet.Length || position.Y < -Bullet.Length
