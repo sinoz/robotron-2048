@@ -27,14 +27,17 @@ namespace Robotron_2048.Source.Util
         /// <returns></returns>
         private static Texture2D GetTexture(SpriteBatch spriteBatch, Color color)
         {
-            Texture2D texture = pixels[color];
-            if (texture == null)
+            if (pixels.ContainsKey(color))
             {
-                texture = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-                texture.SetData(new[] { color });
+                return pixels[color];
             }
-
-            return texture;
+            else
+            {
+                Texture2D texture = new Texture2D(spriteBatch.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
+                texture.SetData(new[] { color });
+                pixels.Add(color, texture);
+                return texture;
+            }
         }
         #endregion
 
