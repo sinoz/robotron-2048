@@ -56,7 +56,7 @@ namespace Robotron_2048.Source.Model
         /// <summary>
         /// The coordinates of this character.
         /// </summary>
-        public Vector2 position = new Vector2(200, 200);
+        public Vector2 position = new Vector2(390, 290);
 
         /// <summary>
         /// The velocity at which the character can currently move.

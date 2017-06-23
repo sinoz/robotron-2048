@@ -62,7 +62,7 @@ namespace Robotron_2048.Source.Scene
         /// <summary>
         /// amount of robots to spawn
         /// </summary>
-        public int spawn = 10;
+        public int spawn = 25;
 
         /// <summary>
         /// Random method.
@@ -89,12 +89,12 @@ namespace Robotron_2048.Source.Scene
             #region Adding the robots
             for (int i = 1; i <= spawn; i++)
             {
-                int Rand_Y = random.Next(0, 600);
-                int Rand_X = random.Next(0, 600);
+                int Rand_Y = random.Next(1, 3) == 1 ? random.Next(0, 240) : random.Next(340, 550);
+                int Rand_X = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
                 robots.Add(new Robot(new Vector2(Rand_X, Rand_Y)));
             }
             #endregion
-
+            
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
@@ -232,15 +232,17 @@ namespace Robotron_2048.Source.Scene
             #endregion
 
             #region Updating of Bullets
+
             if (bullets.Count > 0)
             {
                 int count = 0;
                 while (count < bullets.Count)
                 {
                     Bullet bullet = bullets[count];
+                    
                     if (bullet.shouldBeRemoved())
                     {
-                        bullets.Remove(bullet);
+                        bullets.Remove(bullet);  
                     }
                     else
                     {
@@ -259,6 +261,35 @@ namespace Robotron_2048.Source.Scene
             #region Updating the robots
             foreach (Robot robot in robots)
                 robot.Update(gameTime);
+
+            #endregion
+
+            #region Checking the intersection of the robot and the bullets.
+            if (bullets.Count > 0)
+            {
+                int count = 0;
+                while (count < bullets.Count)
+                {
+                    Bullet bullet = bullets[count];
+                    Rectangle rect1 = bullet.getrectanglebullet();
+                    int count2 = 0;
+                    while (count2 < robots.Count)
+                    {
+                        Robot robot = robots[count2];
+                        Rectangle rect2 = robot.getRectangleRobot();
+                        if (rect1.Intersects(rect2))
+                        {
+                            bullets.Remove(bullet);
+                            robots.Remove(robot);
+                            
+                        }
+                        count2 +=  1;
+                    }
+
+
+                    count += 1;
+                }
+            }
             #endregion
         }
 

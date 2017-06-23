@@ -69,6 +69,12 @@ namespace Robotron_2048.Source.Model
                         || position.X > RobotronGame.appWidth || position.Y > RobotronGame.appHeight;   
         }
 
+        public Rectangle getrectanglebullet()
+        {
+            Rectangle bullet_rect = new Rectangle((int)position.X, (int)position.Y, Length, 1);
+            return bullet_rect;
+        }
+
         public void Draw(SpriteBatch batch, GameTime gameTime)
         {
             batch.DrawLine(position, new Vector2(position.X + (direction.X * Length), position.Y + (direction.Y * Length)), color);

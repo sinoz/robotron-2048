@@ -13,7 +13,7 @@ using Robotron_2048.Source.Scene;
 namespace Robotron_2048.Source.Model
 {
     /// <summary>
-    /// The player character.
+    /// The enemy robot character.
     /// </summary>
     sealed class Robot : IEntity
     {
@@ -58,14 +58,13 @@ namespace Robotron_2048.Source.Model
         /// </summary>
         Random random = new Random();
 
-
         /// <summary>
-        /// The position for the robot.
+        /// The random position for the robot.
         /// </summary>
         public readonly Vector2 randomposition;
 
         /// <summary>
-        /// The position for the robot.
+        /// The position for the robot updated.
         /// </summary>
         public Vector2 position;
 
@@ -79,8 +78,13 @@ namespace Robotron_2048.Source.Model
         public Robot(Vector2 randomposition)
         {
             this.randomposition = randomposition;
-            this.position = new Vector2(randomposition.X, randomposition.Y);
-            
+            this.position = new Vector2(randomposition.X, randomposition.Y);            
+        }
+
+        public Rectangle getRectangleRobot()
+        {
+            Rectangle Robot_rect = new Rectangle((int)position.X, (int)position.Y, 25, 25);
+            return Robot_rect;
         }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)
@@ -90,11 +94,7 @@ namespace Robotron_2048.Source.Model
             int height = currentTexture.Height / Rows;
             int row = (int)((float)currentFrame / Columns);
             int column = currentFrame % Columns;
-
-            
-        
-        
-       
+                   
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
             
@@ -117,8 +117,6 @@ namespace Robotron_2048.Source.Model
                     currentFrame = 0;
                 }
             }
-
-        
         }
     }
 }
