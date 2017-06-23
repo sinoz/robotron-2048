@@ -57,7 +57,17 @@ namespace Robotron_2048.Source.Scene
         /// <summary>
         /// The enemy Robots.
         /// </summary>
-        private Robot robot;
+        private IList<Robot> robots = new List<Robot>();
+
+        /// <summary>
+        /// amount of robots to spawn
+        /// </summary>
+        public int spawn = 10;
+
+        /// <summary>
+        /// Random method.
+        /// </summary>
+        Random random = new Random();
 
         /// <summary>
         /// The score of the player.
@@ -73,9 +83,18 @@ namespace Robotron_2048.Source.Scene
 
             this.entityBatch = new SpriteBatch(device);
             this.character = new Character();
-            this.robot = new Robot();
 
             this.score = new Score();
+
+            #region Adding the robots
+            for (int i = 1; i <= spawn; i++)
+            {
+                int Rand_Y = random.Next(0, 600);
+                int Rand_X = random.Next(0, 600);
+                robots.Add(new Robot(new Vector2(Rand_X, Rand_Y)));
+            }
+            #endregion
+
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
@@ -98,7 +117,18 @@ namespace Robotron_2048.Source.Scene
             #endregion
 
             #region Drawing the enemy robots
-            robot.Draw(entityBatch, gameTime);
+            if (robots.Count > 0)
+            {
+                int count = 0;
+                while (count < robots.Count)
+                {
+                    Robot robot = robots[count];
+
+                    robot.Draw(entityBatch, gameTime);
+
+                    count += 1;
+                }
+            }
             #endregion
 
             #region Drawing the fired bullets
@@ -136,7 +166,7 @@ namespace Robotron_2048.Source.Scene
             UpdateEntities(gameTime);
             TransitionToMainMenuOnKey(gameTime);
         }
-        
+
         /// <summary>
         /// Updates the entities.
         /// </summary>
@@ -225,8 +255,10 @@ namespace Robotron_2048.Source.Scene
             #region Updating of the player character
             character.Update(gameTime);
             #endregion
-            #region
-            robot.Update(gameTime);
+
+            #region Updating the robots
+            foreach (Robot robot in robots)
+                robot.Update(gameTime);
             #endregion
         }
 
