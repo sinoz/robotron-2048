@@ -83,7 +83,7 @@ namespace Robotron_2048.Source.Model
 
         public Rectangle getRectangleRobot()
         {
-            Rectangle Robot_rect = new Rectangle((int)position.X, (int)position.Y, 25, 25);
+            Rectangle Robot_rect = new Rectangle((int)position.X, (int)position.Y, 15, 25);
             return Robot_rect;
         }
 

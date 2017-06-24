@@ -62,7 +62,13 @@ namespace Robotron_2048.Source.Model
         /// The velocity at which the character can currently move.
         /// </summary>
         private int velocity = MovementVelocity;
-        
+
+        public Rectangle getRectangleCharacter()
+        {
+            Rectangle char_rect = new Rectangle((int)position.X, (int)position.Y, 41, 45);
+            return char_rect;
+        }
+
         public void Update(GameTime gameTime)
         {
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;

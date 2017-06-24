@@ -256,6 +256,8 @@ namespace Robotron_2048.Source.Scene
 
             #region Updating of the player character
             character.Update(gameTime);
+            Rectangle char_rect = character.getRectangleCharacter();
+
             #endregion
 
             #region Updating the robots
@@ -264,7 +266,7 @@ namespace Robotron_2048.Source.Scene
 
             #endregion
 
-            #region Checking the intersection of the robot and the bullets.
+            #region Checks the intersection between character, robots and bullets.
             if (bullets.Count > 0)
             {
                 int count = 0;
@@ -277,11 +279,16 @@ namespace Robotron_2048.Source.Scene
                     {
                         Robot robot = robots[count2];
                         Rectangle rect2 = robot.getRectangleRobot();
-                        if (rect1.Intersects(rect2))
+                        if (rect1.Intersects(rect2)) 
                         {
                             bullets.Remove(bullet);
                             robots.Remove(robot);
-                            
+
+                        }
+                        else if (rect2.Intersects(char_rect))
+                        {
+                            character.position.X = 390;
+                            character.position.Y = 290;
                         }
                         count2 +=  1;
                     }
