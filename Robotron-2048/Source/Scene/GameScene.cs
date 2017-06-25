@@ -70,6 +70,11 @@ namespace Robotron_2048.Source.Scene
         private readonly Random random = new Random();
 
         /// <summary>
+        /// The current level.
+        /// </summary>
+        private ILevel currentLevel;
+
+        /// <summary>
         /// The score of the player.
         /// </summary>
         private Score score;
@@ -237,72 +242,70 @@ namespace Robotron_2048.Source.Scene
             }
             #endregion
 
-            #region Updating of Bullets
+            int count = 0;
 
-            if (bullets.Count > 0)
+            #region Updating of Bullets
+            while (count < bullets.Count)
             {
-                int count = 0;
-                while (count < bullets.Count)
+                Bullet bullet = bullets[count];
+                if (bullet != null)
                 {
-                    Bullet bullet = bullets[count];
-                    
-                    if (bullet.shouldBeRemoved())
+                    #region Checks the intersection between the character, robots and bullets.
+                    int robotCount = 0;
+                    while (robotCount < robots.Count)
                     {
-                        bullets.Remove(bullet);  
+                        Robot robot = robots[robotCount];
+                        if (robot != null)
+                        {
+                            if (bullet.IntersectsWith(robot))
+                            {
+                                bullets.Remove(bullet);
+                                robots.Remove(robot);
+                            }
+
+                            if (robot.IntersectsWith(character))
+                            {
+                                character.MoveTo(x: 390, y: 290);
+                            }
+                        }
+
+                        robotCount += 1;
+                    }
+
+                    if (bullet.isOutOfBounds())
+                    {
+                        bullets.Remove(bullet);
                     }
                     else
                     {
                         bullet.Update(gameTime);
                     }
-
-                    count += 1;
+                    #endregion
                 }
+
+                count += 1;
             }
+
+            count = 0;
+            #endregion
+
+            #region Updating the robots
+            while (count < robots.Count)
+            {
+                Robot robot = robots[count];
+                if (robot != null)
+                {
+                    robot.Update(gameTime);
+                }
+
+                count += 1;
+            }
+
+            count = 0;
             #endregion
 
             #region Updating of the player character
             character.Update(gameTime);
-            Rectangle char_rect = character.getRectangleCharacter();
-
-            #endregion
-
-            #region Updating the robots
-            foreach (Robot robot in robots)
-                robot.Update(gameTime);
-
-            #endregion
-
-            #region Checks the intersection between character, robots and bullets.
-            if (bullets.Count > 0)
-            {
-                int count = 0;
-                while (count < bullets.Count)
-                {
-                    Bullet bullet = bullets[count];
-                    Rectangle rect1 = bullet.getrectanglebullet();
-                    int count2 = 0;
-                    while (count2 < robots.Count)
-                    {
-                        Robot robot = robots[count2];
-                        Rectangle rect2 = robot.getRobotRectangle();
-                        if (rect1.Intersects(rect2)) 
-                        {
-                            bullets.Remove(bullet);
-                            robots.Remove(robot);
-
-                        }
-                        else if (rect2.Intersects(char_rect))
-                        {
-                            character.position.X = 390;
-                            character.position.Y = 290;
-                        }
-                        count2 +=  1;
-                    }
-
-
-                    count += 1;
-                }
-            }
             #endregion
         }
 

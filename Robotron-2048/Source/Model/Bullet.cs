@@ -51,7 +51,7 @@ namespace Robotron_2048.Source.Model
         /// Creates a new Bullet.
         /// </summary>
         /// <param name="character">The Character for this Bullet.</param>
-        public Bullet(Character character, Vector2 direction)
+        public Bullet(Character character, Vector2 direction)  
         {
             this.character = character;
             this.position = new Vector2(character.position.X + 20, character.position.Y + 10);
@@ -60,19 +60,14 @@ namespace Robotron_2048.Source.Model
         }
 
         /// <summary>
-        /// Returns whether this bullet should be removed from the screen.
+        /// Returns whether this bullet is out of bounds and should therefore be considered a
+        /// candidate for removal.
         /// </summary>
         /// <returns>Whether the bullet is a candidate for removal.</returns>
-        public bool shouldBeRemoved()
+        public bool isOutOfBounds()
         {
             return position.X < -Bullet.Length || position.Y < -Bullet.Length
                         || position.X > RobotronGame.appWidth || position.Y > RobotronGame.appHeight;   
-        }
-
-        public Rectangle getrectanglebullet()
-        {
-            Rectangle bullet_rect = new Rectangle((int)position.X, (int)position.Y, Length, 1);
-            return bullet_rect;
         }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)
@@ -84,6 +79,11 @@ namespace Robotron_2048.Source.Model
         {
             position.X += (direction.X * (int)(MovementVelocity * gameTime.ElapsedGameTime.TotalSeconds));
             position.Y += (direction.Y * (int)(MovementVelocity * gameTime.ElapsedGameTime.TotalSeconds));
+        }
+
+        public Rectangle EntityRectangle()
+        {
+            return new Rectangle((int) position.X, (int) position.Y, Length, 1);
         }
     }
 }

@@ -131,9 +131,9 @@ namespace Robotron_2048.Source.Model
         /// Returns a Rectangle instance of the Robot containing its frame size and absolute coordinates
         /// on the screen.
         /// </summary>
-        public Rectangle getRobotRectangle()
+        public Rectangle EntityRectangle()
         {
-            return new Rectangle((int)position.X, (int)position.Y, FrameWidth, FrameHeight);
+            return new Rectangle((int) position.X, (int) position.Y, 16, 32);
         }
     }
 }

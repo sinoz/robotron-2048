@@ -23,6 +23,16 @@ namespace Robotron_2048.Source.Model
         public const int MovementVelocity = 250;
 
         /// <summary>
+        /// The width of a single frame of a character.
+        /// </summary>
+        public const int FrameWidth = 41;
+
+        /// <summary>
+        /// The height of a single frame of a character.
+        /// </summary>
+        public const int FrameHeight = 45;
+
+        /// <summary>
         /// The rows.
         /// </summary>
         public const int Rows = 1;
@@ -62,12 +72,6 @@ namespace Robotron_2048.Source.Model
         /// The velocity at which the character can currently move.
         /// </summary>
         private int velocity = MovementVelocity;
-
-        public Rectangle getRectangleCharacter()
-        {
-            Rectangle char_rect = new Rectangle((int)position.X, (int)position.Y, 41, 45);
-            return char_rect;
-        }
 
         public void Update(GameTime gameTime)
         {
@@ -134,8 +138,7 @@ namespace Robotron_2048.Source.Model
                 x = RobotronGame.appWidth - (currentTexture.Width / 3);
             }
 
-            position.X = x;
-            position.Y = y;
+            MoveTo((int) x, (int) y);
         }
         
         public void Draw(SpriteBatch batch, GameTime gameTime)
@@ -149,6 +152,24 @@ namespace Robotron_2048.Source.Model
             Rectangle destinationRectangle = new Rectangle((int) position.X, (int) position.Y, width, height);
 
             batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
+        }
+
+        /// <summary>
+        /// Moves the position of this character to the specified coordinates.
+        /// </summary>
+        public void MoveTo(int x, int y)
+        {
+            position.X = x;
+            position.Y = y;
+        }
+
+        /// <summary>
+        /// Returns a Rectangle instance of the Character containing its frame size and absolute coordinates
+        /// on the screen.
+        /// </summary>
+        public Rectangle EntityRectangle()
+        {
+            return new Rectangle((int) position.X, (int) position.Y, FrameWidth, FrameHeight);
         }
     }
 }

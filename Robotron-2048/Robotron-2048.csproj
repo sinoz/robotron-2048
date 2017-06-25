@@ -45,6 +45,8 @@
     <Compile Include="Source\Model\Bullet.cs" />
     <Compile Include="Source\Model\Character.cs" />
     <Compile Include="Source\Model\IEntity.cs" />
+    <Compile Include="Source\Model\ILevel.cs" />
+    <Compile Include="Source\Model\IRobotBehaviour.cs" />
     <Compile Include="Source\Model\Robot.cs" />
     <Compile Include="Source\RobotronGame.cs" />
     <Compile Include="Source\Scene\GameScene.cs" />
@@ -125,7 +127,9 @@
     <Content Include="Content\Image\robotronguyup.PNG" />
     <Content Include="Content\Image\Stars.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Source\Model\Level\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
