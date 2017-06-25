@@ -19,6 +19,11 @@ namespace Robotron_2048.Source.Scene
     sealed class GameScene : Scene
     {
         /// <summary>
+        /// The initial amount of robots to spawn.
+        /// </summary>
+        public const int RobotSpawnCount = 25;
+
+        /// <summary>
         /// The sprite batch specifically for this game scene to draw the game character
         /// and other entities on.
         /// </summary>
@@ -60,14 +65,9 @@ namespace Robotron_2048.Source.Scene
         private IList<Robot> robots = new List<Robot>();
 
         /// <summary>
-        /// amount of robots to spawn
+        /// The random number generator.
         /// </summary>
-        public int spawn = 25;
-
-        /// <summary>
-        /// Random method.
-        /// </summary>
-        Random random = new Random();
+        private readonly Random random = new Random();
 
         /// <summary>
         /// The score of the player.
@@ -86,12 +86,18 @@ namespace Robotron_2048.Source.Scene
 
             this.score = new Score();
 
+            // TODO move this stuff
+            IRobotBehaviour attracted = new AttractedToPlayerCharacterBehaviour(character);
+            IRobotBehaviour walkAround = new WalkAroundBehaviour();
+
             #region Adding the robots
-            for (int i = 1; i <= spawn; i++)
+            for (int i = 1; i <= RobotSpawnCount; i++)
             {
-                int Rand_Y = random.Next(1, 3) == 1 ? random.Next(0, 240) : random.Next(340, 550);
-                int Rand_X = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
-                robots.Add(new Robot(new Vector2(Rand_X, Rand_Y)));
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
+                int y = random.Next(1, 3) == 1 ? random.Next(0, 240) : random.Next(340, 550);
+
+                IRobotBehaviour behaviour = random.Next(1, 3) == 1 ? attracted : walkAround;
+                robots.Add(new Robot(new Vector2(x, y), behaviour));
             }
             #endregion
             
@@ -278,7 +284,7 @@ namespace Robotron_2048.Source.Scene
                     while (count2 < robots.Count)
                     {
                         Robot robot = robots[count2];
-                        Rectangle rect2 = robot.getRectangleRobot();
+                        Rectangle rect2 = robot.getRobotRectangle();
                         if (rect1.Intersects(rect2)) 
                         {
                             bullets.Remove(bullet);

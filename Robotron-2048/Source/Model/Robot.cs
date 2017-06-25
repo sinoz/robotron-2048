@@ -23,6 +23,16 @@ namespace Robotron_2048.Source.Model
         public const int MovementVelocity = 50;
 
         /// <summary>
+        /// The width of a single frame of a Robot.
+        /// </summary>
+        public const int FrameWidth = 15;
+
+        /// <summary>
+        /// The height of a single frame of a Robot.
+        /// </summary>
+        public const int FrameHeight = 25;
+
+        /// <summary>
         /// The rows.
         /// </summary>
         public const int Rows = 1;
@@ -54,42 +64,38 @@ namespace Robotron_2048.Source.Model
         private int millisecondsPerFrame = 100;
 
         /// <summary>
-        /// the random method
+        /// The behaviour of this robot.
         /// </summary>
-        Random random = new Random();
-
-        /// <summary>
-        /// The random position for the robot.
-        /// </summary>
-        public readonly Vector2 randomposition;
+        private readonly IRobotBehaviour behaviour;
 
         /// <summary>
         /// The position for the robot updated.
         /// </summary>
-        public Vector2 position;
+        public readonly Vector2 position;
 
         /// <summary>
         /// The velocity at which the character can currently move.
         /// </summary>
         private int velocity = MovementVelocity;
 
+        /// <summary>
+        /// A flag that indicates whether this Robot should be rendered or not.
+        /// </summary>
         public bool isVisible = true;
 
-        public Robot(Vector2 randomposition)
+        /// <summary>
+        /// Creates a new Robot.
+        /// </summary>
+        /// <param name="pos">The initial position of this Robot. The given position is copied.</param>
+        /// <param name="behaviour">The behaviour of this Robot.</param>
+        public Robot(Vector2 pos, IRobotBehaviour behaviour)
         {
-            this.randomposition = randomposition;
-            this.position = new Vector2(randomposition.X, randomposition.Y);            
-        }
-
-        public Rectangle getRectangleRobot()
-        {
-            Rectangle Robot_rect = new Rectangle((int)position.X, (int)position.Y, 15, 25);
-            return Robot_rect;
+            this.position = new Vector2(pos.X, pos.Y);
+            this.behaviour = behaviour;        
         }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)
         {
-
             int width = currentTexture.Width / Columns;
             int height = currentTexture.Height / Rows;
             int row = (int)((float)currentFrame / Columns);
@@ -117,6 +123,17 @@ namespace Robotron_2048.Source.Model
                     currentFrame = 0;
                 }
             }
+
+            behaviour.Act(this, gameTime);
+        }
+
+        /// <summary>
+        /// Returns a Rectangle instance of the Robot containing its frame size and absolute coordinates
+        /// on the screen.
+        /// </summary>
+        public Rectangle getRobotRectangle()
+        {
+            return new Rectangle((int)position.X, (int)position.Y, FrameWidth, FrameHeight);
         }
     }
 }
