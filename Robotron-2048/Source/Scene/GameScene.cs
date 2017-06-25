@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using Robotron_2048.Source.Model;
+using Robotron_2048.Source.Model.Levels;
 using Robotron_2048.Source.Util;
 
 namespace Robotron_2048.Source.Scene
@@ -19,11 +20,6 @@ namespace Robotron_2048.Source.Scene
     sealed class GameScene : Scene
     {
         /// <summary>
-        /// The initial amount of robots to spawn.
-        /// </summary>
-        public const int RobotSpawnCount = 25;
-
-        /// <summary>
         /// The sprite batch specifically for this game scene to draw the game character
         /// and other entities on.
         /// </summary>
@@ -33,11 +29,6 @@ namespace Robotron_2048.Source.Scene
         /// The graphics device.
         /// </summary>
         private readonly GraphicsDevice graphicsDevice;
-
-        /// <summary>
-        /// The list of fired bullets.
-        /// </summary>
-        private IList<Bullet> bullets = new List<Bullet>();
 
         /// <summary>
         /// The time elapsed since the last bullet was fired.
@@ -57,27 +48,27 @@ namespace Robotron_2048.Source.Scene
         /// <summary>
         /// The game character.
         /// </summary>
-        private Character character;
+        public readonly Character character;
+
+        /// <summary>
+        /// The list of fired bullets.
+        /// </summary>
+        public readonly IList<Bullet> bullets = new List<Bullet>();
 
         /// <summary>
         /// The enemy Robots.
         /// </summary>
-        private IList<Robot> robots = new List<Robot>();
-
-        /// <summary>
-        /// The random number generator.
-        /// </summary>
-        private readonly Random random = new Random();
-
-        /// <summary>
-        /// The current level.
-        /// </summary>
-        private ILevel currentLevel;
+        public readonly IList<Robot> robots = new List<Robot>();
 
         /// <summary>
         /// The score of the player.
         /// </summary>
-        private Score score;
+        public readonly Score score;
+
+        /// <summary>
+        /// The current level.
+        /// </summary>
+        private Level currentLevel;
 
         /// <summary>
         /// Creates a new game scene.
@@ -91,21 +82,7 @@ namespace Robotron_2048.Source.Scene
 
             this.score = new Score();
 
-            // TODO move this stuff
-            IRobotBehaviour attracted = new AttractedToPlayerCharacterBehaviour(character);
-            IRobotBehaviour walkAround = new WalkAroundBehaviour();
-
-            #region Adding the robots
-            for (int i = 1; i <= RobotSpawnCount; i++)
-            {
-                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
-                int y = random.Next(1, 3) == 1 ? random.Next(0, 240) : random.Next(340, 550);
-
-                IRobotBehaviour behaviour = random.Next(1, 3) == 1 ? attracted : walkAround;
-                robots.Add(new Robot(new Vector2(x, y), behaviour));
-            }
-            #endregion
-            
+            TransitionInto(new LevelOne(this));
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
@@ -242,9 +219,8 @@ namespace Robotron_2048.Source.Scene
             }
             #endregion
 
-            int count = 0;
-
             #region Updating of Bullets
+            int count = 0;
             while (count < bullets.Count)
             {
                 Bullet bullet = bullets[count];
@@ -260,12 +236,13 @@ namespace Robotron_2048.Source.Scene
                             if (bullet.IntersectsWith(robot))
                             {
                                 bullets.Remove(bullet);
-                                robots.Remove(robot);
+
+                                currentLevel.BulletCollidedWithRobot(robot);
                             }
 
                             if (robot.IntersectsWith(character))
                             {
-                                character.MoveTo(x: 390, y: 290);
+                                currentLevel.CharacterCollidedWithRobot(robot);
                             }
                         }
 
@@ -319,6 +296,21 @@ namespace Robotron_2048.Source.Scene
             {
                 stage.TransitionInto(new MainMenu(graphicsDevice));
             }
+        }
+
+        /// <summary>
+        /// Transitions from the current level to the specified level.
+        /// </summary>
+        /// <param name="level">The level to transition to.</param>
+        public void TransitionInto(Level level)
+        {
+            // TODO more stuff when the player changes levels
+
+            robots.Clear();
+            bullets.Clear();
+
+            this.currentLevel = level;
+            this.currentLevel.OnTransition();
         }
     }
 }
