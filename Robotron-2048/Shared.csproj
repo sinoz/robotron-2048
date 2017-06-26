@@ -10,7 +10,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Shared</RootNamespace>
-    <AssemblyName>Robotron-2048</AssemblyName>
+    <AssemblyName>Shared</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -46,9 +46,10 @@
     <Compile Include="Source\Deprecated\PrivateMain.cs" />
     <Compile Include="Source\Model\Bullet.cs" />
     <Compile Include="Source\Model\Character.cs" />
+    <Compile Include="Source\Model\Human.cs" />
     <Compile Include="Source\Model\IEntity.cs" />
     <Compile Include="Source\Model\Level.cs" />
-    <Compile Include="Source\Model\IRobotBehaviour.cs" />
+    <Compile Include="Source\Model\IMobBehaviour.cs" />
     <Compile Include="Source\Model\Levels\LevelOne.cs" />
     <Compile Include="Source\Model\Lives.cs" />
     <Compile Include="Source\Model\Robot.cs" />
@@ -123,6 +124,7 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Image\Life.png" />
     <Content Include="Content\Image\robotronguy.PNG" />
     <Content Include="Content\Image\robotronguydown.PNG" />
     <Content Include="Content\Image\robotronguyleft.PNG" />

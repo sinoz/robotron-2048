@@ -37,6 +37,15 @@ namespace Shared.Source.Model
         }
 
         /// <summary>
+        /// Adds the given human to this level.
+        /// </summary>
+        /// <param name="human">The human to add.</param>
+        protected void Add(Human human)
+        {
+            scene.humans.Add(human);
+        }
+
+        /// <summary>
         /// Removes the given robot from this level.
         /// </summary>
         /// <param name="robot">The robot to remove.</param>
@@ -44,6 +53,17 @@ namespace Shared.Source.Model
         {
             scene.robots.Remove(robot);
         }
+
+        /// <summary>
+        /// Removes the given human from this level.
+        /// </summary>
+        /// <param name="human">The human to remove.</param>
+        protected void remove(Human human)
+        {
+            scene.humans.Remove(human);
+        }
+
+
 
         /// <summary>
         /// Describes what to do when a transition occurs to the implementation level.

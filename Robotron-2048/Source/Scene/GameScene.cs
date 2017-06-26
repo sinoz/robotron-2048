@@ -61,6 +61,11 @@ namespace Shared.Source.Scene
         public readonly IList<Robot> robots = new List<Robot>();
 
         /// <summary>
+        /// The Humans.
+        /// </summary>
+        public readonly IList<Human> humans = new List<Human>();
+
+        /// <summary>
         /// The score of the player.
         /// </summary>
         public readonly Score score;
@@ -118,6 +123,21 @@ namespace Shared.Source.Scene
                     Robot robot = robots[count];
 
                     robot.Draw(entityBatch, gameTime);
+
+                    count += 1;
+                }
+            }
+            #endregion
+
+            #region Drawing the humans
+            if (humans.Count > 0)
+            {
+                int count = 0;
+                while (count < humans.Count)
+                {
+                    Human human = humans[count];
+
+                    human.Draw(entityBatch, gameTime);
 
                     count += 1;
                 }
@@ -278,6 +298,21 @@ namespace Shared.Source.Scene
                 if (robot != null)
                 {
                     robot.Update(gameTime);
+                }
+
+                count += 1;
+            }
+
+            count = 0;
+            #endregion
+
+            #region Updating the humans
+            while (count < humans.Count)
+            {
+                Human human = humans[count];
+                if (human != null)
+                {
+                    human.Update(gameTime);
                 }
 
                 count += 1;

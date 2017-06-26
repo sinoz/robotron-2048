@@ -88,6 +88,12 @@ namespace DesktopGL
             LoadedContent.characterRightTex = Content.Load<Texture2D>("Image/robotronguyright");
 
             LoadedContent.RobotTex = Content.Load<Texture2D>("Image/RobotTex");
+
+            LoadedContent.humanDownTex = Content.Load<Texture2D>("Image/humanDown");
+            LoadedContent.humanUpTex = Content.Load<Texture2D>("Image/humanUp");
+            LoadedContent.humanLeftTex = Content.Load<Texture2D>("Image/humanLeft");
+            LoadedContent.humanRighTex = Content.Load<Texture2D>("Image/humanRight");
+
             LoadedContent.gameBackground = Content.Load<Texture2D>("Image/Stars");
             LoadedContent.font = Content.Load<SpriteFont>("Score");
             LoadedContent.Life = Content.Load<Texture2D>("Image/Life");
