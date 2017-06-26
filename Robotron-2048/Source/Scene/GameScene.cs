@@ -279,11 +279,6 @@ namespace Shared.Source.Scene
                                 bullets.Remove(bullet);
                                 currentLevel.BulletCollidedWithRobot(robot);
                             }
-
-                            if (robot.IntersectsWith(character))
-                            {
-                                currentLevel.CharacterCollidedWithRobot(robot);
-                            }
                         }
 
                         robotCount += 1;
@@ -312,8 +307,13 @@ namespace Shared.Source.Scene
                 Robot robot = robots[count];
                 if (robot != null)
                 {
+                    if (robot.IntersectsWith(character))
+                    {
+                        currentLevel.CharacterCollidedWithRobot(robot);
+                    }
                     robot.Update(gameTime);
                 }
+
 
                 count += 1;
             }
@@ -335,15 +335,14 @@ namespace Shared.Source.Scene
                         {
                             if (human.IntersectsWith(character))
                             {
-                                humans.Remove(human);
                                 currentLevel.HumanCollidedWithCharacter(human);
-                            }
-                        }
+                            }   
 
+                        }
                         humanCount += 1;
-                    }
-                                       
+                    }               
                     #endregion
+                    human.Update(gameTime);
                 }
                 count += 1;
             }
