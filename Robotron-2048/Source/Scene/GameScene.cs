@@ -336,14 +336,13 @@ namespace Shared.Source.Scene
             #endregion
             #region Updating of the player character
             character.Update(gameTime);
-<<<<<<< HEAD
-=======
+
             #endregion
 
             Life.Update(gameTime);
->>>>>>> d76a4372d48ffe0fa94b615f2304569af6f72550
+
         }
-            #endregion
+            //endregion
 
         /// <summary>
         /// Transitions into the main menu scene when the user has pressed the 'Enter' key.

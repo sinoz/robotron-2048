@@ -37,7 +37,7 @@ namespace Shared.Source.Model
         public void Update(GameTime gameTime)
         {
 
-            life_1.X = 70;
+            life_1.X = 90;
             life_1.Y = 0;
 
             
