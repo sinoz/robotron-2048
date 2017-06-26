@@ -17,17 +17,17 @@ namespace Shared.Source.Model.Levels
         /// <summary>
         /// The initial amount of robots to spawn in this level.
         /// </summary>
-        private const int RobotSpawnCount = 20;
+        private const int RobotSpawnCount = 4;
 
         /// <summary>
         /// The initial amount of mines to spawn in this level.
         /// </summary>
-        private const int MineSpawnCount = 7;
+        private const int MineSpawnCount = 2;
         
         /// <summary>
         /// The initial amount of humans to spawn in this level.
         /// </summary>
-        private const int HumanSpawnCount = 10;
+        private const int HumanSpawnCount = 3;
 
         /// <summary>
         /// The random number generator.
