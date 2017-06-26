@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Robotron-2048")]
-[assembly: AssemblyProduct("Robotron-2048")]
+[assembly: AssemblyTitle("Shared")]
+[assembly: AssemblyProduct("Shared")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("Hewlett-Packard")]
