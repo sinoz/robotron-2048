@@ -8,7 +8,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared.Source.Util
 {
-    public class LoadedContent
+    /// <summary>
+    /// Contains static references to loaded content.
+    /// </summary>
+    public sealed class LoadedContent
     {
         /// <summary>
         /// The default SpriteFont to utilize for drawing labels.
