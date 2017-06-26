@@ -34,7 +34,7 @@ namespace Shared.Source.Scene
         /// The time elapsed since the last bullet was fired.
         /// </summary>
         private int timeSinceLastbullet = 0;
-
+        public Lives lives;
         /// <summary>
         /// The time span between firing bullets.
         /// </summary>
@@ -64,6 +64,8 @@ namespace Shared.Source.Scene
         /// The Humans.
         /// </summary>
         public readonly IList<Human> humans = new List<Human>();
+
+        public readonly IList<Lives> life = new List<Lives>();
 
         /// <summary>
         /// The score of the player.
@@ -161,6 +163,7 @@ namespace Shared.Source.Scene
             
             entityBatch.End();
         }
+        
 
         /// <summary>
         /// Draws the player's current score.
@@ -239,7 +242,7 @@ namespace Shared.Source.Scene
             if (timeSinceLastbullet > millisecondsPerbullet)
             {
                 bullets.Add(new Bullet(character, new Vector2(lastBulletDirectionX, lastBulletDirectionY)));
-
+                
                 timeSinceLastbullet = 0;
             }
             #endregion
@@ -266,7 +269,13 @@ namespace Shared.Source.Scene
 
                             if (robot.IntersectsWith(character))
                             {
+
                                 currentLevel.CharacterCollidedWithRobot(robot);
+                                Life.Total_Lives -= 1;
+                                if (Life.Total_Lives <= 0)
+                                {
+                                    
+                                }
                             }
                         }
 
