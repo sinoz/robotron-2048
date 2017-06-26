@@ -70,6 +70,8 @@ namespace Shared.Source.Scene
         /// </summary>
         public readonly Score score;
 
+        public readonly Lives Life;
+
         /// <summary>
         /// The current level.
         /// </summary>
@@ -86,7 +88,7 @@ namespace Shared.Source.Scene
             this.character = new Character();
 
             this.score = new Score();
-
+            this.Life = new Lives();
             TransitionInto(new LevelOne(this));
         }
 
@@ -94,6 +96,7 @@ namespace Shared.Source.Scene
         {
             DrawEntities(batch, gameTime);
             DrawScore(batch, gameTime);
+            
         }
 
         /// <summary>
@@ -108,6 +111,8 @@ namespace Shared.Source.Scene
             #region Drawing the player character
             character.Draw(entityBatch, gameTime);
             #endregion
+
+            Life.Draw(entityBatch, gameTime);
 
             #region Drawing the enemy robots
             if (robots.Count > 0)
@@ -331,6 +336,12 @@ namespace Shared.Source.Scene
             #endregion
             #region Updating of the player character
             character.Update(gameTime);
+<<<<<<< HEAD
+=======
+            #endregion
+
+            Life.Update(gameTime);
+>>>>>>> d76a4372d48ffe0fa94b615f2304569af6f72550
         }
             #endregion
 
@@ -356,7 +367,7 @@ namespace Shared.Source.Scene
 
             robots.Clear();
             bullets.Clear();
-
+            
             this.currentLevel = level;
             this.currentLevel.OnTransition();
         }

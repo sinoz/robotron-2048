@@ -51,6 +51,7 @@
     <Compile Include="Source\Model\Level.cs" />
     <Compile Include="Source\Model\IMobBehaviour.cs" />
     <Compile Include="Source\Model\Levels\LevelOne.cs" />
+    <Compile Include="Source\Model\Lives.cs" />
     <Compile Include="Source\Model\Robot.cs" />
     <Compile Include="Source\Scene\GameScene.cs" />
     <Compile Include="Source\Scene\MainMenu.cs" />
@@ -123,6 +124,7 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Image\Life.png" />
     <Content Include="Content\Image\robotronguy.PNG" />
     <Content Include="Content\Image\robotronguydown.PNG" />
     <Content Include="Content\Image\robotronguyleft.PNG" />
