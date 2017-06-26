@@ -46,9 +46,10 @@
     <Compile Include="Source\Main.cs" />
     <Compile Include="Source\Model\Bullet.cs" />
     <Compile Include="Source\Model\Character.cs" />
+    <Compile Include="Source\Model\Human.cs" />
     <Compile Include="Source\Model\IEntity.cs" />
     <Compile Include="Source\Model\Level.cs" />
-    <Compile Include="Source\Model\IRobotBehaviour.cs" />
+    <Compile Include="Source\Model\IMobBehaviour.cs" />
     <Compile Include="Source\Model\Levels\LevelOne.cs" />
     <Compile Include="Source\Model\Robot.cs" />
     <Compile Include="Source\Scene\GameScene.cs" />

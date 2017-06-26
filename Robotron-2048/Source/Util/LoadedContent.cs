@@ -29,5 +29,10 @@ namespace Shared.Source.Util
         /// All of the Robot textures.
         /// </summary>
         public static Texture2D RobotTex;
+
+        /// <summary>
+        /// All of the Human textures.
+        /// </summary>
+        public static Texture2D humanDownTex, humanUpTex, humanLeftTex, humanRighTex;
     }
 }
