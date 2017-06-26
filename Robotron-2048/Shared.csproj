@@ -43,7 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Source\AppConfig.cs" />
-    <Compile Include="Source\Main.cs" />
+    <Compile Include="Source\Deprecated\PrivateMain.cs" />
     <Compile Include="Source\Model\Bullet.cs" />
     <Compile Include="Source\Model\Character.cs" />
     <Compile Include="Source\Model\Human.cs" />

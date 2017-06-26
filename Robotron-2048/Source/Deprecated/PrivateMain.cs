@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Shared.Source
 {
-    class PrivateMain
+    /// <summary>
+    /// DEPRECATED. SOON TO BE REMOVED
+    /// </summary>
+    [System.Obsolete("This class is deprecated and scheduled for removal. Please utilize platform specific launchers.")]
+    sealed class PrivateMain
     {
         /// <summary>
         /// The main entry point for the application.
