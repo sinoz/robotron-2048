@@ -282,8 +282,6 @@ namespace Shared.Source.Scene
                                 bullets.Remove(bullet);
                                 currentLevel.BulletCollidedWithRobot(robot);
                             }
-<<<<<<< HEAD
-=======
 
                             if (robot.IntersectsWith(character))
                             {
@@ -295,7 +293,6 @@ namespace Shared.Source.Scene
                                     
                                 }
                             }
->>>>>>> 40a27f75fe40f69740e4538d131fa99fdc3d0470
                         }
 
                         robotCount += 1;
@@ -344,21 +341,10 @@ namespace Shared.Source.Scene
                 Human human = humans[count];
                 if (human != null)
                 {
-                    #region Checks the intersection between the character and humans.
-                    int humanCount = 0;
-                    while (humanCount < humans.Count)
+                    if (character.IntersectsWith(human))
                     {
-                        if (human != null)
-                        {
-                            if (human.IntersectsWith(character))
-                            {
-                                currentLevel.HumanCollidedWithCharacter(human);
-                            }   
-
-                        }
-                        humanCount += 1;
-                    }               
-                    #endregion
+                        currentLevel.HumanCollidedWithCharacter(human);
+                    }                                     
                     human.Update(gameTime);
                 }
                 count += 1;
