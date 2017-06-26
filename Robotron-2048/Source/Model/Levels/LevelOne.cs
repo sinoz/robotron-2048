@@ -17,7 +17,7 @@ namespace Shared.Source.Model.Levels
         /// <summary>
         /// The initial amount of robots to spawn in this level.
         /// </summary>
-        private const int RobotSpawnCount = 25;
+        private const int RobotSpawnCount = 20;
 
         private const int MineSpawnCount = 7;
         
@@ -43,6 +43,7 @@ namespace Shared.Source.Model.Levels
         {
             AddRobots();
             AddHumans();
+            AddMines();
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace Shared.Source.Model.Levels
             for (int i = 1; i <= RobotSpawnCount; i++)
             {
                 int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
-                int y = random.Next(1, 3) == 1 ? random.Next(0, 240) : random.Next(340, 550);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
 
                 IMobBehaviour behaviour = random.Next(1, 3) == 1 ? attracted : walkAround;
                 Add(new Robot(new Vector2(x, y), behaviour));
@@ -69,7 +70,7 @@ namespace Shared.Source.Model.Levels
             for (int i = 1; i <= MineSpawnCount; i++)
             {
                 int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
-                int y = random.Next(1, 3) == 1 ? random.Next(0, 240) : random.Next(340, 550);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
 
                 
                 Add(new Mines(new Vector2(x, y)));
@@ -86,7 +87,7 @@ namespace Shared.Source.Model.Levels
             for (int i = 1; i <= HumanSpawnCount; i++)
             {
                 int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
-                int y = random.Next(1, 3) == 1 ? random.Next(0, 240) : random.Next(340, 550);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
 
                 IMobBehaviour behaviour = random.Next(1, 3) == 1 ? attracted : walkAround;
                 Add(new Human(new Vector2(x, y), behaviour));

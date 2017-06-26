@@ -190,6 +190,7 @@ namespace Shared.Source.Scene
         {
             batch.Begin();
             score.Draw(batch, gameTime);
+            batch.DrawLine(new Vector2(0, 35), new Vector2 (800,35), Color.White, 5);
             batch.End();
         }
 

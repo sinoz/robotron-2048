@@ -124,9 +124,9 @@ namespace Shared.Source.Model
                 x = 0;
             }
 
-            if (y < 0)
+            if (y < 35)
             {
-                y = 0;
+                y = 35;
             }
 
             if (y > AppConfig.appHeight - currentTexture.Height)
