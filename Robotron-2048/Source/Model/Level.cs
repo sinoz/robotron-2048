@@ -53,23 +53,24 @@ namespace Shared.Source.Model
         {
             scene.robots.Remove(robot);
         }
-
-
-
-        protected void Add(Mines mines)
+        
+        /// <summary>
+        /// Adds the given mine to this level.
+        /// </summary>
+        /// <param name="mine">The mine.</param>
+        protected void Add(Mine mine)
         {
-            scene.mine.Add(mines);
+            scene.mine.Add(mine);
         }
 
         /// <summary>
-        /// Removes the given robot from this level.
+        /// Removes the given mine from this level.
         /// </summary>
-        /// <param name="robot">The robot to remove.</param>
-        protected void remove(Mines mines)
+        /// <param name="robot">The mine to remove.</param>
+        protected void remove(Mine mine)
         {
-            scene.mine.Remove(mines);
+            scene.mine.Remove(mine);
         }
-
 
         /// <summary>
         /// Removes the given human from this level.
@@ -79,8 +80,6 @@ namespace Shared.Source.Model
         {
             scene.humans.Remove(human);
         }
-
-
 
         /// <summary>
         /// Describes what to do when a transition occurs to the implementation level.
@@ -96,8 +95,7 @@ namespace Shared.Source.Model
         /// Describes what to do when a bullet has collided with a robot.
         /// </summary>
         public abstract void BulletCollidedWithRobot(Robot robot);
-
-
+        
         /// <summary>
         /// Describes what to do when a human has collided with the character.
         /// </summary>

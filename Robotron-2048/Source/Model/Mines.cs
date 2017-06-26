@@ -16,7 +16,7 @@ namespace Shared.Source.Model
     /// <summary>
     /// The enemy mine character.
     /// </summary>
-    public sealed class Mines : IEntity
+    public sealed class Mine : IEntity
     {
       
 
@@ -82,7 +82,7 @@ namespace Shared.Source.Model
         /// </summary>
         /// <param name="pos">The initial position of this Mine. The given position is copied.</param>
         /// <param name="behaviour">The behaviour of this Mine.</param>
-        public Mines(Vector2 pos)
+        public Mine(Vector2 pos)
         {
             this.position = new Vector2(pos.X, pos.Y);
             

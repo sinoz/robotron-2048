@@ -19,9 +19,13 @@ namespace Shared.Source.Model
         /// <param name="robot">The Robot.</param>
         /// <param name="gameTime">The delta time.</param>
         void Act(Robot robot, GameTime gameTime);
-        void Act(Human human, GameTime gameTime);
 
-        void Act(Lives life, GameTime gameTime);
+        /// <summary>
+        /// Performs the behavioural act for the given Human.
+        /// </summary>
+        /// <param name="human">The Human.</param>
+        /// <param name="gameTime">The delta time.</param>
+        void Act(Human human, GameTime gameTime);
     }
 
     /// <summary>
@@ -29,20 +33,15 @@ namespace Shared.Source.Model
     /// </summary>
     sealed class WalkAroundBehaviour : IMobBehaviour
     {
-        public void Act(Lives life, GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Act(Robot robot, GameTime gameTime)
         {
             // TODO
         }
+
         public void Act(Human human, GameTime gameTime)
         {
             // TODO
         }
-
     }
 
     /// <summary>
@@ -63,11 +62,6 @@ namespace Shared.Source.Model
         public AttractedToPlayerCharacterBehaviour(Character character)
         {
             this.character = character;
-        }
-
-        public void Act(Lives life, GameTime gameTime)
-        {
-            throw new NotImplementedException();
         }
 
         public void Act(Robot robot, GameTime gameTime)

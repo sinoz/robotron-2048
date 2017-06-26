@@ -19,6 +19,9 @@ namespace Shared.Source.Model.Levels
         /// </summary>
         private const int RobotSpawnCount = 20;
 
+        /// <summary>
+        /// The initial amount of mines to spawn in this level.
+        /// </summary>
         private const int MineSpawnCount = 7;
         
         /// <summary>
@@ -65,19 +68,24 @@ namespace Shared.Source.Model.Levels
             }
             #endregion
         }
+
+        /// <summary>
+        /// Adds all of the mines corresponding to this level.
+        /// </summary>
         private void AddMines()
         {
             for (int i = 1; i <= MineSpawnCount; i++)
             {
                 int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
                 int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
-
                 
-                Add(new Mines(new Vector2(x, y)));
+                Add(new Mine(new Vector2(x, y)));
             }
         }
 
-
+        /// <summary>
+        /// Adds all of the humans corresponding to this level.
+        /// </summary>
         private void AddHumans()
         {
             IMobBehaviour attracted = new AttractedToPlayerCharacterBehaviour(scene.character);
@@ -111,15 +119,13 @@ namespace Shared.Source.Model.Levels
         public override void BulletCollidedWithRobot(Robot robot)
         {
             remove(robot);
-            scene.score.Increment(10);
-
+            scene.score.Increment(amount: 10);
         }
 
         public override void HumanCollidedWithCharacter(Human human)
         {
             remove(human);
-            scene.score.Increment(10);
-
+            scene.score.Increment(amount: 10);
         }
     }
 }

@@ -31,10 +31,15 @@ namespace Shared.Source.Scene
         private readonly GraphicsDevice graphicsDevice;
 
         /// <summary>
+        /// The initial amount of lives the player starts with.
+        /// </summary>
+        public const int InitialAmountOfLives = 3;
+
+        /// <summary>
         /// The time elapsed since the last bullet was fired.
         /// </summary>
         private int timeSinceLastbullet = 0;
-        public Lives lives;
+
         /// <summary>
         /// The time span between firing bullets.
         /// </summary>
@@ -54,7 +59,12 @@ namespace Shared.Source.Scene
         /// The list of fired bullets.
         /// </summary>
         public readonly IList<Bullet> bullets = new List<Bullet>();
-        public readonly IList<Mines> mine = new List<Mines>();
+
+        /// <summary>
+        /// The list of mines.
+        /// </summary>
+        public readonly IList<Mine> mine = new List<Mine>();
+
         /// <summary>
         /// The enemy Robots.
         /// </summary>
@@ -65,14 +75,15 @@ namespace Shared.Source.Scene
         /// </summary>
         public readonly IList<Human> humans = new List<Human>();
 
-        public readonly IList<Lives> life = new List<Lives>();
+        /// <summary>
+        /// The collection of remaining lives.
+        /// </summary>
+        public readonly IList<Life> lives = new List<Life>();
 
         /// <summary>
         /// The score of the player.
         /// </summary>
         public readonly Score score;
-
-        public readonly Lives Life;
 
         /// <summary>
         /// The current level.
@@ -90,15 +101,21 @@ namespace Shared.Source.Scene
             this.character = new Character();
 
             this.score = new Score();
-            this.Life = new Lives();
+
             TransitionInto(new LevelOne(this));
+
+            #region Appends the initial amount of lives for display
+            for (int i = 0; i < InitialAmountOfLives; i++)
+            {
+                lives.Add(new Life(new Vector2(90 + (i * Life.Width), 0)));
+            }
+            #endregion
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
             DrawEntities(batch, gameTime);
-            DrawScore(batch, gameTime);
-            
+            DrawHUD(batch, gameTime);
         }
 
         /// <summary>
@@ -113,8 +130,6 @@ namespace Shared.Source.Scene
             #region Drawing the player character
             character.Draw(entityBatch, gameTime);
             #endregion
-
-            Life.Draw(entityBatch, gameTime);
 
             #region Drawing the enemy robots
             if (robots.Count > 0)
@@ -167,7 +182,7 @@ namespace Shared.Source.Scene
                 int count = 0;
                 while (count < mine.Count)
                 {
-                    Mines mines = mine[count];
+                    Mine mines = mine[count];
 
                     mines.Draw(entityBatch, gameTime);
 
@@ -175,22 +190,40 @@ namespace Shared.Source.Scene
                 }
             }
             #endregion
-
-
+            
             entityBatch.End();
         }
         
-
         /// <summary>
-        /// Draws the player's current score.
+        /// Draws an in-game HUD.
         /// </summary>
-        /// <param name="batch">The SpriteBatch to draw the player's score on. </param>
+        /// <param name="batch">The SpriteBatch to draw the hud on. </param>
         /// <param name="gameTime">The delta time.</param>
-        private void DrawScore(SpriteBatch batch, GameTime gameTime)
+        private void DrawHUD(SpriteBatch batch, GameTime gameTime)
         {
             batch.Begin();
+
+            #region Draws the score.
             score.Draw(batch, gameTime);
             batch.DrawLine(new Vector2(0, 35), new Vector2 (800,35), Color.White, 5);
+            #endregion
+
+            #region TODO
+            if (lives.Count > 0)
+            {
+                int count = 0;
+                while (count < lives.Count)
+                {
+                    Life life = lives[count];
+                    if (life != null)
+                    {
+                        life.Draw(batch, gameTime);
+                    }
+
+                    count += 1;
+                }
+            }
+            #endregion
             batch.End();
         }
 
@@ -286,13 +319,16 @@ namespace Shared.Source.Scene
 
                             if (robot.IntersectsWith(character))
                             {
-
-                                currentLevel.CharacterCollidedWithRobot(robot);
-                                Life.Total_Lives -= 1;
-                                if (Life.Total_Lives <= 0)
+                                #region Removal of a remaining life
+                                if (lives.Count > 0)
                                 {
-                                    
+                                    lives.RemoveAt(lives.Count - 1);
+                                    currentLevel.CharacterCollidedWithRobot(robot);
+                                } else
+                                {
+                                    // TODO game over
                                 }
+                                #endregion
                             }
                         }
 
@@ -353,16 +389,16 @@ namespace Shared.Source.Scene
 
             count = 0;
             #endregion
+
             #region Updating of the player character
             character.Update(gameTime);
 
             #endregion
 
-
             #region Updating the mines
             while (count < mine.Count)
             {
-                Mines mines = mine[count];
+                Mine mines = mine[count];
                 if (mines != null)
                 {
                     mines.Update(gameTime);
@@ -373,11 +409,7 @@ namespace Shared.Source.Scene
 
             count = 0;
             #endregion
-
-            Life.Update(gameTime);
-         
         }
-            //endregion
 
         /// <summary>
         /// Transitions into the main menu scene when the user has pressed the 'Enter' key.
