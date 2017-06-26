@@ -96,11 +96,15 @@ namespace Shared.Source.Model.Levels
         public override void BulletCollidedWithRobot(Robot robot)
         {
             remove(robot);
+            scene.score.Increment(10);
+
         }
 
         public override void HumanCollidedWithCharacter(Human human)
         {
             remove(human);
+            scene.score.Increment(10);
+
         }
     }
 }
