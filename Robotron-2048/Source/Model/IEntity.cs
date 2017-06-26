@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Robotron_2048.Source.Scene;
+using Shared.Source.Scene;
 using Microsoft.Xna.Framework;
 
-namespace Robotron_2048.Source.Model
+namespace Shared.Source.Model
 {
     /// <summary>
     /// A drawable and updatable entity.

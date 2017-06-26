@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Robotron_2048.Source.Scene;
+using Shared.Source.Scene;
 
-namespace Robotron_2048.Source.Model
+namespace Shared.Source.Model
 {
     /// <summary>
     /// Keeps track of the player's score whilst in game.
     /// </summary>
-    sealed class Score : Scene.IDrawable
+    public sealed class Score : Scene.IDrawable
     {
         /// <summary>
         /// The score value.

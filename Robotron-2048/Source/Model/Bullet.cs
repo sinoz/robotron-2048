@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Robotron_2048.Source.Scene;
+using Shared.Source.Scene;
+using Shared.Source.Util;
 
-using Robotron_2048.Source.Util;
-
-namespace Robotron_2048.Source.Model
+namespace Shared.Source.Model
 {
     /// <summary>
     /// A fired bullet interpolating in a specific direction.
     /// </summary>
-    sealed class Bullet : IEntity
+    public sealed class Bullet : IEntity
     {
         /// <summary>
         /// The default length of a bullet line.
@@ -67,7 +66,7 @@ namespace Robotron_2048.Source.Model
         public bool isOutOfBounds()
         {
             return position.X < -Bullet.Length || position.Y < -Bullet.Length
-                        || position.X > RobotronGame.appWidth || position.Y > RobotronGame.appHeight;   
+                        || position.X > AppConfig.appWidth || position.Y > AppConfig.appHeight;   
         }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)

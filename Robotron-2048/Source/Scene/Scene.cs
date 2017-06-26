@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Robotron_2048.Source.Scene
+namespace Shared.Source.Scene
 {
     /// <summary>
     /// Describes the different types of behaviours of a scene on a stage.
     /// </summary>
-    abstract class Scene : IDrawable, IUpdatable {
+    public abstract class Scene : IDrawable, IUpdatable {
         /// <summary>
         /// The stage reference.
         /// </summary>

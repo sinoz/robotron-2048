@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Robotron_2048.Source.Scene;
+using Shared.Source.Scene;
 
-namespace Robotron_2048.Source.Util
+namespace Shared.Source.Util
 {
     /// <summary>
     /// A frame-per-second counter to keep track of the application's
     /// overall graphical performance.
     /// </summary>
-    sealed class FPSCounter : IUpdatable
+    public sealed class FPSCounter : IUpdatable
     {
         /// <summary>
         /// The time span in between FPS updating.
@@ -32,15 +32,15 @@ namespace Robotron_2048.Source.Util
         private readonly string initialTitle;
 
         /// <summary>
-        /// A reference to the RobotronGame instance to have access to the application title.
+        /// A reference to the Game instance to have access to the application title.
         /// </summary>
-        private readonly RobotronGame game;
+        private readonly Game game;
 
         /// <summary>
         /// Creates a new FPSCounter.
         /// </summary>
         /// <param name="game">The RobotronGame instance.</param>
-        public FPSCounter(RobotronGame game)
+        public FPSCounter(Game game)
         {
             this.game = game;
             this.initialTitle = game.Window.Title;

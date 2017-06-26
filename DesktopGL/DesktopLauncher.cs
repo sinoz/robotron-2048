@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Shared.Source
+namespace DesktopGL
 {
-    class PrivateMain
+    /// <summary>
+    /// The main class.
+    /// </summary>
+    public static class DesktopLauncher
     {
         /// <summary>
         /// The main entry point for the application.
@@ -14,7 +13,8 @@ namespace Shared.Source
         [STAThread]
         static void Main()
         {
-            // nothing
+            using (var game = new DesktopGame())
+                game.Run();
         }
     }
 }

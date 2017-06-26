@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Robotron_2048.Source.Util
+namespace Shared.Source.Util
 {
     /// <summary>
     /// Contains extension methods specific to SpriteBatch's.

@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Robotron_2048.Source.Scene
+using Shared.Source.Util;
+
+namespace Shared.Source.Scene
 {
     /// <summary>
     /// A drawable and updatable Label widget.
     /// </summary>
-    sealed class Label : IDrawable, IUpdatable
+    public sealed class Label : IDrawable, IUpdatable
     {
         /// <summary>
         /// The position of this label.
@@ -49,7 +51,7 @@ namespace Robotron_2048.Source.Scene
 
         public void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            batch.DrawString(RobotronGame.font, Text, position, Color);
+            batch.DrawString(LoadedContent.font, Text, position, Color);
         }
     }
 }

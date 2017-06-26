@@ -8,14 +8,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Robotron_2048.Source.Scene;
+using Shared.Source.Util;
+using Shared.Source.Scene;
 
-namespace Robotron_2048.Source.Model
+namespace Shared.Source.Model
 {
     /// <summary>
     /// The player character.
     /// </summary>
-    sealed class Character : IEntity
+    public sealed class Character : IEntity
     {
         /// <summary>
         /// The default velocity at which a character can move across the screen.
@@ -50,7 +51,7 @@ namespace Robotron_2048.Source.Model
         /// <summary>
         /// The current texture frame.
         /// </summary>
-        private Texture2D currentTexture = RobotronGame.characterDownTex;
+        private Texture2D currentTexture = LoadedContent.characterDownTex;
 
         /// <summary>
         /// The current frame being rendered.
@@ -96,26 +97,26 @@ namespace Robotron_2048.Source.Model
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
                 y -= (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                currentTexture = RobotronGame.characterUpTex;
+                currentTexture = LoadedContent.characterUpTex;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
                 y += (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                currentTexture = RobotronGame.characterDownTex;
+                currentTexture = LoadedContent.characterDownTex;
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
                 x -= (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                currentTexture = RobotronGame.characterLeftTex;
+                currentTexture = LoadedContent.characterLeftTex;
                 
             }
 
             if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
                 x += (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                currentTexture = RobotronGame.characterRightTex;
+                currentTexture = LoadedContent.characterRightTex;
             }
             
             if (x < 0)
@@ -128,14 +129,14 @@ namespace Robotron_2048.Source.Model
                 y = 0;
             }
 
-            if (y > RobotronGame.appHeight - currentTexture.Height)
+            if (y > AppConfig.appHeight - currentTexture.Height)
             {
-                y = RobotronGame.appHeight - currentTexture.Height;
+                y = AppConfig.appHeight - currentTexture.Height;
             }
 
-            if (x > RobotronGame.appWidth - (currentTexture.Width / 3))
+            if (x > AppConfig.appWidth - (currentTexture.Width / 3))
             {
-                x = RobotronGame.appWidth - (currentTexture.Width / 3);
+                x = AppConfig.appWidth - (currentTexture.Width / 3);
             }
 
             MoveTo((int) x, (int) y);

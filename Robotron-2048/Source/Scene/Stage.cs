@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Robotron_2048.Source.Scene
+using Shared.Source.Util;
+
+namespace Shared.Source.Scene
 {
     /// <summary>
     /// A stage in charge of a scenery, updating and drawing subordinate widgets.
     /// </summary>
-    sealed class Stage
+    public sealed class Stage
     {
         /// <summary>
         /// The rendering batch.
@@ -58,7 +60,7 @@ namespace Robotron_2048.Source.Scene
         {
             #region Drawing of the background
             batch.Begin();
-            batch.Draw(RobotronGame.gameBackground, new Rectangle(new Point(0, 0), new Point(RobotronGame.gameBackground.Width, RobotronGame.gameBackground.Height)), Color.White);
+            batch.Draw(LoadedContent.gameBackground, new Rectangle(new Point(0, 0), new Point(LoadedContent.gameBackground.Width, LoadedContent.gameBackground.Height)), Color.White);
             batch.End();
             #endregion
 

@@ -8,14 +8,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Robotron_2048.Source.Scene;
+using Shared.Source.Scene;
+using Shared.Source.Util;
 
-namespace Robotron_2048.Source.Model
+namespace Shared.Source.Model
 {
     /// <summary>
     /// The enemy robot character.
     /// </summary>
-    sealed class Robot : IEntity
+    public sealed class Robot : IEntity
     {
         /// <summary>
         /// The default velocity at which a Robot can move across the screen.
@@ -50,7 +51,7 @@ namespace Robotron_2048.Source.Model
         /// <summary>
         /// The current texture frame.
         /// </summary>
-        private Texture2D currentTexture = RobotronGame.RobotTex;
+        private Texture2D currentTexture = LoadedContent.RobotTex;
 
         /// <summary>
         /// The current frame being rendered.

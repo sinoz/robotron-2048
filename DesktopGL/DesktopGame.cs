@@ -1,17 +1,17 @@
-﻿using System;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Robotron_2048.Source.Scene;
-using Robotron_2048.Source.Util;
+using Shared.Source;
+using Shared.Source.Scene;
+using Shared.Source.Util;
 
-namespace Robotron_2048.Source
+namespace DesktopGL
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public sealed class RobotronGame : Game
+    public sealed class DesktopGame : Game
     {
         /// <summary>
         /// The default width and height of the application on the desktop.
@@ -39,33 +39,9 @@ namespace Robotron_2048.Source
         private Stage stage;
 
         /// <summary>
-        /// The default SpriteFont to utilize for drawing labels.
-        /// </summary>
-        public static SpriteFont font;
-
-        /// <summary>
-        /// The game scene background texture.
-        /// </summary>
-        public static Texture2D gameBackground;
-
-        /// <summary>
-        /// All of the character textures.
-        /// </summary>
-        public static Texture2D characterDownTex, characterUpTex, characterLeftTex, characterRightTex;
-
-        /// <summary>
-        /// All of the Robot textures.
-        /// </summary>
-        public static Texture2D RobotTex;
-        /// <summary>
-        /// The set resolution of the application.
-        /// </summary>
-        public static int appWidth, appHeight;
-
-        /// <summary>
         /// Creates a new game.
         /// </summary>
-        public RobotronGame()
+        public DesktopGame()
         {
             graphics = new GraphicsDeviceManager(this);
 
@@ -73,8 +49,8 @@ namespace Robotron_2048.Source
             graphics.PreferredBackBufferHeight = DesktopHeight;
             graphics.PreferredBackBufferWidth = DesktopWidth;
 
-            appWidth = graphics.PreferredBackBufferWidth;
-            appHeight = graphics.PreferredBackBufferHeight;
+            AppConfig.appWidth = graphics.PreferredBackBufferWidth;
+            AppConfig.appHeight = graphics.PreferredBackBufferHeight;
 
             Window.Title = DesktopAppTitle;
 
@@ -105,15 +81,14 @@ namespace Robotron_2048.Source
         /// </summary>
         protected override void LoadContent()
         {
-            characterDownTex = Content.Load<Texture2D>("Image/robotronguydown");
-            characterUpTex = Content.Load<Texture2D>("Image/robotronguyup");
-            characterLeftTex = Content.Load<Texture2D>("Image/robotronguyleft");
-            characterRightTex = Content.Load<Texture2D>("Image/robotronguyright");
+            LoadedContent.characterDownTex = Content.Load<Texture2D>("Image/robotronguydown");
+            LoadedContent.characterUpTex = Content.Load<Texture2D>("Image/robotronguyup");
+            LoadedContent.characterLeftTex = Content.Load<Texture2D>("Image/robotronguyleft");
+            LoadedContent.characterRightTex = Content.Load<Texture2D>("Image/robotronguyright");
 
-            RobotTex = Content.Load<Texture2D>("Image/RobotTex");
-            gameBackground = Content.Load<Texture2D>("Image/Stars");
-            font = Content.Load<SpriteFont>("Score");
-
+            LoadedContent.RobotTex = Content.Load<Texture2D>("Image/RobotTex");
+            LoadedContent.gameBackground = Content.Load<Texture2D>("Image/Stars");
+            LoadedContent.font = Content.Load<SpriteFont>("Score");
         }
 
         /// <summary>
@@ -122,12 +97,12 @@ namespace Robotron_2048.Source
         /// </summary>
         protected override void UnloadContent()
         {
-            characterDownTex.Dispose();
-            characterUpTex.Dispose();
-            characterLeftTex.Dispose();
-            characterRightTex.Dispose();
-            gameBackground.Dispose();
-            font.Texture.Dispose();
+            LoadedContent.characterDownTex.Dispose();
+            LoadedContent.characterUpTex.Dispose();
+            LoadedContent.characterLeftTex.Dispose();
+            LoadedContent.characterRightTex.Dispose();
+            LoadedContent.gameBackground.Dispose();
+            LoadedContent.font.Texture.Dispose();
         }
 
         /// <summary>
@@ -142,7 +117,7 @@ namespace Robotron_2048.Source
 
             fpsCounter.Update(gameTime);
             stage.Update(gameTime);
-            
+
             base.Update(gameTime);
         }
 
@@ -153,7 +128,7 @@ namespace Robotron_2048.Source
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            
+
             stage.Draw(gameTime);
 
             base.Draw(gameTime);

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 
-using Robotron_2048.Source.Scene;
+using Shared.Source.Scene;
 
-namespace Robotron_2048.Source.Model.Levels
+namespace Shared.Source.Model.Levels
 {
     /// <summary>
     /// Describes the first level in the game.

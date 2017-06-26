@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace Shared.Source
 {
-    class PrivateMain
+    public class AppConfig
     {
         /// <summary>
-        /// The main entry point for the application.
+        /// The set resolution of the application.
         /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            // nothing
-        }
+        public static int appWidth, appHeight;
     }
 }

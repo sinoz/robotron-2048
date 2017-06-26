@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Robotron_2048.Source.Scene;
+using Shared.Source.Scene;
 
-namespace Robotron_2048.Source.Model
+namespace Shared.Source.Model
 {
     /// <summary>
     /// Describes a single level.
     /// </summary>
-    abstract class Level
+    public abstract class Level
     {
         /// <summary>
         /// The game scene.

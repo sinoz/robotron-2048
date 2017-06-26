@@ -8,16 +8,16 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using Robotron_2048.Source.Model;
-using Robotron_2048.Source.Model.Levels;
-using Robotron_2048.Source.Util;
+using Shared.Source.Model;
+using Shared.Source.Model.Levels;
+using Shared.Source.Util;
 
-namespace Robotron_2048.Source.Scene
+namespace Shared.Source.Scene
 {
     /// <summary>
     /// The game scene.
     /// </summary>
-    sealed class GameScene : Scene
+    public sealed class GameScene : Scene
     {
         /// <summary>
         /// The sprite batch specifically for this game scene to draw the game character

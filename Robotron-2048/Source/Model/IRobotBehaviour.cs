@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Robotron_2048.Source.Model
+namespace Shared.Source.Model
 {
     /// <summary>
     /// Describes the behaviour of a Robot whilst alive.
     /// </summary>
-    interface IRobotBehaviour
+    public interface IRobotBehaviour
     {
         /// <summary>
         /// Performs the behavioural act for the given Robot.
