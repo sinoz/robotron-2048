@@ -54,7 +54,7 @@ namespace Shared.Source.Scene
         /// The list of fired bullets.
         /// </summary>
         public readonly IList<Bullet> bullets = new List<Bullet>();
-
+        public readonly IList<Mines> mine = new List<Mines>();
         /// <summary>
         /// The enemy Robots.
         /// </summary>
@@ -133,7 +133,23 @@ namespace Shared.Source.Scene
                 }
             }
             #endregion
-            
+
+            #region Drawing the mines
+            if (mine.Count > 0)
+            {
+                int count = 0;
+                while (count < mine.Count)
+                {
+                    Mines mines = mine[count];
+
+                    mines.Draw(entityBatch, gameTime);
+
+                    count += 1;
+                }
+            }
+            #endregion
+
+
             entityBatch.End();
         }
 
@@ -284,6 +300,21 @@ namespace Shared.Source.Scene
             #region Updating of the player character
             character.Update(gameTime);
             #endregion
+
+            #region Updating the mines
+            while (count < mine.Count)
+            {
+                Mines mines = mine[count];
+                if (mines != null)
+                {
+                    mines.Update(gameTime);
+                }
+
+                count += 1;
+            }
+
+            count = 0;
+            #endregion
         }
 
         /// <summary>
@@ -308,7 +339,7 @@ namespace Shared.Source.Scene
 
             robots.Clear();
             bullets.Clear();
-
+            
             this.currentLevel = level;
             this.currentLevel.OnTransition();
         }

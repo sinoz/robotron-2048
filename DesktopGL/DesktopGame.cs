@@ -89,6 +89,7 @@ namespace DesktopGL
             LoadedContent.RobotTex = Content.Load<Texture2D>("Image/RobotTex");
             LoadedContent.gameBackground = Content.Load<Texture2D>("Image/Stars");
             LoadedContent.font = Content.Load<SpriteFont>("Score");
+            LoadedContent.Greenbox = Content.Load<Texture2D>("Image/Greenbox");
         }
 
         /// <summary>

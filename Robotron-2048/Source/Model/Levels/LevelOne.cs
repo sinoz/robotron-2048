@@ -19,6 +19,8 @@ namespace Shared.Source.Model.Levels
         /// </summary>
         private const int RobotSpawnCount = 25;
 
+        private const int MineSpawnCount = 7;
+        
         /// <summary>
         /// The random number generator.
         /// </summary>
@@ -56,6 +58,18 @@ namespace Shared.Source.Model.Levels
             }
             #endregion
         }
+        private void AddMines()
+        {
+            for (int i = 1; i <= MineSpawnCount; i++)
+            {
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
+                int y = random.Next(1, 3) == 1 ? random.Next(0, 240) : random.Next(340, 550);
+
+                
+                Add(new Mines(new Vector2(x, y)));
+            }
+        }
+
 
         public override void CharacterCollidedWithRobot(Robot robot)
         {

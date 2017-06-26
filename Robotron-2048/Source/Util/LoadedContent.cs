@@ -29,5 +29,6 @@ namespace Shared.Source.Util
         /// All of the Robot textures.
         /// </summary>
         public static Texture2D RobotTex;
+        public static Texture2D Greenbox;
     }
 }

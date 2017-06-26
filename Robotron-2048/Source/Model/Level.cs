@@ -45,6 +45,23 @@ namespace Shared.Source.Model
             scene.robots.Remove(robot);
         }
 
+
+
+        protected void Add(Mines mines)
+        {
+            scene.mine.Add(mines);
+        }
+
+        /// <summary>
+        /// Removes the given robot from this level.
+        /// </summary>
+        /// <param name="robot">The robot to remove.</param>
+        protected void remove(Mines mines)
+        {
+            scene.mine.Remove(mines);
+        }
+
+
         /// <summary>
         /// Describes what to do when a transition occurs to the implementation level.
         /// </summary>
