@@ -307,19 +307,32 @@ namespace Shared.Source.Scene
                 Human human = humans[count];
                 if (human != null)
                 {
-                    human.Update(gameTime);
-                }
+                    #region Checks the intersection between the character, robots and bullets.
+                    int humanCount = 0;
+                    while (humanCount < humans.Count)
+                    {
+                        if (human != null)
+                        {
+                            if (human.IntersectsWith(character))
+                            {
+                                humans.Remove(human);
+                                score.Increment(10);
+                                currentLevel.HumanCollidedWithCharacter(human);
+                            }
+                        }
 
-                count += 1;
+                        humanCount += 1;
+                    }
+                    #endregion
+                }
             }
 
             count = 0;
             #endregion
-
             #region Updating of the player character
             character.Update(gameTime);
-            #endregion
         }
+            #endregion
 
         /// <summary>
         /// Transitions into the main menu scene when the user has pressed the 'Enter' key.

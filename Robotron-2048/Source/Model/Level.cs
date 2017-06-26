@@ -79,5 +79,10 @@ namespace Shared.Source.Model
         /// Describes what to do when a bullet has collided with a robot.
         /// </summary>
         public abstract void BulletCollidedWithRobot(Robot robot);
+
+        /// <summary>
+        /// Describes what to do when a human has collided with the character.
+        /// </summary>
+        public abstract void HumanCollidedWithCharacter(Human human);
     }
 }

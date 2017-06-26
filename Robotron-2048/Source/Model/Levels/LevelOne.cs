@@ -97,5 +97,10 @@ namespace Shared.Source.Model.Levels
         {
             remove(robot);
         }
+
+        public override void HumanCollidedWithCharacter(Human human)
+        {
+            remove(human);
+        }
     }
 }
