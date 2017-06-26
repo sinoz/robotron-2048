@@ -96,7 +96,11 @@ namespace DesktopGL
 
             LoadedContent.gameBackground = Content.Load<Texture2D>("Image/Stars");
             LoadedContent.font = Content.Load<SpriteFont>("Score");
+
+            LoadedContent.Greenbox = Content.Load<Texture2D>("Image/Greenbox");
+
             LoadedContent.Life = Content.Load<Texture2D>("Image/Life");
+
         }
 
         /// <summary>
