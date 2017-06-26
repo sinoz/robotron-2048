@@ -26,7 +26,7 @@ namespace Shared.Source.Util
         /// <summary>
         /// All of the character textures.
         /// </summary>
-        public static Texture2D characterDownTex, characterUpTex, characterLeftTex, characterRightTex;
+        public static Texture2D characterDownTex, characterUpTex, characterLeftTex, characterRightTex, Life;
 
         /// <summary>
         /// All of the Robot textures.

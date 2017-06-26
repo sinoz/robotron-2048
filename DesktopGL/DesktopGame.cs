@@ -18,6 +18,7 @@ namespace DesktopGL
         /// </summary>
         public const int DesktopWidth = 800, DesktopHeight = 600;
 
+        
         /// <summary>
         /// The initial title of the application.
         /// </summary>
@@ -89,6 +90,7 @@ namespace DesktopGL
             LoadedContent.RobotTex = Content.Load<Texture2D>("Image/RobotTex");
             LoadedContent.gameBackground = Content.Load<Texture2D>("Image/Stars");
             LoadedContent.font = Content.Load<SpriteFont>("Score");
+            LoadedContent.Life = Content.Load<Texture2D>("Image/Life");
         }
 
         /// <summary>
@@ -103,6 +105,7 @@ namespace DesktopGL
             LoadedContent.characterRightTex.Dispose();
             LoadedContent.gameBackground.Dispose();
             LoadedContent.font.Texture.Dispose();
+            LoadedContent.Life.Dispose();
         }
 
         /// <summary>
