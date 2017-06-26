@@ -33,9 +33,11 @@ namespace Shared.Source.Util
         /// </summary>
         public static Texture2D RobotTex;
 
+        /// <summary>
+        /// The mine texture.
+        /// </summary>
         public static Texture2D Greenbox;
-
-
+        
         /// <summary>
         /// All of the Human textures.
         /// </summary>

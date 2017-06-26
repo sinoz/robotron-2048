@@ -64,12 +64,12 @@ namespace Shared.Source.Model
         /// <summary>
         /// The behaviour of this Human.
         /// </summary>
-        private readonly IMobBehaviour behaviour;
+        private IMobBehaviour behaviour;
 
         /// <summary>
         /// The position for the Human updated.
         /// </summary>
-        public readonly Vector2 position;
+        public Vector2 position;
 
         /// <summary>
         /// The velocity at which the character can currently move.

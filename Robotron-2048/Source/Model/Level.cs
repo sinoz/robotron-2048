@@ -16,7 +16,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The game scene.
         /// </summary>
-        protected readonly GameScene scene;
+        protected GameScene scene;
 
         /// <summary>
         /// Creates a new level.

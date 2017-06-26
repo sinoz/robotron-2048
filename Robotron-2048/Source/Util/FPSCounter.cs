@@ -29,12 +29,12 @@ namespace Shared.Source.Util
         /// <summary>
         /// The initial window title assigned on startup.
         /// </summary>
-        private readonly string initialTitle;
+        private string initialTitle;
 
         /// <summary>
         /// A reference to the Game instance to have access to the application title.
         /// </summary>
-        private readonly Game game;
+        private Game game;
 
         /// <summary>
         /// Creates a new FPSCounter.

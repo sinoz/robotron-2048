@@ -17,7 +17,7 @@ namespace Shared.Source.Model.Levels
         /// <summary>
         /// The initial amount of robots to spawn in this level.
         /// </summary>
-        private const int RobotSpawnCount = 4;
+        private const int RobotSpawnCount = 1;
 
         /// <summary>
         /// The initial amount of mines to spawn in this level.

@@ -51,6 +51,11 @@ namespace Shared.Source.Model
     sealed class AttractedToPlayerCharacterBehaviour : IMobBehaviour
     {
         /// <summary>
+        /// The random number generator.
+        /// </summary>
+        private readonly Random random = new Random();
+
+        /// <summary>
         /// The character of subject.
         /// </summary>
         private readonly Character character;
@@ -66,6 +71,9 @@ namespace Shared.Source.Model
 
         public void Act(Robot robot, GameTime gameTime)
         {
+            float xDelta = robot.position.X - character.position.X;
+            float yDelta = robot.position.Y - character.position.Y;
+
             // TODO
         }
 

@@ -23,12 +23,12 @@ namespace Shared.Source.Scene
         /// The sprite batch specifically for this game scene to draw the game character
         /// and other entities on.
         /// </summary>
-        private readonly SpriteBatch entityBatch;
+        private SpriteBatch entityBatch;
 
         /// <summary>
         /// The graphics device.
         /// </summary>
-        private readonly GraphicsDevice graphicsDevice;
+        private GraphicsDevice graphicsDevice;
 
         /// <summary>
         /// The initial amount of lives the player starts with.
@@ -53,32 +53,32 @@ namespace Shared.Source.Scene
         /// <summary>
         /// The game character.
         /// </summary>
-        public readonly Character character;
+        public Character character;
 
         /// <summary>
         /// The list of fired bullets.
         /// </summary>
-        public readonly IList<Bullet> bullets = new List<Bullet>();
+        public IList<Bullet> bullets = new List<Bullet>();
 
         /// <summary>
         /// The list of mines.
         /// </summary>
-        public readonly IList<Mine> mine = new List<Mine>();
+        public IList<Mine> mine = new List<Mine>();
 
         /// <summary>
         /// The enemy Robots.
         /// </summary>
-        public readonly IList<Robot> robots = new List<Robot>();
+        public IList<Robot> robots = new List<Robot>();
 
         /// <summary>
         /// The Humans.
         /// </summary>
-        public readonly IList<Human> humans = new List<Human>();
+        public IList<Human> humans = new List<Human>();
 
         /// <summary>
         /// The collection of remaining lives.
         /// </summary>
-        public readonly IList<Life> lives = new List<Life>();
+        public IList<Life> lives = new List<Life>();
 
         /// <summary>
         /// The score of the player.
@@ -202,13 +202,12 @@ namespace Shared.Source.Scene
         private void DrawHUD(SpriteBatch batch, GameTime gameTime)
         {
             batch.Begin();
-
             #region Draws the score.
             score.Draw(batch, gameTime);
             batch.DrawLine(new Vector2(0, 35), new Vector2 (800,35), Color.White, 5);
             #endregion
 
-            #region TODO
+            #region Drawing lives.
             if (lives.Count > 0)
             {
                 int count = 0;
@@ -362,9 +361,9 @@ namespace Shared.Source.Scene
                     {
                         currentLevel.CharacterCollidedWithRobot(robot);
                     }
+
                     robot.Update(gameTime);
                 }
-
 
                 count += 1;
             }

@@ -67,22 +67,17 @@ namespace Shared.Source.Model
         /// <summary>
         /// The behaviour of this robot.
         /// </summary>
-        private readonly IMobBehaviour behaviour;
+        private IMobBehaviour behaviour;
 
         /// <summary>
         /// The position for the robot updated.
         /// </summary>
-        public readonly Vector2 position;
+        public Vector2 position;
 
         /// <summary>
         /// The velocity at which the character can currently move.
         /// </summary>
         private int velocity = MovementVelocity;
-
-        /// <summary>
-        /// A flag that indicates whether this Robot should be rendered or not.
-        /// </summary>
-        public bool isVisible = true;
 
         /// <summary>
         /// Creates a new Robot.
@@ -92,7 +87,7 @@ namespace Shared.Source.Model
         public Robot(Vector2 pos, IMobBehaviour behaviour)
         {
             this.position = new Vector2(pos.X, pos.Y);
-            this.behaviour = behaviour;        
+            this.behaviour = behaviour;
         }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)
@@ -104,12 +99,15 @@ namespace Shared.Source.Model
                    
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
+
+            Console.WriteLine("Drawing robot at " + (position.X) + " " + position.Y);
             
             batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
         }
 
         public void Update(GameTime gameTime)
         {
+            Console.WriteLine("Updating robot");
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             if (timeSinceLastFrame > millisecondsPerFrame)
             {

@@ -18,8 +18,6 @@ namespace Shared.Source.Model
     /// </summary>
     public sealed class Mine : IEntity
     {
-      
-
         /// <summary>
         /// The width of a single frame of a Mine.
         /// </summary>
@@ -60,22 +58,11 @@ namespace Shared.Source.Model
         /// </summary>
         private int timeSinceLastFrame = 0;
         private int millisecondsPerFrame = 100;
-
-
+        
         /// <summary>
         /// The position for the Mine updated.
         /// </summary>
-        public readonly Vector2 position;
-
-        /// <summary>
-        /// The velocity at which the character can currently move.
-        /// </summary>
-        
-
-        /// <summary>
-        /// A flag that indicates whether this Mine should be rendered or not.
-        /// </summary>
-        public bool isVisible = true;
+        public Vector2 position;
 
         /// <summary>
         /// Creates a new Mine.
@@ -85,7 +72,6 @@ namespace Shared.Source.Model
         public Mine(Vector2 pos)
         {
             this.position = new Vector2(pos.X, pos.Y);
-            
         }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)
@@ -117,8 +103,6 @@ namespace Shared.Source.Model
                     currentFrame = 0;
                 }
             }
-
-            
         }
 
         /// <summary>

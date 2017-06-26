@@ -31,7 +31,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The position.
         /// </summary>
-        private readonly Vector2 position;
+        private Vector2 position;
 
         /// <summary>
         /// Creates a new life.

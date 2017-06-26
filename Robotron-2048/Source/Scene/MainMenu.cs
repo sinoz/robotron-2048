@@ -18,7 +18,7 @@ namespace Shared.Source.Scene
         /// <summary>
         /// The graphics device.
         /// </summary>
-        private readonly GraphicsDevice graphicsDevice;
+        private GraphicsDevice graphicsDevice;
 
         /// <summary>
         /// Creates a new main menu scene.

@@ -24,7 +24,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The draw position of the score.
         /// </summary>
-        private readonly Label scoreLabel;
+        private Label scoreLabel;
 
         /// <summary>
         /// Creates a new Score.

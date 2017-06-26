@@ -19,7 +19,7 @@ namespace Shared.Source.Scene
         /// <summary>
         /// The rendering batch.
         /// </summary>
-        private readonly SpriteBatch batch;
+        private SpriteBatch batch;
 
         /// <summary>
         /// The current Scene acting on this stage.

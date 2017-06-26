@@ -29,7 +29,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The character that fired this bullet.
         /// </summary>
-        private readonly Character character;
+        private Character character;
 
         /// <summary>
         /// The current position of this bullet.
