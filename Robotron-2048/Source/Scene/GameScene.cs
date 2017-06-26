@@ -236,7 +236,7 @@ namespace Robotron_2048.Source.Scene
                             if (bullet.IntersectsWith(robot))
                             {
                                 bullets.Remove(bullet);
-
+                                score.Increment(10);
                                 currentLevel.BulletCollidedWithRobot(robot);
                             }
 
