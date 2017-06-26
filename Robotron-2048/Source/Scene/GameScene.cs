@@ -236,7 +236,7 @@ namespace Shared.Source.Scene
                             if (bullet.IntersectsWith(robot))
                             {
                                 bullets.Remove(bullet);
-
+                                score.Increment(10);
                                 currentLevel.BulletCollidedWithRobot(robot);
                             }
 
