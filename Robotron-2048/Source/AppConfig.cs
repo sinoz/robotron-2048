@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Shared.Source
 {
-    public class AppConfig
+    /// <summary>
+    /// Contains configuration data related to the application.
+    /// </summary>
+    public sealed class AppConfig
     {
         /// <summary>
         /// The set resolution of the application.

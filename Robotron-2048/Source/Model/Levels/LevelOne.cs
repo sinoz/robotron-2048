@@ -22,6 +22,11 @@ namespace Shared.Source.Model.Levels
         private const int MineSpawnCount = 7;
         
         /// <summary>
+        /// The initial amount of humans to spawn in this level.
+        /// </summary>
+        private const int HumanSpawnCount = 10;
+
+        /// <summary>
         /// The random number generator.
         /// </summary>
         private readonly Random random = new Random();
@@ -37,6 +42,7 @@ namespace Shared.Source.Model.Levels
         public override void OnTransition()
         {
             AddRobots();
+            AddHumans();
         }
 
         /// <summary>
@@ -44,8 +50,8 @@ namespace Shared.Source.Model.Levels
         /// </summary>
         private void AddRobots()
         {
-            IRobotBehaviour attracted = new AttractedToPlayerCharacterBehaviour(scene.character);
-            IRobotBehaviour walkAround = new WalkAroundBehaviour();
+            IMobBehaviour attracted = new AttractedToPlayerCharacterBehaviour(scene.character);
+            IMobBehaviour walkAround = new WalkAroundBehaviour();
 
             #region Adding the robots
             for (int i = 1; i <= RobotSpawnCount; i++)
@@ -53,7 +59,7 @@ namespace Shared.Source.Model.Levels
                 int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
                 int y = random.Next(1, 3) == 1 ? random.Next(0, 240) : random.Next(340, 550);
 
-                IRobotBehaviour behaviour = random.Next(1, 3) == 1 ? attracted : walkAround;
+                IMobBehaviour behaviour = random.Next(1, 3) == 1 ? attracted : walkAround;
                 Add(new Robot(new Vector2(x, y), behaviour));
             }
             #endregion
@@ -71,6 +77,23 @@ namespace Shared.Source.Model.Levels
         }
 
 
+        private void AddHumans()
+        {
+            IMobBehaviour attracted = new AttractedToPlayerCharacterBehaviour(scene.character);
+            IMobBehaviour walkAround = new WalkAroundBehaviour();
+
+            #region Adding the humans
+            for (int i = 1; i <= HumanSpawnCount; i++)
+            {
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
+                int y = random.Next(1, 3) == 1 ? random.Next(0, 240) : random.Next(340, 550);
+
+                IMobBehaviour behaviour = random.Next(1, 3) == 1 ? attracted : walkAround;
+                Add(new Human(new Vector2(x, y), behaviour));
+            }
+            #endregion
+        }
+
         public override void CharacterCollidedWithRobot(Robot robot)
         {
             MoveCharacterToCenter();
@@ -87,6 +110,15 @@ namespace Shared.Source.Model.Levels
         public override void BulletCollidedWithRobot(Robot robot)
         {
             remove(robot);
+            scene.score.Increment(10);
+
+        }
+
+        public override void HumanCollidedWithCharacter(Human human)
+        {
+            remove(human);
+            scene.score.Increment(10);
+
         }
     }
 }

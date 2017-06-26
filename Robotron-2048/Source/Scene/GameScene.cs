@@ -61,9 +61,16 @@ namespace Shared.Source.Scene
         public readonly IList<Robot> robots = new List<Robot>();
 
         /// <summary>
+        /// The Humans.
+        /// </summary>
+        public readonly IList<Human> humans = new List<Human>();
+
+        /// <summary>
         /// The score of the player.
         /// </summary>
         public readonly Score score;
+
+        public readonly Lives Life;
 
         /// <summary>
         /// The current level.
@@ -81,7 +88,7 @@ namespace Shared.Source.Scene
             this.character = new Character();
 
             this.score = new Score();
-
+            this.Life = new Lives();
             TransitionInto(new LevelOne(this));
         }
 
@@ -89,6 +96,7 @@ namespace Shared.Source.Scene
         {
             DrawEntities(batch, gameTime);
             DrawScore(batch, gameTime);
+            
         }
 
         /// <summary>
@@ -104,6 +112,8 @@ namespace Shared.Source.Scene
             character.Draw(entityBatch, gameTime);
             #endregion
 
+            Life.Draw(entityBatch, gameTime);
+
             #region Drawing the enemy robots
             if (robots.Count > 0)
             {
@@ -113,6 +123,21 @@ namespace Shared.Source.Scene
                     Robot robot = robots[count];
 
                     robot.Draw(entityBatch, gameTime);
+
+                    count += 1;
+                }
+            }
+            #endregion
+
+            #region Drawing the humans
+            if (humans.Count > 0)
+            {
+                int count = 0;
+                while (count < humans.Count)
+                {
+                    Human human = humans[count];
+
+                    human.Draw(entityBatch, gameTime);
 
                     count += 1;
                 }
@@ -252,7 +277,6 @@ namespace Shared.Source.Scene
                             if (bullet.IntersectsWith(robot))
                             {
                                 bullets.Remove(bullet);
-                                score.Increment(10);
                                 currentLevel.BulletCollidedWithRobot(robot);
                             }
 
@@ -297,9 +321,40 @@ namespace Shared.Source.Scene
             count = 0;
             #endregion
 
+            #region Updating the humans
+            while (count < humans.Count)
+            {
+                Human human = humans[count];
+                if (human != null)
+                {
+                    #region Checks the intersection between the character and humans.
+                    int humanCount = 0;
+                    while (humanCount < humans.Count)
+                    {
+                        if (human != null)
+                        {
+                            if (human.IntersectsWith(character))
+                            {
+                                humans.Remove(human);
+                                currentLevel.HumanCollidedWithCharacter(human);
+                            }
+                        }
+
+                        humanCount += 1;
+                    }
+                                       
+                    #endregion
+                }
+                count += 1;
+            }
+
+            count = 0;
+            #endregion
             #region Updating of the player character
             character.Update(gameTime);
+
             #endregion
+
 
             #region Updating the mines
             while (count < mine.Count)
@@ -315,7 +370,11 @@ namespace Shared.Source.Scene
 
             count = 0;
             #endregion
+
+            Life.Update(gameTime);
+         
         }
+            //endregion
 
         /// <summary>
         /// Transitions into the main menu scene when the user has pressed the 'Enter' key.

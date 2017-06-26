@@ -8,7 +8,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Shared.Source.Util
 {
-    public class LoadedContent
+    /// <summary>
+    /// Contains static references to loaded content.
+    /// </summary>
+    public sealed class LoadedContent
     {
         /// <summary>
         /// The default SpriteFont to utilize for drawing labels.
@@ -23,12 +26,20 @@ namespace Shared.Source.Util
         /// <summary>
         /// All of the character textures.
         /// </summary>
-        public static Texture2D characterDownTex, characterUpTex, characterLeftTex, characterRightTex;
+        public static Texture2D characterDownTex, characterUpTex, characterLeftTex, characterRightTex, Life;
 
         /// <summary>
         /// All of the Robot textures.
         /// </summary>
         public static Texture2D RobotTex;
+
         public static Texture2D Greenbox;
+
+
+        /// <summary>
+        /// All of the Human textures.
+        /// </summary>
+        public static Texture2D humanDownTex, humanUpTex, humanLeftTex, humanRighTex;
+
     }
 }
