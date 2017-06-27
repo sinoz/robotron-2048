@@ -123,7 +123,6 @@ namespace Shared.Source.Model
                 }
             }
 
-
             behaviour.Act(this, gameTime);
         }
 

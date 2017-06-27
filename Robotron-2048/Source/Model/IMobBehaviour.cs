@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Shared.Source.Util;
 
 namespace Shared.Source.Model
 {
@@ -26,6 +27,7 @@ namespace Shared.Source.Model
         /// <param name="human">The Human.</param>
         /// <param name="gameTime">The delta time.</param>
         void Act(Human human, GameTime gameTime);
+        void Act(Mine mine, GameTime gameTime);
     }
 
     /// <summary>
@@ -63,6 +65,27 @@ namespace Shared.Source.Model
             x += (direction.X * (int)(human.velocity * gameTime.ElapsedGameTime.TotalSeconds));
             y += (direction.Y * (int)(human.velocity * gameTime.ElapsedGameTime.TotalSeconds));
 
+            if (direction.Y == -1)
+            {
+                human.currentTexture = LoadedContent.humanUpTex;
+            }
+
+            if (direction.Y == 1)
+            {
+                human.currentTexture = LoadedContent.humanDownTex;
+            }
+
+            if (direction.X == -1)
+            {
+                human.currentTexture = LoadedContent.humanLeftTex;
+
+            }
+
+            if (direction.X == 1)
+            {
+                human.currentTexture = LoadedContent.humanRighTex;
+            }
+
             if (x < 0)
             {
                 x = 0;
@@ -85,6 +108,11 @@ namespace Shared.Source.Model
 
             human.position.X = x;
             human.position.Y = y;
+        }
+
+        public void Act(Mine mine, GameTime gameTime)
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -124,6 +152,11 @@ namespace Shared.Source.Model
         public void Act(Human human, GameTime gameTime)
         {
             // TODO
+        }
+
+        public void Act(Mine mine, GameTime gameTime)
+        {
+            throw new NotImplementedException();
         }
     }
 }
