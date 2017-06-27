@@ -19,7 +19,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The score value.
         /// </summary>
-        private int value { get; set; }
+        public int value { get; set; }
 
         /// <summary>
         /// The draw position of the score.

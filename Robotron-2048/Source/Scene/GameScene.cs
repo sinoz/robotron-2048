@@ -24,7 +24,7 @@ namespace Shared.Source.Scene
         /// and other entities on.
         /// </summary>
         private SpriteBatch entityBatch;
-
+        
         /// <summary>
         /// The graphics device.
         /// </summary>
@@ -33,7 +33,7 @@ namespace Shared.Source.Scene
         /// <summary>
         /// The initial amount of lives the player starts with.
         /// </summary>
-        public const int InitialAmountOfLives = 3;
+        public int InitialAmountOfLives = 3;
 
         /// <summary>
         /// The time elapsed since the last bullet was fired.
@@ -79,7 +79,7 @@ namespace Shared.Source.Scene
         /// The collection of remaining lives.
         /// </summary>
         public IList<Life> lives = new List<Life>();
-
+        private int gainlife;
         /// <summary>
         /// The score of the player.
         /// </summary>
@@ -89,7 +89,7 @@ namespace Shared.Source.Scene
         /// The current level.
         /// </summary>
         private Level currentLevel;
-
+      
         /// <summary>
         /// Creates a new game scene.
         /// </summary>
@@ -108,8 +108,11 @@ namespace Shared.Source.Scene
             for (int i = 0; i < InitialAmountOfLives; i++)
             {
                 lives.Add(new Life(new Vector2(90 + (i * Life.Width), 0)));
+           
             }
             #endregion
+
+            
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
@@ -190,7 +193,9 @@ namespace Shared.Source.Scene
                 }
             }
             #endregion
+
             
+
             entityBatch.End();
         }
         
@@ -222,6 +227,7 @@ namespace Shared.Source.Scene
                     count += 1;
                 }
             }
+            
             #endregion
             batch.End();
         }
@@ -238,6 +244,13 @@ namespace Shared.Source.Scene
         /// <param name="gameTime">The delta time.</param>
         private void UpdateEntities(GameTime gameTime)
         {
+
+            if (gainlife >= 300)
+            {
+                lives.Add(new Life(new Vector2(90 + (lives.Count * Life.Width), 0)));
+                gainlife = 0;
+            }
+
             #region Adding new bullets
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
@@ -296,6 +309,14 @@ namespace Shared.Source.Scene
             }
             #endregion
 
+
+            
+            
+            
+
+
+            
+            
             #region Updating of Bullets
             int count = 0;
             while (count < bullets.Count)
@@ -307,6 +328,7 @@ namespace Shared.Source.Scene
                     int robotCount = 0;
                     while (robotCount < robots.Count)
                     {
+                        
                         Robot robot = robots[robotCount];
                         if (robot != null)
                         {
@@ -314,18 +336,19 @@ namespace Shared.Source.Scene
                             {
                                 bullets.Remove(bullet);
                                 currentLevel.BulletCollidedWithRobot(robot);
+                                gainlife = gainlife + 10;
                             }
 
                             if (robot.IntersectsWith(character))
                             {
                                 #region Removal of a remaining life
-                                if (lives.Count > 0)
+                                if (lives.Count > 1)
                                 {
                                     lives.RemoveAt(lives.Count - 1);
                                     currentLevel.CharacterCollidedWithRobot(robot);
                                 } else
                                 {
-                                    // TODO game over
+                                    stage.TransitionInto(new MainMenu(graphicsDevice)); // TODO game over
                                 }
                                 #endregion
                             }
@@ -360,6 +383,7 @@ namespace Shared.Source.Scene
                     if (robot.IntersectsWith(character))
                     {
                         currentLevel.CharacterCollidedWithRobot(robot);
+                        
                     }
 
                     robot.Update(gameTime);
@@ -371,6 +395,11 @@ namespace Shared.Source.Scene
             count = 0;
             #endregion
 
+            
+            
+                
+            
+
             #region Updating the humans
             while (count < humans.Count)
             {
@@ -379,7 +408,9 @@ namespace Shared.Source.Scene
                 {
                     if (character.IntersectsWith(human))
                     {
+                        
                         currentLevel.HumanCollidedWithCharacter(human);
+                        gainlife = gainlife + 10;
                     }                                     
                     human.Update(gameTime);
                 }
@@ -405,9 +436,14 @@ namespace Shared.Source.Scene
 
                 count += 1;
             }
-
+   
             count = 0;
             #endregion
+            
+
+            
+                
+            
         }
 
         /// <summary>

@@ -77,7 +77,7 @@ namespace DesktopGL
         }
 
         /// <summary>
-        /// LoadContent will be called once per game and is the place to load
+        /// LoadContent will be called once per game anda is the place to load
         /// all of your content.
         /// </summary>
         protected override void LoadContent()

@@ -92,7 +92,7 @@ namespace Shared.Source.Model.Levels
             IMobBehaviour walkAround = new WalkAroundBehaviour();
 
             #region Adding the humans
-            for (int i = 1; i <= HumanSpawnCount; i++)
+            for (int i = -9; i <= HumanSpawnCount; i++)
             {
                 int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
                 int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
