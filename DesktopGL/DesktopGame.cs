@@ -116,6 +116,7 @@ namespace DesktopGL
             LoadedContent.gameBackground.Dispose();
             LoadedContent.font.Texture.Dispose();
             LoadedContent.Life.Dispose();
+            
         }
 
         /// <summary>

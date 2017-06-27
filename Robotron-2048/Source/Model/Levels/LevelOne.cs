@@ -22,7 +22,7 @@ namespace Shared.Source.Model.Levels
         /// <summary>
         /// The initial amount of mines to spawn in this level.
         /// </summary>
-        private const int MineSpawnCount = 2;
+        private const int MineSpawnCount = 3;
         
         /// <summary>
         /// The initial amount of humans to spawn in this level.
@@ -78,6 +78,7 @@ namespace Shared.Source.Model.Levels
             {
                 int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
                 int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
+
                 
                 Add(new Mine(new Vector2(x, y)));
 
@@ -123,6 +124,11 @@ namespace Shared.Source.Model.Levels
             remove(robot);
             scene.score.Increment(amount: 10);
         }
+        public override void BulletCollidedWithMine(Mine mine)
+        {
+            remove(mine);
+            scene.score.Increment(amount: 50);
+        }
 
         public override void HumanCollidedWithCharacter(Human human)
         {
@@ -132,7 +138,7 @@ namespace Shared.Source.Model.Levels
         public override void CharacterCollidedWithMine(Mine mine)
         {
             remove(mine);
-            
+            scene.character.MoveTo(x: 390, y: 290);
         }
     }
 }

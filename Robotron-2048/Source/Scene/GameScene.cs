@@ -305,6 +305,8 @@ namespace Shared.Source.Scene
                 {
                     #region Checks the intersection between the character, robots and bullets.
                     int robotCount = 0;
+                    int mineCount = 0;
+                    
                     while (robotCount < robots.Count)
                     {
                         Robot robot = robots[robotCount];
@@ -329,10 +331,44 @@ namespace Shared.Source.Scene
                                 }
                                 #endregion
                             }
+                            
                         }
 
                         robotCount += 1;
                     }
+                    while (mineCount < mines.Count)
+                    {
+                        Mine mine = mines[mineCount];
+                        if (mine != null)
+                        {
+                            if (bullet.IntersectsWith(mine))
+                            {
+                                bullets.Remove(bullet);
+                                currentLevel.BulletCollidedWithMine(mine);
+                            }
+                            if (mine.IntersectsWith(character))
+                            {
+                                #region Removal of a remaining life
+                                if (lives.Count > 0)
+                                {
+                                    lives.RemoveAt(lives.Count - 1);
+                                    currentLevel.CharacterCollidedWithMine(mine);
+                                }
+                                else
+                                {
+                                    // TODO game over
+                                }
+                                #endregion
+                            }                            
+                        }
+                        mineCount += 1;
+                    }
+
+
+
+
+
+
 
                     if (bullet.isOutOfBounds())
                     {
@@ -395,12 +431,13 @@ namespace Shared.Source.Scene
             #endregion
 
             #region Updating the mines
-            int mineCount = 0;
+            
             while (count < mines.Count)
             {
-                Mine mine = mines[mineCount];
+                Mine mine = mines[count];
                 if (mine != null)
                 {
+                   
                     if (mine.IntersectsWith(character))
                     {
                         #region Removal of a remaining life
@@ -414,7 +451,9 @@ namespace Shared.Source.Scene
                             // TODO game over
                         }
                         #endregion
+
                     }
+                    mine.Update(gameTime);
                 }
 
                 count += 1;

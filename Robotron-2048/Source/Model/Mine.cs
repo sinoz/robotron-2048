@@ -18,10 +18,11 @@ namespace Shared.Source.Model
     /// </summary>
     public sealed class Mine : IEntity
     {
+        
         /// <summary>
         /// The width of a single frame of a Mine.
         /// </summary>
-        public const int FrameWidth = 15;
+        public const int FrameWidth = 25;
 
         /// <summary>
         /// The height of a single frame of a Mine.
@@ -36,7 +37,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The columns.
         /// </summary>
-        public const int Columns = 1;
+        public const int Columns = 3;
 
         /// <summary>
         /// The total amount of frames to transition across.
@@ -57,12 +58,15 @@ namespace Shared.Source.Model
         /// The time since the last frame.
         /// </summary>
         private int timeSinceLastFrame = 0;
-        private int millisecondsPerFrame = 100;
+        private int millisecondsPerFrame = 1000;
         
         /// <summary>
         /// The position for the Mine updated.
         /// </summary>
         public Vector2 position;
+        
+        public bool isVisible = true;
+        
 
         /// <summary>
         /// Creates a new Mine.
@@ -84,11 +88,14 @@ namespace Shared.Source.Model
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
             
-            batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.Brown);
+            batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
             
             
         }
+        
 
+       
+        
         public void Update(GameTime gameTime)
         {
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
@@ -105,7 +112,9 @@ namespace Shared.Source.Model
                     currentFrame = 0;
                 }
             }
+
         }
+
 
         /// <summary>
         /// Returns a Rectangle instance of the Robot containing its frame size and absolute coordinates

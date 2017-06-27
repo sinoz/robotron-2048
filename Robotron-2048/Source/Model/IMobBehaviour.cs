@@ -26,6 +26,7 @@ namespace Shared.Source.Model
         /// <param name="human">The Human.</param>
         /// <param name="gameTime">The delta time.</param>
         void Act(Human human, GameTime gameTime);
+        void Act(Mine mine, GameTime gameTime);
     }
 
     /// <summary>
@@ -41,6 +42,11 @@ namespace Shared.Source.Model
         public void Act(Human human, GameTime gameTime)
         {
             // TODO
+        }
+
+        public void Act(Mine mine, GameTime gameTime)
+        {
+            throw new NotImplementedException();
         }
     }
 
@@ -80,6 +86,11 @@ namespace Shared.Source.Model
         public void Act(Human human, GameTime gameTime)
         {
             // TODO
+        }
+
+        public void Act(Mine mine, GameTime gameTime)
+        {
+            throw new NotImplementedException();
         }
     }
 }
