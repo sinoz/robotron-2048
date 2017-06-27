@@ -246,13 +246,13 @@ namespace Shared.Source.Scene
         /// <param name="gameTime">The delta time.</param>
         private void UpdateEntities(GameTime gameTime)
         {
-
+            #region gain life
             if (gainlife >= 100)
             {
                 lives.Add(new Life(new Vector2(90 + (lives.Count * Life.Width), 0)));
                 gainlife = 0;
             }
-
+            #endregion
             #region Adding new bullets
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
@@ -312,14 +312,7 @@ namespace Shared.Source.Scene
             #endregion
 
 
-            
-            
-            
-
-
-            
-            
-            #region Updating of Bullets
+              #region Updating of Bullets
             int count = 0;
             while (count < bullets.Count)
             {
