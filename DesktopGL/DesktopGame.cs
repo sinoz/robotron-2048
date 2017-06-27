@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using System;
+
 using Shared.Source;
 using Shared.Source.Scene;
 using Shared.Source.Util;
@@ -97,7 +99,7 @@ namespace DesktopGL
             LoadedContent.gameBackground = Content.Load<Texture2D>("Image/Stars");
             LoadedContent.font = Content.Load<SpriteFont>("Score");
 
-            LoadedContent.Greenbox = Content.Load<Texture2D>("Image/Greenbox");
+            LoadedContent.SquareMine = Content.Load<Texture2D>("Image/SquareMine");
 
             LoadedContent.Life = Content.Load<Texture2D>("Image/Life");
 

@@ -18,7 +18,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The default velocity at which a Human can move across the screen.
         /// </summary>
-        public const int MovementVelocity = 50;
+        public const int MovementVelocity = 100;
 
         /// <summary>
         /// The width of a single frame of a Human.
@@ -48,7 +48,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The current texture frame.
         /// </summary>
-        private Texture2D currentTexture = LoadedContent.humanDownTex;
+        public Texture2D currentTexture = LoadedContent.humanDownTex;
 
         /// <summary>
         /// The current frame being rendered.
@@ -59,7 +59,7 @@ namespace Shared.Source.Model
         /// The time since the last frame.
         /// </summary>
         private int timeSinceLastFrame = 0;
-        private int millisecondsPerFrame = 100;
+        private int millisecondsPerFrame = 250;
 
         /// <summary>
         /// The behaviour of this Human.
@@ -74,7 +74,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The velocity at which the character can currently move.
         /// </summary>
-        private int velocity = MovementVelocity;
+        public int velocity = MovementVelocity;
 
         /// <summary>
         /// A flag that indicates whether this Human should be rendered or not.
@@ -107,6 +107,7 @@ namespace Shared.Source.Model
 
         public void Update(GameTime gameTime)
         {
+
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             if (timeSinceLastFrame > millisecondsPerFrame)
             {
@@ -121,6 +122,7 @@ namespace Shared.Source.Model
                     currentFrame = 0;
                 }
             }
+
 
             behaviour.Act(this, gameTime);
         }

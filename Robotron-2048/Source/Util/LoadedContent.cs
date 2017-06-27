@@ -36,7 +36,7 @@ namespace Shared.Source.Util
         /// <summary>
         /// The mine texture.
         /// </summary>
-        public static Texture2D Greenbox;
+        public static Texture2D SquareMine;
         
         /// <summary>
         /// All of the Human textures.
