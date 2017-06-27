@@ -99,15 +99,12 @@ namespace Shared.Source.Model
                    
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
-
-            Console.WriteLine("Drawing robot at " + (position.X) + " " + position.Y);
             
             batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
         }
 
         public void Update(GameTime gameTime)
         {
-            Console.WriteLine("Updating robot");
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             if (timeSinceLastFrame > millisecondsPerFrame)
             {

@@ -153,8 +153,10 @@ namespace Shared.Source.Scene
                 while (count < humans.Count)
                 {
                     Human human = humans[count];
-
-                    human.Draw(entityBatch, gameTime);
+                    if (human != null)
+                    {
+                        human.Draw(entityBatch, gameTime);
+                    }
 
                     count += 1;
                 }
