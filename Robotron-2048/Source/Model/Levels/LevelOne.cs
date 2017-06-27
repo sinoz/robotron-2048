@@ -80,6 +80,8 @@ namespace Shared.Source.Model.Levels
                 int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
                 
                 Add(new Mine(new Vector2(x, y)));
+
+
             }
         }
 
@@ -122,6 +124,11 @@ namespace Shared.Source.Model.Levels
         {
             remove(human);
             scene.score.Increment(amount: 10);
+        }
+        public override void CharacterCollidedWithMine(Mine mine)
+        {
+            remove(mine);
+            
         }
     }
 }

@@ -63,7 +63,7 @@ namespace Shared.Source.Scene
         /// <summary>
         /// The list of mines.
         /// </summary>
-        public IList<Mine> mine = new List<Mine>();
+        public IList<Mine> mines = new List<Mine>();
 
         /// <summary>
         /// The enemy Robots.
@@ -179,14 +179,14 @@ namespace Shared.Source.Scene
             #endregion
 
             #region Drawing the mines
-            if (mine.Count > 0)
+            if (mines.Count > 0)
             {
                 int count = 0;
-                while (count < mine.Count)
+                while (count < mines.Count)
                 {
-                    Mine mines = mine[count];
+                    Mine mine = mines[count];
 
-                    mines.Draw(entityBatch, gameTime);
+                    mine.Draw(entityBatch, gameTime);
 
                     count += 1;
                 }
@@ -397,12 +397,26 @@ namespace Shared.Source.Scene
             #endregion
 
             #region Updating the mines
-            while (count < mine.Count)
+            int mineCount = 0;
+            while (count < mines.Count)
             {
-                Mine mines = mine[count];
-                if (mines != null)
+                Mine mine = mines[mineCount];
+                if (mine != null)
                 {
-                    mines.Update(gameTime);
+                    if (mine.IntersectsWith(character))
+                    {
+                        #region Removal of a remaining life
+                        if (lives.Count > 0)
+                        {
+                            lives.RemoveAt(lives.Count - 1);
+                            currentLevel.CharacterCollidedWithMine(mine);
+                        }
+                        else
+                        {
+                            // TODO game over
+                        }
+                        #endregion
+                    }
                 }
 
                 count += 1;
