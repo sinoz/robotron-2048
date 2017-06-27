@@ -60,7 +60,7 @@ namespace Shared.Source.Model
         /// <param name="mine">The mine.</param>
         protected void Add(Mine mine)
         {
-            scene.mine.Add(mine);
+            scene.mines.Add(mine);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Shared.Source.Model
         /// <param name="robot">The mine to remove.</param>
         protected void remove(Mine mine)
         {
-            scene.mine.Remove(mine);
+            scene.mines.Remove(mine);
         }
 
         /// <summary>
@@ -100,6 +100,11 @@ namespace Shared.Source.Model
         /// Describes what to do when a human has collided with the character.
         /// </summary>
         public abstract void HumanCollidedWithCharacter(Human human);
+
+        /// <summary>
+        /// Describes what to do when the character has collided with a mine.
+        /// </summary>
+        public abstract void CharacterCollidedWithMine(Mine mine);
 
     }
 }

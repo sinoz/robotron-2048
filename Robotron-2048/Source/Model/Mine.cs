@@ -46,7 +46,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The current texture frame.
         /// </summary>
-        private Texture2D currentTexture = LoadedContent.Greenbox;
+        private Texture2D currentTexture = LoadedContent.SquareMine;
 
         /// <summary>
         /// The current frame being rendered.
@@ -83,8 +83,10 @@ namespace Shared.Source.Model
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
-
-            batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
+            
+            batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.Brown);
+            
+            
         }
 
         public void Update(GameTime gameTime)
