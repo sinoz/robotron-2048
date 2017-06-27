@@ -27,12 +27,12 @@ namespace Shared.Source.Model.Levels
         /// <summary>
         /// The initial amount of humans to spawn in this level.
         /// </summary>
-        private const int HumanSpawnCount = 3;
+        private const int HumanSpawnCount = 5;
 
         /// <summary>
         /// The random number generator.
         /// </summary>
-        private readonly Random random = new Random();
+        private static Random random = new Random();
 
         /// <summary>
         /// Creates the first level in the game.
@@ -88,17 +88,13 @@ namespace Shared.Source.Model.Levels
         /// </summary>
         private void AddHumans()
         {
-            IMobBehaviour attracted = new AttractedToPlayerCharacterBehaviour(scene.character);
-            IMobBehaviour walkAround = new WalkAroundBehaviour();
-
             #region Adding the humans
             for (int i = 1; i <= HumanSpawnCount; i++)
             {
                 int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
                 int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
-
-                IMobBehaviour behaviour = random.Next(1, 3) == 1 ? attracted : walkAround;
-                Add(new Human(new Vector2(x, y), behaviour));
+                
+                Add(new Human(new Vector2(x, y), new WalkAroundBehaviour()));
             }
             #endregion
         }

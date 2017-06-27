@@ -33,6 +33,12 @@ namespace Shared.Source.Model
     /// </summary>
     sealed class WalkAroundBehaviour : IMobBehaviour
     {
+        private static Random random = new Random();
+        private Vector2 direction = new Vector2(0, 0);
+
+        private int timeSinceLastFrame;
+        private int millisecondsPerFrame;
+
         public void Act(Robot robot, GameTime gameTime)
         {
             // TODO
@@ -40,7 +46,45 @@ namespace Shared.Source.Model
 
         public void Act(Human human, GameTime gameTime)
         {
-            // TODO
+            timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+            if (timeSinceLastFrame >= millisecondsPerFrame)
+            {
+                timeSinceLastFrame = 0;
+
+                direction.X = random.Next(-1, 2);
+                direction.Y = random.Next(-1, 2);
+
+                millisecondsPerFrame = random.Next(400, 3500);
+            }
+
+            var x = human.position.X;
+            var y = human.position.Y;
+
+            x += (direction.X * (int)(human.velocity * gameTime.ElapsedGameTime.TotalSeconds));
+            y += (direction.Y * (int)(human.velocity * gameTime.ElapsedGameTime.TotalSeconds));
+
+            if (x < 0)
+            {
+                x = 0;
+            }
+
+            if (y < 35)
+            {
+                y = 35;
+            }
+
+            if (y > AppConfig.appHeight - human.currentTexture.Height)
+            {
+                y = AppConfig.appHeight - human.currentTexture.Height;
+            }
+
+            if (x > AppConfig.appWidth - (human.currentTexture.Width / 3))
+            {
+                x = AppConfig.appWidth - (human.currentTexture.Width / 3);
+            }
+
+            human.position.X = x;
+            human.position.Y = y;
         }
     }
 
@@ -53,12 +97,12 @@ namespace Shared.Source.Model
         /// <summary>
         /// The random number generator.
         /// </summary>
-        private readonly Random random = new Random();
+        private static Random random = new Random();
 
         /// <summary>
         /// The character of subject.
         /// </summary>
-        private readonly Character character;
+        private Character character;
 
         /// <summary>
         /// Creates a new behaviour.
