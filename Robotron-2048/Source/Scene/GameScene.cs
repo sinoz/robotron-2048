@@ -247,7 +247,7 @@ namespace Shared.Source.Scene
         private void UpdateEntities(GameTime gameTime)
         {
 
-            if (gainlife >= 300)
+            if (gainlife >= 100)
             {
                 lives.Add(new Life(new Vector2(90 + (lives.Count * Life.Width), 0)));
                 gainlife = 0;
