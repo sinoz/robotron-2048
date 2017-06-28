@@ -19,7 +19,6 @@ namespace DesktopGL
         /// The default width and height of the application on the desktop.
         /// </summary>
         public const int DesktopWidth = 800, DesktopHeight = 600;
-
         
         /// <summary>
         /// The initial title of the application.
