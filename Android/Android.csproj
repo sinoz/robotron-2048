@@ -89,11 +89,7 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
-      <Project>{f158686d-2e66-40c4-b3e2-1cd0fae08cee}</Project>
-      <Name>ClassLibrary1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Robotron-2048\Shared.csproj">
+    <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{503f2dbc-a48d-4607-b1fe-be2daa82cef6}</Project>
       <Name>Shared</Name>
     </ProjectReference>

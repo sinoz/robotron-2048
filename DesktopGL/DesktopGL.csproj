@@ -106,7 +106,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Robotron-2048\Shared.csproj">
+    <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{503f2dbc-a48d-4607-b1fe-be2daa82cef6}</Project>
       <Name>Shared</Name>
     </ProjectReference>
