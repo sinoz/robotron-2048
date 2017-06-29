@@ -50,10 +50,15 @@
     <Compile Include="Source\Model\IEntity.cs" />
     <Compile Include="Source\Model\Level.cs" />
     <Compile Include="Source\Model\IMobBehaviour.cs" />
+    <Compile Include="Source\Model\Levels\LevelFive.cs" />
+    <Compile Include="Source\Model\Levels\LevelFour.cs" />
     <Compile Include="Source\Model\Levels\LevelOne.cs" />
+    <Compile Include="Source\Model\Levels\LevelThree.cs" />
+    <Compile Include="Source\Model\Levels\LevelTwo.cs" />
     <Compile Include="Source\Model\Mine.cs" />
     <Compile Include="Source\Model\Life.cs" />
     <Compile Include="Source\Model\Robot.cs" />
+    <Compile Include="Source\Model\Wave.cs" />
     <Compile Include="Source\Scene\GameScene.cs" />
     <Compile Include="Source\Scene\MainMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
