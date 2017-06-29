@@ -89,6 +89,7 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+
     <ProjectReference Include="..\GameLogic\GameLogic.csproj">
       <Project>{f5c79253-0005-456d-8ba1-cd532924d1a5}</Project>
       <Name>GameLogic</Name>
@@ -100,13 +101,23 @@
     <Content Include="Content\Image\humanRight.PNG" />
     <Content Include="Content\Image\humanUp.PNG" />
     <Content Include="Content\Image\Life.PNG" />
+
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{503f2dbc-a48d-4607-b1fe-be2daa82cef6}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+
     <Content Include="Content\Image\robotronguy.PNG" />
     <Content Include="Content\Image\robotronguydown.PNG" />
     <Content Include="Content\Image\robotronguyleft.PNG" />
     <Content Include="Content\Image\robotronguyright.PNG" />
     <Content Include="Content\Image\robotronguyup.PNG" />
+
     <Content Include="Content\Image\RobotTex.png" />
     <Content Include="Content\Image\SquareMine.png" />
+
     <Content Include="Content\Image\Stars.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
