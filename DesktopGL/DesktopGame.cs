@@ -75,6 +75,8 @@ namespace DesktopGL
             // Now that all of our resources have been loaded into memory, we can do what we need to do.
             stage = new Stage(GraphicsDevice);
             stage.TransitionInto(new GameScene(GraphicsDevice));
+
+            Console.WriteLine(GraphicsDevice.DisplayMode.Width + " " + GraphicsDevice.DisplayMode.Height);
         }
 
         /// <summary>

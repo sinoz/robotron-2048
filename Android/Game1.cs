@@ -1,6 +1,12 @@
+using System;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
+using GameLogic;
+using GameLogic.Scene;
+using GameLogic.Util;
 
 namespace Android
 {
@@ -9,6 +15,11 @@ namespace Android
     /// </summary>
     public sealed class Game1 : Game
     {
+        /// <summary>
+        /// The stage.
+        /// </summary>
+        private Stage stage;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -20,7 +31,7 @@ namespace Android
             graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 480;
-            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
         }
 
         /// <summary>
@@ -34,6 +45,12 @@ namespace Android
             // TODO: Add your initialization logic here
 
             base.Initialize();
+
+            AppConfig.appWidth = GraphicsDevice.DisplayMode.Width;
+            AppConfig.appHeight = GraphicsDevice.DisplayMode.Height;
+
+            stage = new Stage(GraphicsDevice);
+            stage.TransitionInto(new GameScene(GraphicsDevice));
         }
 
         /// <summary>
@@ -46,6 +63,25 @@ namespace Android
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+            LoadedContent.characterDownTex = Content.Load<Texture2D>("Image/robotronguydown");
+            LoadedContent.characterUpTex = Content.Load<Texture2D>("Image/robotronguyup");
+            LoadedContent.characterLeftTex = Content.Load<Texture2D>("Image/robotronguyleft");
+            LoadedContent.characterRightTex = Content.Load<Texture2D>("Image/robotronguyright");
+
+            LoadedContent.RobotTex = Content.Load<Texture2D>("Image/RobotTex");
+
+            LoadedContent.humanDownTex = Content.Load<Texture2D>("Image/humanDown");
+            LoadedContent.humanUpTex = Content.Load<Texture2D>("Image/humanUp");
+            LoadedContent.humanLeftTex = Content.Load<Texture2D>("Image/humanLeft");
+            LoadedContent.humanRighTex = Content.Load<Texture2D>("Image/humanRight");
+
+            LoadedContent.gameBackground = Content.Load<Texture2D>("Image/Stars");
+            LoadedContent.font = Content.Load<SpriteFont>("Score");
+
+            LoadedContent.SquareMine = Content.Load<Texture2D>("Image/SquareMine");
+
+            LoadedContent.Life = Content.Load<Texture2D>("Image/Life");
         }
 
         /// <summary>
@@ -55,6 +91,14 @@ namespace Android
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+
+            LoadedContent.characterDownTex.Dispose();
+            LoadedContent.characterUpTex.Dispose();
+            LoadedContent.characterLeftTex.Dispose();
+            LoadedContent.characterRightTex.Dispose();
+            LoadedContent.gameBackground.Dispose();
+            LoadedContent.font.Texture.Dispose();
+            LoadedContent.Life.Dispose();
         }
 
         /// <summary>
@@ -65,9 +109,13 @@ namespace Android
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                Exit();
+            {
+                //Exit();
+            }
 
             // TODO: Add your update logic here
+
+            stage.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -78,9 +126,11 @@ namespace Android
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
+
+            stage.Draw(gameTime);
 
             base.Draw(gameTime);
         }
