@@ -143,10 +143,10 @@ namespace Shared.Source.Model
 
         public void Act(Robot robot, GameTime gameTime)
         {
-            float xDelta = robot.position.X - character.position.X;
-            float yDelta = robot.position.Y - character.position.Y;
-
-            // TODO
+            Vector2 direction = character.position - robot.position;
+            direction.Normalize();
+            Vector2 velocity1 = direction *(int)( robot.velocity* gameTime.ElapsedGameTime.TotalSeconds)/3;
+            robot.position += velocity1;
         }
 
         public void Act(Human human, GameTime gameTime)

@@ -21,7 +21,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The default velocity at which a Robot can move across the screen.
         /// </summary>
-        public const int MovementVelocity = 50;
+        public const int MovementVelocity = 70;
 
         /// <summary>
         /// The width of a single frame of a Robot.
@@ -77,7 +77,7 @@ namespace Shared.Source.Model
         /// <summary>
         /// The velocity at which the character can currently move.
         /// </summary>
-        private int velocity = MovementVelocity;
+        public int velocity = MovementVelocity;
 
         /// <summary>
         /// Creates a new Robot.
