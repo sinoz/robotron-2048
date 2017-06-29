@@ -89,9 +89,9 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GameLogic\GameLogic.csproj">
+    <ProjectReference Include="..\GameLogic\Shared.csproj">
       <Project>{f5c79253-0005-456d-8ba1-cd532924d1a5}</Project>
-      <Name>GameLogic</Name>
+      <Name>Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
