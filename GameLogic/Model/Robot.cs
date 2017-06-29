@@ -21,7 +21,17 @@ namespace GameLogic.Model
         /// <summary>
         /// The default velocity at which a Robot can move across the screen.
         /// </summary>
-        public const int MovementVelocity = 50;
+        public const int MovementVelocity = 70;
+
+        /// <summary>
+        /// The width of a single frame of a Robot.
+        /// </summary>
+        public const int FrameWidth = 15;
+
+        /// <summary>
+        /// The height of a single frame of a Robot.
+        /// </summary>
+        public const int FrameHeight = 25;
 
         /// <summary>
         /// The rows.
@@ -52,7 +62,7 @@ namespace GameLogic.Model
         /// The time since the last frame.
         /// </summary>
         private int timeSinceLastFrame = 0;
-        private int millisecondsPerFrame = 250;
+        private int millisecondsPerFrame = 100;
 
         /// <summary>
         /// The behaviour of this robot.
@@ -67,7 +77,7 @@ namespace GameLogic.Model
         /// <summary>
         /// The velocity at which the character can currently move.
         /// </summary>
-        private int velocity = MovementVelocity;
+        public int velocity = MovementVelocity;
 
         /// <summary>
         /// Creates a new Robot.

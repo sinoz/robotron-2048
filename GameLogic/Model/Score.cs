@@ -31,7 +31,7 @@ namespace GameLogic.Model
         /// </summary>
         public Score()
         {
-            scoreLabel = new Label("Score: " + value, 15, 5);
+            scoreLabel = new Label("Score: " + value, 15, 8);
         }
 
         public void Draw(SpriteBatch batch, GameTime gameTime)

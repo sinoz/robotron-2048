@@ -28,7 +28,7 @@ namespace GameLogic.Scene
         /// <summary>
         /// The graphics device.
         /// </summary>
-        public GraphicsDevice graphicsDevice;
+        private GraphicsDevice graphicsDevice;
 
         /// <summary>
         /// The initial amount of lives the player starts with.
@@ -84,13 +84,23 @@ namespace GameLogic.Scene
         /// The score of the player.
         /// </summary>
         public readonly Score score;
-   
+        public readonly Wave wave;
+
         /// <summary>
         /// The current level.
         /// </summary>
+       
+
         private Level currentLevel;
 
-       
+        #region All levels
+        public Level level1;
+        public Level level2;
+        public Level level3;
+        public Level level4;
+        public Level level5;
+        public Level nextlevel;
+        #endregion
 
         /// <summary>
         /// Creates a new game scene.
@@ -103,17 +113,30 @@ namespace GameLogic.Scene
             this.character = new Character();
 
             this.score = new Score();
-      
 
-            
-          
+            this.wave = new Wave();
+
+            #region levels
+            this.level1 = new LevelOne(this);
+            this.level2 = new LevelTwo(this);
+            this.level3 = new LevelThree(this);
+            this.level4 = new LevelFour(this);
+            this.level5 = new LevelFive(this);
+            this.nextlevel = level1;
+
+            #endregion
+            TransitionInto(nextlevel);
+
 
             #region Appends the initial amount of lives for display
             for (int i = 0; i < InitialAmountOfLives; i++)
             {
                 lives.Add(new Life(new Vector2(90 + (i * Life.Width), 0)));
+           
             }
             #endregion
+
+            
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
@@ -196,7 +219,9 @@ namespace GameLogic.Scene
                 }
             }
             #endregion
+
             
+
             entityBatch.End();
         }
         
@@ -210,6 +235,7 @@ namespace GameLogic.Scene
             batch.Begin();
             #region Draws the score.
             score.Draw(batch, gameTime);
+            wave.Draw(batch, gameTime);
             batch.DrawLine(new Vector2(0, 35), new Vector2(AppConfig.appWidth, 35), Color.White, 5);
             #endregion
 
@@ -252,7 +278,6 @@ namespace GameLogic.Scene
                 gainlife = 0;
             }
             #endregion
-
             #region Adding new bullets
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
@@ -311,7 +336,8 @@ namespace GameLogic.Scene
             }
             #endregion
 
-            #region Updating of Bullets
+
+              #region Updating of Bullets
             int count = 0;
             while (count < bullets.Count)
             {
@@ -333,7 +359,39 @@ namespace GameLogic.Scene
                                 bullets.Remove(bullet);
                                 currentLevel.BulletCollidedWithRobot(robot);
                                 gainlife = gainlife + 10;
-                               
+                                #region switching levels
+                                if (nextlevel == level1 && robots.Count == 0)
+                                {
+                                    nextlevel = level2;
+                                    TransitionInto(nextlevel);
+                                    character.MoveTo(x: 390, y: 290);
+                                    wave.value += 1;
+
+                                }
+                                if (nextlevel == level2 && robots.Count == 0)
+                                {
+                                    nextlevel = level3;
+                                    TransitionInto(nextlevel);
+                                    character.MoveTo(x: 390, y: 290);
+                                    wave.value += 1;
+                                }
+                                if (nextlevel == level3 && robots.Count == 0)
+                                {
+                                    nextlevel = level4;
+                                    TransitionInto(nextlevel);
+                                    character.MoveTo(x: 390, y: 290);
+                                    wave.value += 1;
+                                }
+                                if (nextlevel == level4 && robots.Count == 0)
+                                {
+                                    nextlevel = level5;
+                                    TransitionInto(nextlevel);
+                                    character.MoveTo(x: 390, y: 290);
+                                    wave.value += 1;
+                                }
+
+                                wave.Refresh();
+                                #endregion
                             }
 
                             if (robot.IntersectsWith(character))
@@ -426,6 +484,11 @@ namespace GameLogic.Scene
             count = 0;
             #endregion
 
+            
+            
+                
+            
+
             #region Updating the humans
             while (count < humans.Count)
             {
@@ -482,6 +545,11 @@ namespace GameLogic.Scene
    
             count = 0;
             #endregion
+            
+
+            
+                
+            
         }
 
         /// <summary>
@@ -506,8 +574,8 @@ namespace GameLogic.Scene
 
             robots.Clear();
             bullets.Clear();
-            mines.Clear();
             humans.Clear();
+            mines.Clear();
             this.currentLevel = level;
             this.currentLevel.OnTransition();
         }

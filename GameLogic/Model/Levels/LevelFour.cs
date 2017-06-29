@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 
-using Shared.Source.Scene;
+using GameLogic.Scene;
 
-namespace Shared.Source.Model.Levels
+namespace GameLogic.Model.Levels
 {
     /// <summary>
     /// Describes the first level in the game.
     /// </summary>
-    sealed class LevelThree : Level
+    sealed class LevelFour : Level
     {
         /// <summary>
         /// The initial amount of robots to spawn in this level.
@@ -22,12 +22,12 @@ namespace Shared.Source.Model.Levels
         /// <summary>
         /// The initial amount of mines to spawn in this level.
         /// </summary>
-        private const int MineSpawnCount = 3;
+        private const int MineSpawnCount = 10;
 
         /// <summary>
         /// The initial amount of humans to spawn in this level.
         /// </summary>
-        private const int HumanSpawnCount = 3;
+        private const int HumanSpawnCount = 1;
 
         /// <summary>
         /// The random number generator.
@@ -37,7 +37,7 @@ namespace Shared.Source.Model.Levels
         /// <summary>
         /// Creates the first level in the game.
         /// </summary>
-        public LevelThree(GameScene scene) : base(scene)
+        public LevelFour(GameScene scene) : base(scene)
         {
             // nothing
         }

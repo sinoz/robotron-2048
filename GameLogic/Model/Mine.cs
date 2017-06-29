@@ -18,15 +18,26 @@ namespace GameLogic.Model
     /// </summary>
     public sealed class Mine : IEntity
     {
+        
+        /// <summary>
+        /// The width of a single frame of a Mine.
+        /// </summary>
+        public const int FrameWidth = 25;
+
+        /// <summary>
+        /// The height of a single frame of a Mine.
+        /// </summary>
+        public const int FrameHeight = 25;
+
         /// <summary>
         /// The rows.
         /// </summary>
-        public const int Rows = 2;
+        public const int Rows = 1;
 
         /// <summary>
         /// The columns.
         /// </summary>
-        public const int Columns = 2;
+        public const int Columns = 3;
 
         /// <summary>
         /// The total amount of frames to transition across.
@@ -53,6 +64,9 @@ namespace GameLogic.Model
         /// The position for the Mine updated.
         /// </summary>
         public Vector2 position;
+        
+        public bool isVisible = true;
+        
 
         /// <summary>
         /// Creates a new Mine.
@@ -76,7 +90,7 @@ namespace GameLogic.Model
             
             batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
         }
-        
+
         public void Update(GameTime gameTime)
         {
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;

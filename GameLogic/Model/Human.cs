@@ -21,16 +21,6 @@ namespace GameLogic.Model
         public const int MovementVelocity = 100;
 
         /// <summary>
-        /// The width of a single frame of a Human.
-        /// </summary>
-        public const int FrameWidth = 15;
-
-        /// <summary>
-        /// The height of a single frame of a Human.
-        /// </summary>
-        public const int FrameHeight = 25;
-
-        /// <summary>
         /// The rows.
         /// </summary>
         public const int Rows = 1;

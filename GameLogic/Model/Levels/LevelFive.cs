@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 
-using Shared.Source.Scene;
+using GameLogic.Scene;
 
-namespace Shared.Source.Model.Levels
+namespace GameLogic.Model.Levels
 {
     /// <summary>
     /// Describes the first level in the game.

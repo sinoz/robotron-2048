@@ -17,11 +17,6 @@ namespace GameLogic.Scene
     public sealed class Stage
     {
         /// <summary>
-        /// The graphic device.
-        /// </summary>
-        private GraphicsDevice device;
-
-        /// <summary>
         /// The rendering batch.
         /// </summary>
         private SpriteBatch batch;
@@ -37,7 +32,6 @@ namespace GameLogic.Scene
         /// <param name="device">The graphics device.</param>
         public Stage(GraphicsDevice device)
         {
-            this.device = device;
             this.batch = new SpriteBatch(device);
         }
 
@@ -66,7 +60,7 @@ namespace GameLogic.Scene
         {
             #region Drawing of the background
             batch.Begin();
-            batch.Draw(LoadedContent.gameBackground, new Rectangle(new Point(0, 0), new Point(device.DisplayMode.Width, device.DisplayMode.Height)), Color.White);
+            batch.Draw(LoadedContent.gameBackground, new Rectangle(new Point(0, 0), new Point(AppConfig.appWidth, AppConfig.appHeight)), Color.White);
             batch.End();
             #endregion
 

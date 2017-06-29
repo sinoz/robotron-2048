@@ -10,11 +10,10 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-using Shared.Source.Scene;
+using GameLogic.Scene;
 
-namespace Shared.Source.Model
+namespace GameLogic.Model
 {
-   
         /// <summary>
         /// Keeps track of the player's score whilst in game.
         /// </summary>
@@ -43,8 +42,6 @@ namespace Shared.Source.Model
                 scoreLabel.Draw(batch, gameTime);
             }
 
-
-
             /// <summary>
             /// Refreshes the Label's text contents to display the player's current score.
             /// </summary>
@@ -53,6 +50,4 @@ namespace Shared.Source.Model
                 scoreLabel.Text = "Wave: " + value;
             }
         }
-    
-
 }

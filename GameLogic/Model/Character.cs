@@ -22,7 +22,7 @@ namespace GameLogic.Model
         /// The default velocity at which a character can move across the screen.
         /// </summary>
         public const int MovementVelocity = 250;
-
+        
         /// <summary>
         /// The rows.
         /// </summary>
@@ -52,7 +52,7 @@ namespace GameLogic.Model
         /// The time since the last frame.
         /// </summary>
         private int timeSinceLastFrame = 0;
-        private int millisecondsPerFrame = 375;
+        private int millisecondsPerFrame = 100;
 
         /// <summary>
         /// The coordinates of this character.

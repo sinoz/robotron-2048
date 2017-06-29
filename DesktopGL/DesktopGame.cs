@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Input;
 
 using System;
 
-using Shared.Source;
-using Shared.Source.Scene;
-using Shared.Source.Util;
+using GameLogic;
+using GameLogic.Scene;
+using GameLogic.Util;
 
 namespace DesktopGL
 {

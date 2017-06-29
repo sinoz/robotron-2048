@@ -54,13 +54,15 @@ namespace GameLogic.Model.Levels
         /// </summary>
         private void AddRobots()
         {
+
+
             #region Adding the robots
             for (int i = 1; i <= RobotSpawnCount; i++)
             {
-                int x = random.Next(0, AppConfig.appWidth);
-                int y = random.Next(35, AppConfig.appHeight);
-                
-                Add(new Robot(new Vector2(x, y), new AttractedToPlayerCharacterBehaviour(scene.character)));
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
+
+                Add(new Robot(new Vector2(x, y),new AttractedToPlayerCharacterBehaviour (scene.character)));
             }
             #endregion
         }
@@ -72,10 +74,13 @@ namespace GameLogic.Model.Levels
         {
             for (int i = 1; i <= MineSpawnCount; i++)
             {
-                int x = random.Next(0, AppConfig.appWidth);
-                int y = random.Next(35, AppConfig.appHeight);
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
+
                 
                 Add(new Mine(new Vector2(x, y)));
+
+
             }
         }
 
@@ -87,8 +92,8 @@ namespace GameLogic.Model.Levels
             #region Adding the humans
             for (int i = 1; i <= HumanSpawnCount; i++)
             {
-                int x = random.Next(0, AppConfig.appWidth);
-                int y = random.Next(35, AppConfig.appHeight);
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
                 
                 Add(new Human(new Vector2(x, y), new WalkAroundBehaviour()));
             }
@@ -116,7 +121,6 @@ namespace GameLogic.Model.Levels
             remove(robot);
             scene.score.Increment(amount: 10);
         }
-
         public override void BulletCollidedWithMine(Mine mine)
         {
             remove(mine);
@@ -127,7 +131,6 @@ namespace GameLogic.Model.Levels
             remove(human);
             scene.score.Increment(amount: 10);
         }
-
         public override void CharacterCollidedWithMine(Mine mine)
         {
             remove(mine);
