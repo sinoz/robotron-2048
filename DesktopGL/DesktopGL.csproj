@@ -112,11 +112,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Image\humanDown.PNG" />
+    <Content Include="Content\Image\humanLeft.PNG" />
+    <Content Include="Content\Image\humanRight.PNG" />
+    <Content Include="Content\Image\humanUp.PNG" />
+    <Content Include="Content\Image\Life.PNG" />
     <Content Include="Content\Image\robotronguy.PNG" />
     <Content Include="Content\Image\robotronguydown.PNG" />
     <Content Include="Content\Image\robotronguyleft.PNG" />
     <Content Include="Content\Image\robotronguyright.PNG" />
     <Content Include="Content\Image\robotronguyup.PNG" />
+    <Content Include="Content\Image\RobotTex.png" />
+    <Content Include="Content\Image\SquareMine.png" />
     <Content Include="Content\Image\Stars.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
