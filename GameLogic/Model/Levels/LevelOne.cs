@@ -58,7 +58,7 @@ namespace GameLogic.Model.Levels
             for (int i = 1; i <= RobotSpawnCount; i++)
             {
                 int x = random.Next(0, AppConfig.appWidth);
-                int y = random.Next(340, AppConfig.appHeight);
+                int y = random.Next(35, AppConfig.appHeight);
                 
                 Add(new Robot(new Vector2(x, y), new AttractedToPlayerCharacterBehaviour(scene.character)));
             }
@@ -73,7 +73,7 @@ namespace GameLogic.Model.Levels
             for (int i = 1; i <= MineSpawnCount; i++)
             {
                 int x = random.Next(0, AppConfig.appWidth);
-                int y = random.Next(0, AppConfig.appHeight);
+                int y = random.Next(35, AppConfig.appHeight);
                 
                 Add(new Mine(new Vector2(x, y)));
             }
@@ -88,7 +88,7 @@ namespace GameLogic.Model.Levels
             for (int i = 1; i <= HumanSpawnCount; i++)
             {
                 int x = random.Next(0, AppConfig.appWidth);
-                int y = random.Next(0, AppConfig.appHeight);
+                int y = random.Next(35, AppConfig.appHeight);
                 
                 Add(new Human(new Vector2(x, y), new WalkAroundBehaviour()));
             }

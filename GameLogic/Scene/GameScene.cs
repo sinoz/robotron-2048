@@ -192,9 +192,7 @@ namespace GameLogic.Scene
                 }
             }
             #endregion
-
             
-
             entityBatch.End();
         }
         

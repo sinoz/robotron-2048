@@ -52,7 +52,7 @@ namespace GameLogic.Model
         /// The time since the last frame.
         /// </summary>
         private int timeSinceLastFrame = 0;
-        private int millisecondsPerFrame = 100;
+        private int millisecondsPerFrame = 250;
 
         /// <summary>
         /// The behaviour of this robot.
