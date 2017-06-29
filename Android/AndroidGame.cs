@@ -13,7 +13,7 @@ namespace Android
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public sealed class Game1 : Game
+    public sealed class AndroidGame : Game
     {
         /// <summary>
         /// The stage.
@@ -23,7 +23,7 @@ namespace Android
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public Game1()
+        public AndroidGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
