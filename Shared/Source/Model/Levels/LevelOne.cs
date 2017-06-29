@@ -17,7 +17,7 @@ namespace Shared.Source.Model.Levels
         /// <summary>
         /// The initial amount of robots to spawn in this level.
         /// </summary>
-        private const int RobotSpawnCount = 10;
+        private const int RobotSpawnCount = 20;
 
         /// <summary>
         /// The initial amount of mines to spawn in this level.
@@ -27,7 +27,7 @@ namespace Shared.Source.Model.Levels
         /// <summary>
         /// The initial amount of humans to spawn in this level.
         /// </summary>
-        private const int HumanSpawnCount = 1;
+        private const int HumanSpawnCount = 5;
 
         /// <summary>
         /// The random number generator.
@@ -54,8 +54,7 @@ namespace Shared.Source.Model.Levels
         /// </summary>
         private void AddRobots()
         {
-            IMobBehaviour attracted = new AttractedToPlayerCharacterBehaviour(scene.character);
-            IMobBehaviour walkAround = new WalkAroundBehaviour();
+
 
             #region Adding the robots
             for (int i = 1; i <= RobotSpawnCount; i++)
@@ -63,8 +62,7 @@ namespace Shared.Source.Model.Levels
                 int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
                 int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
 
-                IMobBehaviour behaviour = random.Next(1, 3) == 1 ? attracted : walkAround;
-                Add(new Robot(new Vector2(x, y), behaviour));
+                Add(new Robot(new Vector2(x, y),new AttractedToPlayerCharacterBehaviour (scene.character)));
             }
             #endregion
         }
