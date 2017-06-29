@@ -21,12 +21,12 @@ namespace GameLogic.Model
         /// <summary>
         /// The rows.
         /// </summary>
-        public const int Rows = 1;
+        public const int Rows = 2;
 
         /// <summary>
         /// The columns.
         /// </summary>
-        public const int Columns = 3;
+        public const int Columns = 2;
 
         /// <summary>
         /// The total amount of frames to transition across.
