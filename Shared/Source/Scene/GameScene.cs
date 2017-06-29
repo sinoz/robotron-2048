@@ -84,12 +84,24 @@ namespace Shared.Source.Scene
         /// The score of the player.
         /// </summary>
         public readonly Score score;
+        public readonly Wave wave;
 
         /// <summary>
         /// The current level.
         /// </summary>
+       
+
         private Level currentLevel;
-      
+
+        #region All levels
+        public Level level1;
+        public Level level2;
+        public Level level3;
+        public Level level4;
+        public Level level5;
+        public Level nextlevel;
+        #endregion
+
         /// <summary>
         /// Creates a new game scene.
         /// </summary>
@@ -102,7 +114,19 @@ namespace Shared.Source.Scene
 
             this.score = new Score();
 
-            TransitionInto(new LevelOne(this));
+            this.wave = new Wave();
+
+            #region levels
+            this.level1 = new LevelOne(this);
+            this.level2 = new LevelTwo(this);
+            this.level3 = new LevelThree(this);
+            this.level4 = new LevelFour(this);
+            this.level5 = new LevelFive(this);
+            this.nextlevel = level1;
+
+            #endregion
+            TransitionInto(nextlevel);
+
 
             #region Appends the initial amount of lives for display
             for (int i = 0; i < InitialAmountOfLives; i++)
@@ -211,6 +235,7 @@ namespace Shared.Source.Scene
             batch.Begin();
             #region Draws the score.
             score.Draw(batch, gameTime);
+            wave.Draw(batch, gameTime);
             batch.DrawLine(new Vector2(0, 35), new Vector2 (800,35), Color.White, 5);
             #endregion
 
@@ -334,6 +359,39 @@ namespace Shared.Source.Scene
                                 bullets.Remove(bullet);
                                 currentLevel.BulletCollidedWithRobot(robot);
                                 gainlife = gainlife + 10;
+                                #region switching levels
+                                if (nextlevel == level1 && robots.Count == 0)
+                                {
+                                    nextlevel = level2;
+                                    TransitionInto(nextlevel);
+                                    character.MoveTo(x: 390, y: 290);
+                                    wave.value += 1;
+
+                                }
+                                if (nextlevel == level2 && robots.Count == 0)
+                                {
+                                    nextlevel = level3;
+                                    TransitionInto(nextlevel);
+                                    character.MoveTo(x: 390, y: 290);
+                                    wave.value += 1;
+                                }
+                                if (nextlevel == level3 && robots.Count == 0)
+                                {
+                                    nextlevel = level4;
+                                    TransitionInto(nextlevel);
+                                    character.MoveTo(x: 390, y: 290);
+                                    wave.value += 1;
+                                }
+                                if (nextlevel == level4 && robots.Count == 0)
+                                {
+                                    nextlevel = level5;
+                                    TransitionInto(nextlevel);
+                                    character.MoveTo(x: 390, y: 290);
+                                    wave.value += 1;
+                                }
+
+                                wave.Refresh();
+                                #endregion
                             }
 
                             if (robot.IntersectsWith(character))
@@ -516,7 +574,8 @@ namespace Shared.Source.Scene
 
             robots.Clear();
             bullets.Clear();
-            
+            humans.Clear();
+            mines.Clear();
             this.currentLevel = level;
             this.currentLevel.OnTransition();
         }

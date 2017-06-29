@@ -84,12 +84,14 @@ namespace GameLogic.Scene
         /// The score of the player.
         /// </summary>
         public readonly Score score;
-
+   
         /// <summary>
         /// The current level.
         /// </summary>
         private Level currentLevel;
-      
+
+       
+
         /// <summary>
         /// Creates a new game scene.
         /// </summary>
@@ -101,8 +103,10 @@ namespace GameLogic.Scene
             this.character = new Character();
 
             this.score = new Score();
+      
 
-            TransitionInto(new LevelOne(this));
+            
+          
 
             #region Appends the initial amount of lives for display
             for (int i = 0; i < InitialAmountOfLives; i++)
@@ -329,6 +333,7 @@ namespace GameLogic.Scene
                                 bullets.Remove(bullet);
                                 currentLevel.BulletCollidedWithRobot(robot);
                                 gainlife = gainlife + 10;
+                               
                             }
 
                             if (robot.IntersectsWith(character))
@@ -501,7 +506,8 @@ namespace GameLogic.Scene
 
             robots.Clear();
             bullets.Clear();
-            
+            mines.Clear();
+            humans.Clear();
             this.currentLevel = level;
             this.currentLevel.OnTransition();
         }
