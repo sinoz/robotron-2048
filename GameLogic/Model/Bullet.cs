@@ -84,7 +84,7 @@ namespace GameLogic.Model
 
         public Rectangle EntityRectangle()
         {
-            return new Rectangle((int) position.X, (int) position.Y, Length, 1);
+            return new Rectangle((int) position.X, (int) position.Y, 1, Length);
         }
     }
 }
