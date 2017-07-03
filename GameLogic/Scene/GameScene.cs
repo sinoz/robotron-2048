@@ -257,7 +257,6 @@ namespace GameLogic.Scene
             #endregion
         }
         
-
         /// <summary>
         /// Updates the entities.
         /// </summary>
@@ -563,11 +562,8 @@ namespace GameLogic.Scene
             bullets.Clear();
             humans.Clear();
             mines.Clear();
-<<<<<<< HEAD
 
-=======
             LoadedContent.nextLevelSound.Play();
->>>>>>> 7459632778dd140d758bce1428674281f3c727ec
             this.currentLevel = level;
             this.currentLevel.OnTransition();
         }
