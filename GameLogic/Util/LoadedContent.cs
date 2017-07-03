@@ -48,7 +48,7 @@ namespace GameLogic.Util
         /// <summary>
         /// Sound effects
         /// </summary>
-        public static SoundEffect bulletSound, characterDeathSound, robotDeathSound, humanPickup, nextLevelSound, mineExplosionSound;
+        public static SoundEffect bulletSound, characterDeathSound, robotDeathSound, humanPickup, nextLevelSound, mineExplosionSound, lifeLossSound;
 
         /// <summary>
         /// Sound music

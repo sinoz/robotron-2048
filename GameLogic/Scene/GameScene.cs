@@ -394,7 +394,9 @@ namespace GameLogic.Scene
                                 {
                                     lives.RemoveAt(lives.Count - 1);
                                     currentLevel.CharacterCollidedWithRobot(robot);
-                                } else
+                                    LoadedContent.lifeLossSound.Play();
+                                }
+                                else
                                 {
                                     LoadedContent.characterDeathSound.Play();
                                     stage.TransitionInto(new MainMenu(graphicsDevice)); // TODO game over
@@ -424,6 +426,7 @@ namespace GameLogic.Scene
                                 {
                                     lives.RemoveAt(lives.Count - 1);
                                     currentLevel.CharacterCollidedWithMine(mine);
+                                    LoadedContent.lifeLossSound.Play();
                                 }
                                 else
                                 {
@@ -467,7 +470,7 @@ namespace GameLogic.Scene
                     if (robot.IntersectsWith(character))
                     {
                         currentLevel.CharacterCollidedWithRobot(robot);
-                        
+                        LoadedContent.lifeLossSound.Play();
                     }
 
                     robot.Update(gameTime);
@@ -517,6 +520,7 @@ namespace GameLogic.Scene
                         #region Removal of a remaining life
                         if (lives.Count > 0)
                         {
+                            LoadedContent.lifeLossSound.Play();
                             LoadedContent.mineExplosionSound.Play();
                             lives.RemoveAt(lives.Count - 1);
                             currentLevel.CharacterCollidedWithMine(mine);
