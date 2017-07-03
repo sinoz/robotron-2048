@@ -42,15 +42,8 @@ namespace GameLogic.Scene
         /// <param name="scene">The Scene to transition into.</param>
         public void TransitionInto(Scene scene)
         {
-            if (this.scene != null)
-            {
-                // TODO scene.Hide();
-            }
-
             this.scene = scene;
             scene.stage = this;
-
-            // TODO scene.Show();
         }
 
         /// <summary>
@@ -58,13 +51,10 @@ namespace GameLogic.Scene
         /// </summary>
         public void Draw(GameTime gameTime)
         {
-            #region Drawing of the background
             batch.Begin();
             batch.Draw(LoadedContent.gameBackground, new Rectangle(new Point(0, 0), new Point(AppConfig.appWidth, AppConfig.appHeight)), Color.White);
-            batch.End();
-            #endregion
-
             scene.Draw(batch, gameTime);
+            batch.End();
         }
 
         /// <summary>

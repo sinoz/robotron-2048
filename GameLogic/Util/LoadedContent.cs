@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace GameLogic.Util
 {
@@ -42,6 +44,16 @@ namespace GameLogic.Util
         /// All of the Human textures.
         /// </summary>
         public static Texture2D humanDownTex, humanUpTex, humanLeftTex, humanRighTex;
+
+        /// <summary>
+        /// Sound effects
+        /// </summary>
+        public static SoundEffect bulletSound, characterDeathSound, robotDeathSound, humanPickup, nextLevelSound, mineExplosionSound;
+
+        /// <summary>
+        /// Sound music
+        /// </summary>
+        public static Song mainMenuSong;
 
     }
 }
