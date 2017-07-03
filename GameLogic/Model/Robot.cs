@@ -39,8 +39,14 @@ namespace GameLogic.Model
         public abstract override void Update(GameTime gameTime);
     }
 
+    /// <summary>
+    /// A factory to produce a type of Robot.
+    /// </summary>
     public sealed class RobotFactory
     {
+        /// <summary>
+        /// Produces a type of Robot.
+        /// </summary>
         public static T Produce<T>(RobotType robotType, Vector2 position, IMobBehaviour robotBehaviour, int maxHealthpoints = 0) where T : Robot
         {
             Robot robot = null;
@@ -66,6 +72,9 @@ namespace GameLogic.Model
         }
     }
 
+    /// <summary>
+    /// A type of Robot.
+    /// </summary>
     public enum RobotType
     {
         Strong, Minion

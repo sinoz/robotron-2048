@@ -34,19 +34,19 @@ namespace GameLogic.Model
             this.maxHealthpoints = maxHealthpoints;
         }
 
-        public override void Draw(SpriteBatch batch, GameTime gameTime)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Rectangle EntityRectangle()
         {
             throw new NotImplementedException();
         }
 
+        public override void Draw(SpriteBatch batch, GameTime gameTime)
+        {
+            // TODO
+        }
+
         public override void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
+            // TODO
         }
     }
 }
