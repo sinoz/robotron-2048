@@ -10,13 +10,28 @@ using GameLogic.Util;
 
 namespace GameLogic.Model
 {
+    /// <summary>
+    /// A Robot that has health points.
+    /// </summary>
     public sealed class StrongRobot : Robot
     {
+        /// <summary>
+        /// The movement velocity of this robot.
+        /// </summary>
         public const int MovementVelocity = 60;
 
-        public StrongRobot(Vector2 position) : base(position, MovementVelocity)
+        /// <summary>
+        /// The current and max amount of healthpoints.
+        /// </summary>
+        public int currentHealthpoints, maxHealthpoints;
+
+        /// <summary>
+        /// Creates a new StrongRobot.
+        /// </summary>
+        public StrongRobot(Vector2 position, int maxHealthpoints) : base(position, MovementVelocity)
         {
-            // TODO
+            this.currentHealthpoints = maxHealthpoints;
+            this.maxHealthpoints = maxHealthpoints;
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)

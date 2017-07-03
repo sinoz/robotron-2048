@@ -41,18 +41,20 @@ namespace GameLogic.Model
 
     public sealed class RobotFactory
     {
-        public static T Produce<T>(RobotType robotType, Vector2 position, IMobBehaviour robotBehaviour) where T : Robot
+        public static T Produce<T>(RobotType robotType, Vector2 position, IMobBehaviour robotBehaviour, int maxHealthpoints = 0) where T : Robot
         {
             Robot robot = null;
 
             switch (robotType)
             {
                 case RobotType.Strong:
-                    robot = new StrongRobot(position);
+                    robot = new StrongRobot(position, maxHealthpoints);
+
                     break;
 
                 case RobotType.Minion:
                     robot = new MinionRobot(position, robotBehaviour);
+
                     break;
                 default:
                     //TODO
