@@ -14,13 +14,8 @@ namespace GameLogic.Scene
     /// <summary>
     /// A drawable and updatable Label widget.
     /// </summary>
-    public sealed class Label : IDrawable, IUpdatable
+    public sealed class Label : Widget
     {
-        /// <summary>
-        /// The position of this label.
-        /// </summary>
-        public Vector2 position { get; set; }
-
         /// <summary>
         /// The text contents of this label.
         /// </summary>
@@ -37,21 +32,17 @@ namespace GameLogic.Scene
         /// <param name="text">The text content.</param>
         /// <param name="x">The X coordinate.</param>
         /// <param name="y">The Y coordinate.</param>
-        public Label(string text, int x, int y)
+        public Label(string text, int x, int y) : base(new Vector2(x, y))
         {
             this.Text = text;
-            this.position = new Vector2(x, y);
             this.Color = Color.White;
         }
 
-        public void Update(GameTime gameTime)
+        public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            // TODO
-        }
+            batch.DrawString(LoadedContent.font, Text, relative, Color);
 
-        public void Draw(SpriteBatch batch, GameTime gameTime)
-        {
-            batch.DrawString(LoadedContent.font, Text, position, Color);
+            base.Draw(batch, gameTime);
         }
     }
 }
