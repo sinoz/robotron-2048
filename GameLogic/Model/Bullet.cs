@@ -34,11 +34,6 @@ namespace GameLogic.Model
         private Character character;
 
         /// <summary>
-        /// The current position of this bullet.
-        /// </summary>
-        public Vector2 position;
-
-        /// <summary>
         /// The color of the bullet line.
         /// </summary>
         private Color color;
@@ -52,10 +47,9 @@ namespace GameLogic.Model
         /// Creates a new Bullet.
         /// </summary>
         /// <param name="character">The Character for this Bullet.</param>
-        public Bullet(Character character, Vector2 direction)  
+        public Bullet(Character character, Vector2 direction) : base(new Vector2(character.position.X + 10, character.position.Y + 10))
         {
             this.character = character;
-            this.position = new Vector2(character.position.X + 10, character.position.Y + 10);
             this.direction = direction;
             this.color = Color.White;
         }
@@ -71,18 +65,18 @@ namespace GameLogic.Model
                         || position.X > AppConfig.appWidth || position.Y > AppConfig.appHeight;   
         }
 
-        public void Draw(SpriteBatch batch, GameTime gameTime)
+        public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
             batch.DrawLine(position, new Vector2(position.X + (direction.X * Length), position.Y + (direction.Y * Length)), color);
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             position.X += (direction.X * (int)(MovementVelocity * gameTime.ElapsedGameTime.TotalSeconds));
             position.Y += (direction.Y * (int)(MovementVelocity * gameTime.ElapsedGameTime.TotalSeconds));
         }
 
-        public Rectangle EntityRectangle()
+        public override Rectangle EntityRectangle()
         {
             return new Rectangle((int) position.X, (int) position.Y, 1, Length);
         }

@@ -29,30 +29,25 @@ namespace GameLogic.Model
         public const int Height = 45;
 
         /// <summary>
-        /// The position.
-        /// </summary>
-        private Vector2 position;
-
-        /// <summary>
         /// Creates a new life.
         /// </summary>
         /// <param name="position">The drawing position of this life.</param>
-        public Life(Vector2 position)
-        {
-            this.position = position;
-        }
-
-        public void Draw(SpriteBatch batch, GameTime gameTime)
-        {
-            batch.Draw(LoadedContent.Life, position, Color.White);
-        }
-
-        public void Update(GameTime gameTime)
+        public Life(Vector2 position) : base(new Vector2(position.X, position.Y))
         {
             // nothing
         }
 
-        public Rectangle EntityRectangle()
+        public override void Draw(SpriteBatch batch, GameTime gameTime)
+        {
+            batch.Draw(LoadedContent.Life, position, Color.White);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            // nothing
+        }
+
+        public override Rectangle EntityRectangle()
         {
             return new Rectangle((int) position.X, (int) position.Y, Width, Height);
         }

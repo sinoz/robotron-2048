@@ -18,7 +18,6 @@ namespace GameLogic.Model
     /// </summary>
     public sealed class Mine : IEntity
     {
-        
         /// <summary>
         /// The width of a single frame of a Mine.
         /// </summary>
@@ -59,26 +58,16 @@ namespace GameLogic.Model
         /// </summary>
         private int timeSinceLastFrame = 0;
         private int millisecondsPerFrame = 1000;
-        
-        /// <summary>
-        /// The position for the Mine updated.
-        /// </summary>
-        public Vector2 position;
-        
-        public bool isVisible = true;
-        
 
         /// <summary>
         /// Creates a new Mine.
         /// </summary>
-        /// <param name="pos">The initial position of this Mine. The given position is copied.</param>
-        /// <param name="behaviour">The behaviour of this Mine.</param>
-        public Mine(Vector2 pos)
+        public Mine(Vector2 pos) : base(new Vector2(pos.X, pos.Y))
         {
-            this.position = new Vector2(pos.X, pos.Y);
+            // nothing
         }
 
-        public void Draw(SpriteBatch batch, GameTime gameTime)
+        public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
             int width = currentTexture.Width / Columns;
             int height = currentTexture.Height / Rows;
@@ -91,7 +80,7 @@ namespace GameLogic.Model
             batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             if (timeSinceLastFrame > millisecondsPerFrame)
@@ -113,7 +102,7 @@ namespace GameLogic.Model
         /// Returns a Rectangle instance of the Robot containing its frame size and absolute coordinates
         /// on the screen.
         /// </summary>
-        public Rectangle EntityRectangle()
+        public override Rectangle EntityRectangle()
         {
             return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width/2, currentTexture.Height);
         }

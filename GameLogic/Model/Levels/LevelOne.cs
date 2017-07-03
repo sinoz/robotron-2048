@@ -54,15 +54,16 @@ namespace GameLogic.Model.Levels
         /// </summary>
         private void AddRobots()
         {
-
-
             #region Adding the robots
             for (int i = 1; i <= RobotSpawnCount; i++)
             {
                 int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
                 int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
 
-                Add(new Robot(new Vector2(x, y),new AttractedToPlayerCharacterBehaviour (scene.character)));
+                IMobBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
+                MinionRobot minion = RobotFactory.Produce<MinionRobot>(RobotType.Minion, new Vector2(x, y), behaviour);
+
+                Add(minion);
             }
             #endregion
         }

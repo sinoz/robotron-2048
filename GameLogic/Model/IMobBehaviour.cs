@@ -27,6 +27,12 @@ namespace GameLogic.Model
         /// <param name="human">The Human.</param>
         /// <param name="gameTime">The delta time.</param>
         void Act(Human human, GameTime gameTime);
+
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <param name="mine"></param>
+        /// <param name="gameTime"></param>
         void Act(Mine mine, GameTime gameTime);
     }
 
@@ -112,7 +118,7 @@ namespace GameLogic.Model
 
         public void Act(Mine mine, GameTime gameTime)
         {
-            throw new NotImplementedException();
+            // TODO
         }
     }
 
@@ -156,7 +162,7 @@ namespace GameLogic.Model
 
         public void Act(Mine mine, GameTime gameTime)
         {
-            throw new NotImplementedException();
+            // TODO
         }
     }
 }

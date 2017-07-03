@@ -48,7 +48,9 @@
     <Compile Include="Model\Levels\LevelTwo.cs" />
     <Compile Include="Model\Life.cs" />
     <Compile Include="Model\Mine.cs" />
+    <Compile Include="Model\MinionRobot.cs" />
     <Compile Include="Model\Robot.cs" />
+    <Compile Include="Model\StrongRobot.cs" />
     <Compile Include="Scene\Button.cs" />
     <Compile Include="Scene\Score.cs" />
     <Compile Include="Scene\TextButton.cs" />
