@@ -266,4 +266,9 @@
 /processorParam:TextureFormat=Color
 /build:Image/RobotTex.png
 
+#begin Sound/lifeLoss.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/lifeLoss.wav
 
