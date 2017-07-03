@@ -8,6 +8,7 @@ using GameLogic;
 using GameLogic.Scene;
 using GameLogic.Util;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace DesktopGL
 {
@@ -75,7 +76,7 @@ namespace DesktopGL
 
             // Now that all of our resources have been loaded into memory, we can do what we need to do.
             stage = new Stage(GraphicsDevice);
-            stage.TransitionInto(new GameScene(GraphicsDevice));
+            stage.TransitionInto(new MainMenu(GraphicsDevice));
 
             Console.WriteLine(GraphicsDevice.DisplayMode.Width + " " + GraphicsDevice.DisplayMode.Height);
         }
@@ -111,6 +112,7 @@ namespace DesktopGL
             LoadedContent.humanPickup = Content.Load<SoundEffect>("Sound/humanPickup");
             LoadedContent.nextLevelSound = Content.Load<SoundEffect>("Sound/nextLevel");
             LoadedContent.mineExplosionSound = Content.Load<SoundEffect>("Sound/mineExplosion");
+            LoadedContent.mainMenuSong = Content.Load<Song>("Sound/mainMenuSong");
 
         }
 

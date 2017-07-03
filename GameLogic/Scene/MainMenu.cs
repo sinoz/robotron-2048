@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using GameLogic.Util;
+using Microsoft.Xna.Framework.Media;
 
 namespace GameLogic.Scene
 {
     /// <summary>
     /// Describes a main menu scene.
     /// </summary>
-    sealed class MainMenu : Scene
+    public class MainMenu : Scene
     {
         /// <summary>
         /// The graphics device.
@@ -26,6 +28,7 @@ namespace GameLogic.Scene
         /// <param name="graphicsDevice">The graphics device.</param>
         public MainMenu(GraphicsDevice graphicsDevice)
         {
+            MediaPlayer.Play(LoadedContent.mainMenuSong);
             this.graphicsDevice = graphicsDevice;
         }
 
@@ -43,6 +46,7 @@ namespace GameLogic.Scene
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Back))
             {
+                MediaPlayer.Stop();
                 stage.TransitionInto(new GameScene(graphicsDevice));
             }
         }
