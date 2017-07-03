@@ -51,6 +51,7 @@
     <Compile Include="Model\Robot.cs" />
     <Compile Include="Scene\Button.cs" />
     <Compile Include="Scene\Score.cs" />
+    <Compile Include="Scene\TextButton.cs" />
     <Compile Include="Scene\Wave.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\Actor.cs" />
