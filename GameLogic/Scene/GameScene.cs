@@ -359,6 +359,7 @@ namespace GameLogic.Scene
                                     TransitionInto(The_Current_Level);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
+                                    LoadedContent.nextLevelSound.Play();
 
                                 }
                                 if (The_Current_Level == level2 && robots.Count == 0)
@@ -367,6 +368,7 @@ namespace GameLogic.Scene
                                     TransitionInto(The_Current_Level);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
+                                    LoadedContent.nextLevelSound.Play();
                                 }
                                 if (The_Current_Level == level3 && robots.Count == 0)
                                 {
@@ -374,6 +376,7 @@ namespace GameLogic.Scene
                                     TransitionInto(The_Current_Level);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
+                                    LoadedContent.nextLevelSound.Play();
                                 }
                                 if (The_Current_Level == level4 && robots.Count == 0)
                                 {
@@ -381,6 +384,7 @@ namespace GameLogic.Scene
                                     TransitionInto(The_Current_Level);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
+                                    LoadedContent.nextLevelSound.Play();
                                 }
 
                                 wave.Refresh();
@@ -394,12 +398,14 @@ namespace GameLogic.Scene
                                 {
                                     lives.RemoveAt(lives.Count - 1);
                                     currentLevel.CharacterCollidedWithRobot(robot);
-
-                                    TransitionInto(The_Current_Level);
-                                } else
-
                                     LoadedContent.lifeLossSound.Play();
+                                    TransitionInto(The_Current_Level);
+                                    
                                 }
+                               
+
+                                    
+                                
                                 else
 
                                 {
@@ -572,7 +578,7 @@ namespace GameLogic.Scene
             humans.Clear();
             mines.Clear();
 
-            LoadedContent.nextLevelSound.Play();
+            
             this.currentLevel = level;
             this.currentLevel.OnTransition();
         }
