@@ -551,6 +551,10 @@ namespace GameLogic.Scene
    
             count = 0;
             #endregion
+
+            #region Updating the current level
+            currentLevel.Update(gameTime);
+            #endregion
         }
 
         /// <summary>

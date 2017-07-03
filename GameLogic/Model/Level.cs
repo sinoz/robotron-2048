@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.Xna.Framework;
+
 using GameLogic.Scene;
 
 namespace GameLogic.Model
@@ -87,6 +89,12 @@ namespace GameLogic.Model
         public abstract void OnTransition();
 
         /// <summary>
+        /// Updates the level.
+        /// </summary>
+        /// <param name="gameTime"></param>
+        public abstract void Update(GameTime gameTime);
+
+        /// <summary>
         /// Describes what to do when a character has collided with a robot.
         /// </summary>
         public abstract void CharacterCollidedWithRobot(Robot robot);
@@ -95,6 +103,10 @@ namespace GameLogic.Model
         /// Describes what to do when a bullet has collided with a robot.
         /// </summary>
         public abstract void BulletCollidedWithRobot(Robot robot);
+
+        /// <summary>
+        /// Describes what to do when a bullet has collided with a mine.
+        /// </summary>
         public abstract void BulletCollidedWithMine(Mine mine);
         
         /// <summary>

@@ -111,6 +111,11 @@ namespace GameLogic.Model.Levels
             scene.character.MoveTo(x: centerX, y: centerY);
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            // nothing
+        }
+
         public override void BulletCollidedWithRobot(Robot robot)
         {
             remove(robot);

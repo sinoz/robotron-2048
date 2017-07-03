@@ -79,8 +79,6 @@ namespace GameLogic.Model.Levels
 
                 
                 Add(new Mine(new Vector2(x, y)));
-
-
             }
         }
 
@@ -98,6 +96,11 @@ namespace GameLogic.Model.Levels
                 Add(new Human(new Vector2(x, y), new WalkAroundBehaviour()));
             }
             #endregion
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            // nothing
         }
 
         public override void CharacterCollidedWithRobot(Robot robot)

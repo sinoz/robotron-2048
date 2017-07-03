@@ -122,6 +122,11 @@ namespace GameLogic.Model.Levels
             remove(mine);
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            // nothing
+        }
+
         public override void HumanCollidedWithCharacter(Human human)
         {
             remove(human);

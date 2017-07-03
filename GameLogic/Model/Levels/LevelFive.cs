@@ -104,6 +104,11 @@ namespace GameLogic.Model.Levels
             MoveCharacterToCenter();
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            // nothing
+        }
+
         /// <summary>
         /// Instantly moves the player character back to the center.
         /// </summary>
