@@ -29,7 +29,7 @@ namespace GameLogic.Scene
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
-        public Button(int x, int y, int width, int height, Action action) : base(new Vector2(x, y))
+        public Button(Vector2 position, int width, int height, Action action) : base(position)
         {
             this.width = width;
             this.height = height;
