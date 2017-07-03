@@ -115,7 +115,7 @@ namespace GameLogic.Model
         /// </summary>
         public Rectangle EntityRectangle()
         {
-            return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width, currentTexture.Height);
+            return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width/2, currentTexture.Height);
         }
     }
 }

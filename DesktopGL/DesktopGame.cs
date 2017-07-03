@@ -85,10 +85,10 @@ namespace DesktopGL
         /// </summary>
         protected override void LoadContent()
         {
-            LoadedContent.characterDownTex = Content.Load<Texture2D>("Image/robotronguydown");
-            LoadedContent.characterUpTex = Content.Load<Texture2D>("Image/robotronguyup");
-            LoadedContent.characterLeftTex = Content.Load<Texture2D>("Image/robotronguyleft");
-            LoadedContent.characterRightTex = Content.Load<Texture2D>("Image/robotronguyright");
+            LoadedContent.characterDownTex = Content.Load<Texture2D>("Image/characterdownfinalized");
+            LoadedContent.characterUpTex = Content.Load<Texture2D>("Image/characterupfinalized");
+            LoadedContent.characterLeftTex = Content.Load<Texture2D>("Image/characterleftfinalized");
+            LoadedContent.characterRightTex = Content.Load<Texture2D>("Image/characterrightfinalized");
 
             LoadedContent.RobotTex = Content.Load<Texture2D>("Image/RobotTex");
 
