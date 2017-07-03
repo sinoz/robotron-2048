@@ -55,16 +55,19 @@ namespace GameLogic.Model
         private int millisecondsPerFrame = 100;
 
         /// <summary>
-        /// The coordinates of this character.
-        /// </summary>
-        public Vector2 position = new Vector2(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
-
-        /// <summary>
         /// The velocity at which the character can currently move.
         /// </summary>
         private int velocity = MovementVelocity;
 
-        public void Update(GameTime gameTime)
+        /// <summary>
+        /// Creates a new Character.
+        /// </summary>
+        public Character() : base(new Vector2(AppConfig.appWidth / 2, AppConfig.appHeight / 2))
+        {
+            // nothing
+        }
+
+        public override void Update(GameTime gameTime)
         {
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             if (timeSinceLastFrame > millisecondsPerFrame)
@@ -132,7 +135,7 @@ namespace GameLogic.Model
             MoveTo((int) x, (int) y);
         }
         
-        public void Draw(SpriteBatch batch, GameTime gameTime)
+        public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
             int width = currentTexture.Width / Columns;
             int height = currentTexture.Height / Rows;
@@ -158,9 +161,9 @@ namespace GameLogic.Model
         /// Returns a Rectangle instance of the Character containing its frame size and absolute coordinates
         /// on the screen.
         /// </summary>
-        public Rectangle EntityRectangle()
+        public override Rectangle EntityRectangle()
         {
-            return new Rectangle((int) position.X, (int) position.Y, currentTexture.Width/3, currentTexture.Height);
+            return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width / 3, currentTexture.Height);
         }
     }
 }

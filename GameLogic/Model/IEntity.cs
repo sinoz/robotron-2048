@@ -6,15 +6,33 @@ using System.Threading.Tasks;
 
 using GameLogic.Scene;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameLogic.Model
 {
     /// <summary>
     /// A drawable and updatable entity.
     /// </summary>
-    interface IEntity : Scene.IDrawable, IUpdatable
+    public abstract class IEntity : Scene.IDrawable, IUpdatable
     {
-        Rectangle EntityRectangle();
+        /// <summary>
+        /// The position for the robot updated.
+        /// </summary>
+        public Vector2 position;
+
+        /// <summary>
+        /// TODO
+        /// </summary>
+        /// <param name="position"></param>
+        public IEntity(Vector2 position)
+        {
+            this.position = position;
+        }
+
+        public abstract void Draw(SpriteBatch batch, GameTime gameTime);
+        public abstract void Update(GameTime gameTime);
+
+        public abstract Rectangle EntityRectangle();
     }
 
     /// <summary>

@@ -8,20 +8,26 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using GameLogic.Scene;
 using GameLogic.Util;
 
 namespace GameLogic.Model
 {
-    /// <summary>
-    /// TODO
-    /// </summary>
-    public sealed class Human : IEntity
+    public class MinionRobot : Robot
     {
         /// <summary>
-        /// The default velocity at which a Human can move across the screen.
+        /// The default velocity at which a Robot can move across the screen.
         /// </summary>
-        public const int MovementVelocity = 100;
+        public const int MovementVelocity = 70;
+
+        /// <summary>
+        /// The width of a single frame of a Robot.
+        /// </summary>
+        public const int FrameWidth = 15;
+
+        /// <summary>
+        /// The height of a single frame of a Robot.
+        /// </summary>
+        public const int FrameHeight = 25;
 
         /// <summary>
         /// The rows.
@@ -41,7 +47,7 @@ namespace GameLogic.Model
         /// <summary>
         /// The current texture frame.
         /// </summary>
-        public Texture2D currentTexture = LoadedContent.humanDownTex;
+        private Texture2D currentTexture = LoadedContent.RobotTex;
 
         /// <summary>
         /// The current frame being rendered.
@@ -52,24 +58,19 @@ namespace GameLogic.Model
         /// The time since the last frame.
         /// </summary>
         private int timeSinceLastFrame = 0;
-        private int millisecondsPerFrame = 250;
+        private int millisecondsPerFrame = 100;
 
         /// <summary>
-        /// The behaviour of this Human.
+        /// The behaviour of this robot.
         /// </summary>
         private IMobBehaviour behaviour;
 
         /// <summary>
-        /// The velocity at which the character can currently move.
+        /// Creates a new Robot.
         /// </summary>
-        public int velocity = MovementVelocity;
-
-        /// <summary>
-        /// Creates a new Human.
-        /// </summary>
-        /// <param name="pos">The initial position of this Human. The given position is copied.</param>
-        /// <param name="behaviour">The behaviour of this Human.</param>
-        public Human(Vector2 pos, IMobBehaviour behaviour) : base(new Vector2(pos.X, pos.Y))
+        /// <param name="pos">The initial position of this Robot. The given position is copied.</param>
+        /// <param name="behaviour">The behaviour of this Robot.</param>
+        public MinionRobot(Vector2 pos, IMobBehaviour behaviour) : base(new Vector2(pos.X, pos.Y), MovementVelocity)
         {
             this.behaviour = behaviour;
         }
@@ -89,7 +90,6 @@ namespace GameLogic.Model
 
         public override void Update(GameTime gameTime)
         {
-
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             if (timeSinceLastFrame > millisecondsPerFrame)
             {
@@ -109,12 +109,12 @@ namespace GameLogic.Model
         }
 
         /// <summary>
-        /// Returns a Rectangle instance of the Human containing its frame size and absolute coordinates
+        /// Returns a Rectangle instance of the Robot containing its frame size and absolute coordinates
         /// on the screen.
         /// </summary>
         public override Rectangle EntityRectangle()
         {
-            return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width/3, currentTexture.Height);
+            return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width / 3, currentTexture.Height);
         }
     }
 }
