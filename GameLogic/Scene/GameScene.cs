@@ -325,7 +325,7 @@ namespace GameLogic.Scene
             if (timeSinceLastbullet > millisecondsPerbullet)
             {
                 bullets.Add(new Bullet(character, new Vector2(lastBulletDirectionX, lastBulletDirectionY)));
-                
+                LoadedContent.bulletSound.Play();
                 timeSinceLastbullet = 0;
             }
             #endregion
@@ -352,6 +352,7 @@ namespace GameLogic.Scene
                                 bullets.Remove(bullet);
                                 currentLevel.BulletCollidedWithRobot(robot);
                                 gainlife = gainlife + 10;
+                                LoadedContent.robotDeathSound.Play();
                                 #region switching levels
                                 if (nextlevel == level1 && robots.Count == 0)
                                 {
@@ -396,6 +397,7 @@ namespace GameLogic.Scene
                                     currentLevel.CharacterCollidedWithRobot(robot);
                                 } else
                                 {
+                                    LoadedContent.characterDeathSound.Play();
                                     stage.TransitionInto(new MainMenu(graphicsDevice)); // TODO game over
                                 }
                                 #endregion
@@ -414,6 +416,7 @@ namespace GameLogic.Scene
                             {
                                 bullets.Remove(bullet);
                                 currentLevel.BulletCollidedWithMine(mine);
+                                LoadedContent.mineExplosionSound.Play();
                             }
                             if (mine.IntersectsWith(character))
                             {
@@ -485,9 +488,9 @@ namespace GameLogic.Scene
                 {
                     if (character.IntersectsWith(human))
                     {
-                        
                         currentLevel.HumanCollidedWithCharacter(human);
                         gainlife = gainlife + 10;
+                        LoadedContent.humanPickup.Play();
                     }                                     
                     human.Update(gameTime);
                 }
@@ -515,6 +518,7 @@ namespace GameLogic.Scene
                         #region Removal of a remaining life
                         if (lives.Count > 0)
                         {
+                            LoadedContent.mineExplosionSound.Play();
                             lives.RemoveAt(lives.Count - 1);
                             currentLevel.CharacterCollidedWithMine(mine);
                         }
@@ -559,7 +563,11 @@ namespace GameLogic.Scene
             bullets.Clear();
             humans.Clear();
             mines.Clear();
+<<<<<<< HEAD
 
+=======
+            LoadedContent.nextLevelSound.Play();
+>>>>>>> 7459632778dd140d758bce1428674281f3c727ec
             this.currentLevel = level;
             this.currentLevel.OnTransition();
         }

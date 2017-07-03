@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
+
 
 using GameLogic.Scene;
 using GameLogic.Util;
@@ -53,7 +55,7 @@ namespace GameLogic.Model
         public Bullet(Character character, Vector2 direction)  
         {
             this.character = character;
-            this.position = new Vector2(character.position.X + 20, character.position.Y + 10);
+            this.position = new Vector2(character.position.X + 10, character.position.Y + 10);
             this.direction = direction;
             this.color = Color.White;
         }
