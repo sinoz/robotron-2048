@@ -224,3 +224,40 @@
 /processorParam:TextureFormat=Color
 /build:Image/characterrightfinalized.png
 
+#begin Sound/bullet.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/bullet.wav
+
+#begin Sound/characterDeath.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/characterDeath.wav
+
+#begin Sound/humanPickup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/humanPickup.wav
+
+#begin Sound/nextLevel.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/nextLevel.wav
+
+#begin Sound/mineExplosion.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/mineExplosion.wav
+
+#begin Sound/robotDeath.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sound/robotDeath.wav
+
+

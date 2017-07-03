@@ -7,6 +7,7 @@ using System;
 using GameLogic;
 using GameLogic.Scene;
 using GameLogic.Util;
+using Microsoft.Xna.Framework.Audio;
 
 namespace DesktopGL
 {
@@ -103,6 +104,13 @@ namespace DesktopGL
             LoadedContent.SquareMine = Content.Load<Texture2D>("Image/SquareMine");
 
             LoadedContent.Life = Content.Load<Texture2D>("Image/Life");
+
+            LoadedContent.bulletSound = Content.Load<SoundEffect>("Sound/bullet");
+            LoadedContent.characterDeathSound = Content.Load<SoundEffect>("Sound/characterDeath");
+            LoadedContent.robotDeathSound = Content.Load<SoundEffect>("Sound/robotDeath");
+            LoadedContent.humanPickup = Content.Load<SoundEffect>("Sound/humanPickup");
+            LoadedContent.nextLevelSound = Content.Load<SoundEffect>("Sound/nextLevel");
+            LoadedContent.mineExplosionSound = Content.Load<SoundEffect>("Sound/mineExplosion");
 
         }
 
