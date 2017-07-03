@@ -14,7 +14,7 @@ namespace GameLogic.Model
     /// <summary>
     /// Keeps track of the player's score whilst in game.
     /// </summary>
-    public sealed class Score : Scene.IDrawable
+    public sealed class Score
     {
         /// <summary>
         /// The score value.
@@ -29,14 +29,11 @@ namespace GameLogic.Model
         /// <summary>
         /// Creates a new Score.
         /// </summary>
-        public Score()
+        public Score(GameScene scene)
         {
             scoreLabel = new Label("Score: " + value, 15, 8);
-        }
 
-        public void Draw(SpriteBatch batch, GameTime gameTime)
-        {
-            scoreLabel.Draw(batch, gameTime);
+            scene.Add(scoreLabel);
         }
 
         /// <summary>

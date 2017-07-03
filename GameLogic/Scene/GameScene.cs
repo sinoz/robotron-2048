@@ -20,12 +20,6 @@ namespace GameLogic.Scene
     public sealed class GameScene : Scene
     {
         /// <summary>
-        /// The sprite batch specifically for this game scene to draw the game character
-        /// and other entities on.
-        /// </summary>
-        private SpriteBatch entityBatch;
-        
-        /// <summary>
         /// The graphics device.
         /// </summary>
         private GraphicsDevice graphicsDevice;
@@ -79,18 +73,25 @@ namespace GameLogic.Scene
         /// The collection of remaining lives.
         /// </summary>
         public IList<Life> lives = new List<Life>();
+
+        /// <summary>
+        /// TODO
+        /// </summary>
         private int gainlife;
+
         /// <summary>
         /// The score of the player.
         /// </summary>
         public readonly Score score;
+
+        /// <summary>
+        /// The current wave.
+        /// </summary>
         public readonly Wave wave;
 
         /// <summary>
         /// The current level.
         /// </summary>
-       
-
         private Level currentLevel;
 
         #region All levels
@@ -108,13 +109,12 @@ namespace GameLogic.Scene
         public GameScene(GraphicsDevice device)
         {
             this.graphicsDevice = device;
-
-            this.entityBatch = new SpriteBatch(device);
+            
             this.character = new Character();
 
-            this.score = new Score();
+            this.score = new Score(this);
 
-            this.wave = new Wave();
+            this.wave = new Wave(this);
 
             #region levels
             this.level1 = new LevelOne(this);
@@ -125,8 +125,8 @@ namespace GameLogic.Scene
             this.nextlevel = level1;
 
             #endregion
-            TransitionInto(nextlevel);
 
+            TransitionInto(nextlevel);
 
             #region Appends the initial amount of lives for display
             for (int i = 0; i < InitialAmountOfLives; i++)
@@ -135,14 +135,22 @@ namespace GameLogic.Scene
            
             }
             #endregion
-
-            
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
             DrawEntities(batch, gameTime);
             DrawHUD(batch, gameTime);
+
+            base.Draw(batch, gameTime);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            UpdateEntities(gameTime);
+            TransitionToMainMenuOnKey(gameTime);
+
+            base.Update(gameTime);
         }
 
         /// <summary>
@@ -152,10 +160,8 @@ namespace GameLogic.Scene
         /// <param name="gameTime">The delta time.</param>
         private void DrawEntities(SpriteBatch batch, GameTime gameTime)
         {
-            entityBatch.Begin();
-
             #region Drawing the player character
-            character.Draw(entityBatch, gameTime);
+            character.Draw(batch, gameTime);
             #endregion
 
             #region Drawing the enemy robots
@@ -166,7 +172,7 @@ namespace GameLogic.Scene
                 {
                     Robot robot = robots[count];
 
-                    robot.Draw(entityBatch, gameTime);
+                    robot.Draw(batch, gameTime);
 
                     count += 1;
                 }
@@ -182,7 +188,7 @@ namespace GameLogic.Scene
                     Human human = humans[count];
                     if (human != null)
                     {
-                        human.Draw(entityBatch, gameTime);
+                        human.Draw(batch, gameTime);
                     }
 
                     count += 1;
@@ -198,7 +204,7 @@ namespace GameLogic.Scene
                 {
                     Bullet bullet = bullets[count];
 
-                    bullet.Draw(entityBatch, gameTime);
+                    bullet.Draw(batch, gameTime);
                     
                     count += 1;
                 }
@@ -213,16 +219,12 @@ namespace GameLogic.Scene
                 {
                     Mine mine = mines[count];
 
-                    mine.Draw(entityBatch, gameTime);
+                    mine.Draw(batch, gameTime);
 
                     count += 1;
                 }
             }
             #endregion
-
-            
-
-            entityBatch.End();
         }
         
         /// <summary>
@@ -232,10 +234,7 @@ namespace GameLogic.Scene
         /// <param name="gameTime">The delta time.</param>
         private void DrawHUD(SpriteBatch batch, GameTime gameTime)
         {
-            batch.Begin();
             #region Draws the score.
-            score.Draw(batch, gameTime);
-            wave.Draw(batch, gameTime);
             batch.DrawLine(new Vector2(0, 35), new Vector2(AppConfig.appWidth, 35), Color.White, 5);
             #endregion
 
@@ -256,15 +255,8 @@ namespace GameLogic.Scene
             }
             
             #endregion
-            batch.End();
         }
-
-        public override void Update(GameTime gameTime)
-        {
-            UpdateEntities(gameTime);
-            TransitionToMainMenuOnKey(gameTime);
-        }
-
+        
         /// <summary>
         /// Updates the entities.
         /// </summary>
@@ -278,6 +270,7 @@ namespace GameLogic.Scene
                 gainlife = 0;
             }
             #endregion
+
             #region Adding new bullets
             if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
@@ -336,8 +329,7 @@ namespace GameLogic.Scene
             }
             #endregion
 
-
-              #region Updating of Bullets
+            #region Updating of Bullets
             int count = 0;
             while (count < bullets.Count)
             {
@@ -487,11 +479,6 @@ namespace GameLogic.Scene
             count = 0;
             #endregion
 
-            
-            
-                
-            
-
             #region Updating the humans
             while (count < humans.Count)
             {
@@ -549,11 +536,6 @@ namespace GameLogic.Scene
    
             count = 0;
             #endregion
-            
-
-            
-                
-            
         }
 
         /// <summary>
@@ -580,6 +562,7 @@ namespace GameLogic.Scene
             bullets.Clear();
             humans.Clear();
             mines.Clear();
+
             LoadedContent.nextLevelSound.Play();
             this.currentLevel = level;
             this.currentLevel.OnTransition();

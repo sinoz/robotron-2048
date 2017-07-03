@@ -29,16 +29,6 @@ namespace GameLogic.Scene
             this.graphicsDevice = graphicsDevice;
         }
 
-        public override void Draw(SpriteBatch batch, GameTime gameTime)
-        {
-            // TODO
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            TransitionToGameSceneOnKey(gameTime);
-        }
-
         private void TransitionToGameSceneOnKey(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Back))
