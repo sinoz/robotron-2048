@@ -100,7 +100,7 @@ namespace GameLogic.Scene
         public Level level3;
         public Level level4;
         public Level level5;
-        public Level nextlevel;
+        public Level The_Current_Level;
         #endregion
 
         /// <summary>
@@ -122,11 +122,11 @@ namespace GameLogic.Scene
             this.level3 = new LevelThree(this);
             this.level4 = new LevelFour(this);
             this.level5 = new LevelFive(this);
-            this.nextlevel = level1;
+            this.The_Current_Level = level1;
 
             #endregion
 
-            TransitionInto(nextlevel);
+            TransitionInto(The_Current_Level);
 
             #region Appends the initial amount of lives for display
             for (int i = 0; i < InitialAmountOfLives; i++)
@@ -353,32 +353,32 @@ namespace GameLogic.Scene
                                 gainlife = gainlife + 10;
                                 LoadedContent.robotDeathSound.Play();
                                 #region switching levels
-                                if (nextlevel == level1 && robots.Count == 0)
+                                if (The_Current_Level == level1 && robots.Count == 0)
                                 {
-                                    nextlevel = level2;
-                                    TransitionInto(nextlevel);
+                                    The_Current_Level = level2;
+                                    TransitionInto(The_Current_Level);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
 
                                 }
-                                if (nextlevel == level2 && robots.Count == 0)
+                                if (The_Current_Level == level2 && robots.Count == 0)
                                 {
-                                    nextlevel = level3;
-                                    TransitionInto(nextlevel);
+                                    The_Current_Level = level3;
+                                    TransitionInto(The_Current_Level);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
                                 }
-                                if (nextlevel == level3 && robots.Count == 0)
+                                if (The_Current_Level == level3 && robots.Count == 0)
                                 {
-                                    nextlevel = level4;
-                                    TransitionInto(nextlevel);
+                                    The_Current_Level = level4;
+                                    TransitionInto(The_Current_Level);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
                                 }
-                                if (nextlevel == level4 && robots.Count == 0)
+                                if (The_Current_Level == level4 && robots.Count == 0)
                                 {
-                                    nextlevel = level5;
-                                    TransitionInto(nextlevel);
+                                    The_Current_Level = level5;
+                                    TransitionInto(The_Current_Level);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
                                 }
@@ -394,6 +394,7 @@ namespace GameLogic.Scene
                                 {
                                     lives.RemoveAt(lives.Count - 1);
                                     currentLevel.CharacterCollidedWithRobot(robot);
+                                    TransitionInto(The_Current_Level);
                                 } else
                                 {
                                     LoadedContent.characterDeathSound.Play();

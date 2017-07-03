@@ -22,7 +22,7 @@ namespace GameLogic.Model
         /// <summary>
         /// The score value.
         /// </summary>
-        public int value;
+        public int value = 1;
 
         /// <summary>
         /// The draw position of the score.

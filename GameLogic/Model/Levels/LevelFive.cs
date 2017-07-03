@@ -27,7 +27,7 @@ namespace GameLogic.Model.Levels
         /// <summary>
         /// The initial amount of humans to spawn in this level.
         /// </summary>
-        private const int HumanSpawnCount = 5;
+        private const int HumanSpawnCount = 7;
 
         /// <summary>
         /// The random number generator.
@@ -60,7 +60,9 @@ namespace GameLogic.Model.Levels
                 int x = random.Next(0, AppConfig.appWidth);
                 int y = random.Next(35, AppConfig.appHeight);
 
-                Add(new Robot(new Vector2(x, y), new AttractedToPlayerCharacterBehaviour(scene.character)));
+                Robot robot = new Robot(new Vector2(x, y), new AttractedToPlayerCharacterBehaviour(scene.character));
+                robot.velocity = 190;
+                Add(robot);
             }
             #endregion
         }
@@ -72,8 +74,8 @@ namespace GameLogic.Model.Levels
         {
             for (int i = 1; i <= MineSpawnCount; i++)
             {
-                int x = random.Next(0, AppConfig.appWidth);
-                int y = random.Next(35, AppConfig.appHeight);
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
 
                 Add(new Mine(new Vector2(x, y)));
             }
@@ -87,10 +89,12 @@ namespace GameLogic.Model.Levels
             #region Adding the humans
             for (int i = 1; i <= HumanSpawnCount; i++)
             {
-                int x = random.Next(0, AppConfig.appWidth);
-                int y = random.Next(35, AppConfig.appHeight);
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
 
-                Add(new Human(new Vector2(x, y), new WalkAroundBehaviour()));
+                Human human = new Human(new Vector2(x, y), new WalkAroundBehaviour());
+                human.velocity = 250;
+                Add(human);
             }
             #endregion
         }
