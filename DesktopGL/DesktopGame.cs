@@ -114,6 +114,7 @@ namespace DesktopGL
             LoadedContent.humanPickup = Content.Load<SoundEffect>("Sound/humanPickup");
             LoadedContent.nextLevelSound = Content.Load<SoundEffect>("Sound/nextLevel");
             LoadedContent.mineExplosionSound = Content.Load<SoundEffect>("Sound/mineExplosion");
+            LoadedContent.lifeLossSound = Content.Load<SoundEffect>("Sound/lifeLoss");
             LoadedContent.mainMenuSong = Content.Load<Song>("Sound/mainMenuSong");
 
         }
