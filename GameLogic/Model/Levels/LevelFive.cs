@@ -57,8 +57,9 @@ namespace GameLogic.Model.Levels
             #region Adding the robots
             for (int i = 1; i <= RobotSpawnCount; i++)
             {
-                int x = random.Next(0, AppConfig.appWidth);
-                int y = random.Next(35, AppConfig.appHeight);
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
+
 
                 IMobBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
 

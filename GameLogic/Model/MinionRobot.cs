@@ -12,7 +12,10 @@ using GameLogic.Util;
 
 namespace GameLogic.Model
 {
-    public class MinionRobot : Robot
+    /// <summary>
+    /// A minion Robot.
+    /// </summary>
+    public sealed class MinionRobot : Robot
     {
         /// <summary>
         /// The default velocity at which a Robot can move across the screen.

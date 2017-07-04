@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using GameLogic.Util;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace GameLogic.Scene
 {
@@ -33,9 +34,22 @@ namespace GameLogic.Scene
         public MainMenu(GraphicsDevice graphicsDevice)
         {
             MediaPlayer.Play(LoadedContent.mainMenuSong);
+
             this.graphicsDevice = graphicsDevice;
-            Add(menuLabel = new Label(normalFont, "PRESS BACKSPACE TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2));
-            Add(titelLabel = new Label(Font,"                 Robotron 2048", AppConfig.appWidth / 3, AppConfig.appHeight / 4));
+
+           
+            Add(titelLabel = new Label(Font,"  Robotron 2048", AppConfig.appWidth / 3, AppConfig.appHeight / 4));
+
+
+            if (AppConfig.deviceType == DeviceType.Android)
+            {
+                Add(menuLabel = new Label(normalFont,"TOUCH TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2));
+            }
+            else
+            {
+                Add(menuLabel = new Label(normalFont,"                                                                                  PRESS ENTER TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2));
+            }
+
         }
 
         public override void Update(GameTime gameTime)
@@ -47,7 +61,19 @@ namespace GameLogic.Scene
 
         private void TransitionToGameSceneOnKey(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Back))
+            var touchPanelState = TouchPanel.GetState();
+
+            foreach (var touch in touchPanelState)
+            {
+                if (touch.State == TouchLocationState.Pressed)
+                {
+                    MediaPlayer.Stop();
+
+                    stage.TransitionInto(new GameScene(graphicsDevice));
+                }
+            }
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 MediaPlayer.Stop();
 
