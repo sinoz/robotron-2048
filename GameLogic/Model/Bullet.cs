@@ -29,9 +29,9 @@ namespace GameLogic.Model
         public const int MovementVelocity = 550;
 
         /// <summary>
-        /// The character that fired this bullet.
+        /// The entity that fired this bullet.
         /// </summary>
-        private Character character;
+        private IEntity entity;
 
         /// <summary>
         /// The color of the bullet line.
@@ -46,10 +46,9 @@ namespace GameLogic.Model
         /// <summary>
         /// Creates a new Bullet.
         /// </summary>
-        /// <param name="character">The Character for this Bullet.</param>
-        public Bullet(Character character, Vector2 direction) : base(new Vector2(character.position.X + 10, character.position.Y + 10))
+        public Bullet(IEntity entity, Vector2 direction) : base(new Vector2(entity.position.X + 10, entity.position.Y + 10))
         {
-            this.character = character;
+            this.entity = entity;
             this.direction = direction;
             this.color = Color.White;
         }
