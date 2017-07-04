@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
 
 using GameLogic;
+using GameLogic.Model;
 using GameLogic.Scene;
 using GameLogic.Util;
 
@@ -22,7 +23,7 @@ namespace Android
         /// <summary>
         /// The virtual width and height to scale to.
         /// </summary>
-        public const int VirtualWidth = 800, VirtualHeight = 600;
+        public const int VirtualWidth = 1366, VirtualHeight = 768;
 
         /// <summary>
         /// The stage.
@@ -46,6 +47,9 @@ namespace Android
             graphics.PreferredBackBufferWidth = VirtualWidth;
             graphics.PreferredBackBufferHeight = VirtualHeight;
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
+
+            TouchPanel.EnableMouseTouchPoint = true;
+            TouchPanel.EnabledGestures = GestureType.Hold | GestureType.Tap |  GestureType.DoubleTap | GestureType.FreeDrag | GestureType.Flick | GestureType.Pinch;
 
             TouchPanel.DisplayWidth = VirtualWidth;
             TouchPanel.DisplayHeight = VirtualHeight;

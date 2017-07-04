@@ -42,7 +42,7 @@ namespace GameLogic.Model
         /// <summary>
         /// The current texture frame.
         /// </summary>
-        private Texture2D currentTexture = LoadedContent.characterDownTex;
+        public Texture2D currentTexture = LoadedContent.characterDownTex;
 
         /// <summary>
         /// The current frame being rendered.
@@ -58,7 +58,7 @@ namespace GameLogic.Model
         /// <summary>
         /// The velocity at which the character can currently move.
         /// </summary>
-        private int velocity = MovementVelocity;
+        public int velocity = MovementVelocity;
 
         /// <summary>
         /// Creates a new Character.
@@ -87,84 +87,60 @@ namespace GameLogic.Model
 
             var x = position.X;
             var y = position.Y;
+
             if (AppConfig.deviceType == DeviceType.Android)
             {
-                var gesture = default(GestureSample);
-
-                while (TouchPanel.IsGestureAvailable)
-                    gesture = TouchPanel.ReadGesture();
-
-                if (gesture.GestureType == GestureType.VerticalDrag)
-                {
-                    if (gesture.Delta.Y < 0)
-                        y -= (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                        currentTexture = LoadedContent.characterUpTex;
-
-                    if (gesture.Delta.Y > 0)
-                        y += (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                        currentTexture = LoadedContent.characterDownTex;
-                }
-                if (gesture.GestureType == GestureType.HorizontalDrag)
-                {
-                    if (gesture.Delta.X < 0)
-                        x -= (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                        currentTexture = LoadedContent.characterLeftTex;
-
-                    if (gesture.Delta.X > 0)
-                        x += (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                        currentTexture = LoadedContent.characterRightTex;
-                }
-
+                // TODO
             }
             else
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.W))
                 {
-                    y -= (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
+                    y -= (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
                     currentTexture = LoadedContent.characterUpTex;
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.S))
                 {
-                    y += (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
+                    y += (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
                     currentTexture = LoadedContent.characterDownTex;
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.A))
                 {
-                    x -= (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
+                    x -= (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
                     currentTexture = LoadedContent.characterLeftTex;
-                
+
                 }
 
                 if (Keyboard.GetState().IsKeyDown(Keys.D))
                 {
-                    x += (int) (velocity * gameTime.ElapsedGameTime.TotalSeconds);
+                    x += (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
                     currentTexture = LoadedContent.characterRightTex;
                 }
-            
-                if (x < 0)
-                {
-                    x = 0;
-                }
+            }
 
-                if (y < 35)
-                {
-                    y = 35;
-                }
+            if (x < 0)
+            {
+                x = 0;
+            }
 
-                if (y > AppConfig.appHeight - currentTexture.Height)
-                {
-                    y = AppConfig.appHeight - currentTexture.Height;
-                }
+            if (y < 35)
+            {
+                y = 35;
+            }
 
-                if (x > AppConfig.appWidth - (currentTexture.Width / 3))
-                {
-                    x = AppConfig.appWidth - (currentTexture.Width / 3);
-                }
+            if (y > AppConfig.appHeight - currentTexture.Height)
+            {
+                y = AppConfig.appHeight - currentTexture.Height;
+            }
 
-                MoveTo((int) x, (int) y);
-         }
+            if (x > AppConfig.appWidth - (currentTexture.Width / 3))
+            {
+                x = AppConfig.appWidth - (currentTexture.Width / 3);
+            }
+
+            MoveTo((int)x, (int)y);
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)

@@ -24,7 +24,7 @@ namespace GameLogic.Scene
         /// <summary>
         /// The current Scene acting on this stage.
         /// </summary>
-        private Scene scene;
+        public Scene scene;
 
         /// <summary>
         /// Creates a new Stage.

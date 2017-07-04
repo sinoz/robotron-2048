@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 using System;
 
@@ -20,7 +21,7 @@ namespace DesktopGL
         /// <summary>
         /// The virtual width and height to scale to.
         /// </summary>
-        public const int VirtualWidth = 1366, VirtualHeight = 768;
+        public const int VirtualWidth = 800, VirtualHeight = 600;
         
         /// <summary>
         /// The initial title of the application.
@@ -62,7 +63,7 @@ namespace DesktopGL
             // TODO check if on windows or android
             graphics.PreferredBackBufferHeight = VirtualHeight;
             graphics.PreferredBackBufferWidth = VirtualWidth;
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
 
             AppConfig.appWidth = graphics.PreferredBackBufferWidth;
             AppConfig.appHeight = graphics.PreferredBackBufferHeight;
@@ -70,6 +71,8 @@ namespace DesktopGL
             AppConfig.deviceType = DeviceType.Desktop;
 
             Window.Title = DesktopAppTitle;
+
+            TouchPanel.EnableMouseTouchPoint = true;
 
             fpsCounter = new FPSCounter(this);
 
