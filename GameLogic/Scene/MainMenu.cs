@@ -27,6 +27,7 @@ namespace GameLogic.Scene
         private Label titelLabel;
         private SpriteFont Font = LoadedContent.titelFont;
         private SpriteFont normalFont = LoadedContent.font; 
+
         /// <summary>
         /// Creates a new main menu scene.
         /// </summary>
@@ -36,20 +37,17 @@ namespace GameLogic.Scene
             MediaPlayer.Play(LoadedContent.mainMenuSong);
 
             this.graphicsDevice = graphicsDevice;
-
            
             Add(titelLabel = new Label(Font,"  Robotron 2048", AppConfig.appWidth / 3, AppConfig.appHeight / 4));
 
-
             if (AppConfig.deviceType == DeviceType.Android)
             {
-                Add(menuLabel = new Label(normalFont,"TOUCH TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2));
+                Add(menuLabel = new Label(normalFont, "TOUCH TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2));
             }
             else
             {
-                Add(menuLabel = new Label(normalFont,"                                                                                  PRESS ENTER TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2));
+                Add(menuLabel = new Label(normalFont, "PRESS ENTER TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2));
             }
-
         }
 
         public override void Update(GameTime gameTime)

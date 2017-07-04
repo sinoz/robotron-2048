@@ -20,7 +20,7 @@ namespace DesktopGL
         /// <summary>
         /// The virtual width and height to scale to.
         /// </summary>
-        public const int VirtualWidth = 2880, VirtualHeight = 1800;
+        public const int VirtualWidth = 1366, VirtualHeight = 768;
         
         /// <summary>
         /// The initial title of the application.
@@ -62,6 +62,7 @@ namespace DesktopGL
             // TODO check if on windows or android
             graphics.PreferredBackBufferHeight = VirtualHeight;
             graphics.PreferredBackBufferWidth = VirtualWidth;
+            graphics.IsFullScreen = true;
 
             AppConfig.appWidth = graphics.PreferredBackBufferWidth;
             AppConfig.appHeight = graphics.PreferredBackBufferHeight;
