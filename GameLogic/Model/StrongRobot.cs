@@ -26,6 +26,37 @@ namespace GameLogic.Model
         public int currentHealthpoints, maxHealthpoints;
 
         /// <summary>
+        /// The rows.
+        /// </summary>
+        public const int Rows = 1;
+
+        /// <summary>
+        /// The columns.
+        /// </summary>
+        public const int Columns = 3;
+
+        /// <summary>
+        /// The current frame being rendered.
+        /// </summary>
+        private int currentFrame;
+
+        /// <summary>
+        /// The time since the last frame.
+        /// </summary>
+        private int timeSinceLastFrame = 0;
+        private int millisecondsPerFrame = 100;
+
+        /// <summary>
+        /// The total amount of frames to transition across.
+        /// </summary>
+        private const int TotalAmtOfFrames = Rows * Columns;
+
+        /// <summary>
+        /// The current texture frame.
+        /// </summary>
+        private Texture2D currentTexture = LoadedContent.RobotBossTex;
+
+        /// <summary>
         /// Creates a new StrongRobot.
         /// </summary>
         public StrongRobot(Vector2 position, int maxHealthpoints) : base(position, MovementVelocity)
@@ -36,16 +67,40 @@ namespace GameLogic.Model
 
         public override Rectangle EntityRectangle()
         {
-            throw new NotImplementedException();
+            int width = currentTexture.Width / Columns;
+            int height = currentTexture.Height / Rows;
+            int row = (int)((float)currentFrame / Columns);
+            int column = currentFrame % Columns;
+
+            Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
+            Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
+
+            batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
+
+            return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width / 3, currentTexture.Height);
             // TODO
         }
 
         public override void Update(GameTime gameTime)
         {
+            timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
+            if (timeSinceLastFrame > millisecondsPerFrame)
+            {
+                timeSinceLastFrame -= millisecondsPerFrame;
+
+                // increment current frame
+                currentFrame++;
+                timeSinceLastFrame = 0;
+
+                if (currentFrame == TotalAmtOfFrames)
+                {
+                    currentFrame = 0;
+                }
+            }
             // TODO
         }
 
@@ -53,5 +108,6 @@ namespace GameLogic.Model
         {
             return RobotType.Strong;
         }
+
     }
 }
