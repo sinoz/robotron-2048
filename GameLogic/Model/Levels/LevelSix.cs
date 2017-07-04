@@ -9,7 +9,7 @@ using GameLogic.Scene;
 using GameLogic.Model;
 using GameLogic;
 
-sealed class LevelSix : Level
+    sealed class LevelSix : Level
     {
         /// <summary>
         /// The initial amount of robots to spawn in this level.
@@ -148,4 +148,9 @@ sealed class LevelSix : Level
             remove(mine);
             MoveCharacterToCenter();
         }
+
+    public override string displayAs()
+    {
+        return "Wave: 6";
     }
+}

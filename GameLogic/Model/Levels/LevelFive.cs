@@ -155,5 +155,10 @@ namespace GameLogic.Model.Levels
             remove(mine);
             MoveCharacterToCenter();
         }
+
+        public override string displayAs()
+        {
+            return "Wave: 5";
+        }
     }
 }

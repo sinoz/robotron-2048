@@ -92,7 +92,7 @@ namespace GameLogic.Scene
         /// <summary>
         /// The current level.
         /// </summary>
-        private Level currentLevel;
+        public Level currentLevel;
 
         #region All levels
         public Level level1;
@@ -101,7 +101,6 @@ namespace GameLogic.Scene
         public Level level4;
         public Level level5;
         public Level level6;
-        public Level The_Current_Level;
         #endregion
 
         /// <summary>
@@ -124,11 +123,15 @@ namespace GameLogic.Scene
             this.level4 = new LevelFour(this);
             this.level5 = new LevelFive(this);
             this.level6 = new LevelSix(this);
+<<<<<<< HEAD
             this.The_Current_Level = this.level6;
+=======
+            this.currentLevel = level6;
+>>>>>>> 6533197e595a50016ea8a9878019d87c578ddaf7
 
             #endregion
 
-            TransitionInto(The_Current_Level);
+            TransitionInto(currentLevel);
 
             #region Appends the initial amount of lives for display
             for (int i = 0; i < InitialAmountOfLives; i++)
@@ -359,35 +362,35 @@ namespace GameLogic.Scene
                                
                                 LoadedContent.robotDeathSound.Play();
                                 #region switching levels
-                                if (The_Current_Level == level1 && robots.Count == 0)
+                                if (currentLevel == level1 && robots.Count == 0)
                                 {
-                                    The_Current_Level = level2;
-                                    TransitionInto(The_Current_Level);
+                                    currentLevel = level2;
+                                    TransitionInto(currentLevel);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
 
                                 }
-                                if (The_Current_Level == level2 && robots.Count == 0)
+                                if (currentLevel == level2 && robots.Count == 0)
                                 {
-                                    The_Current_Level = level3;
-                                    TransitionInto(The_Current_Level);
+                                    currentLevel = level3;
+                                    TransitionInto(currentLevel);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
                                 }
-                                if (The_Current_Level == level3 && robots.Count == 0)
+                                if (currentLevel == level3 && robots.Count == 0)
                                 {
-                                    The_Current_Level = level4;
-                                    TransitionInto(The_Current_Level);
+                                    currentLevel = level4;
+                                    TransitionInto(currentLevel);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
                                 }
-                                if (The_Current_Level == level4 && robots.Count == 0)
+                                if (currentLevel == level4 && robots.Count == 0)
                                 {
-                                    The_Current_Level = level5;
-                                    TransitionInto(The_Current_Level);
+                                    currentLevel = level5;
+                                    TransitionInto(currentLevel);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
@@ -413,11 +416,15 @@ namespace GameLogic.Scene
                                     lives.RemoveAt(lives.Count - 1);
                                     currentLevel.CharacterCollidedWithRobot(robot);
                                     LoadedContent.lifeLossSound.Play();
+<<<<<<< HEAD
                                     TransitionInto(The_Current_Level);
                                     
                                 }          
+=======
+                                    TransitionInto(currentLevel);
+                                }
+>>>>>>> 6533197e595a50016ea8a9878019d87c578ddaf7
                                 else
-
                                 {
                                     LoadedContent.characterDeathSound.Play();
                                     stage.TransitionInto(new MainMenu(graphicsDevice)); // TODO game over
@@ -447,7 +454,7 @@ namespace GameLogic.Scene
                                     lives.RemoveAt(lives.Count - 1);
                                     currentLevel.CharacterCollidedWithMine(mine);
                                     LoadedContent.lifeLossSound.Play();
-                                    TransitionInto(The_Current_Level);
+                                    TransitionInto(currentLevel);
                                 }
                                 else
                                 {
@@ -458,13 +465,6 @@ namespace GameLogic.Scene
                         }
                         mineCount += 1;
                     }
-
-
-
-
-
-
-
                     if (bullet.isOutOfBounds())
                     {
                         bullets.Remove(bullet);

@@ -62,7 +62,7 @@ namespace GameLogic.Scene
             var touchPanelState = TouchPanel.GetState();
 
             foreach (var touch in touchPanelState)
-            {
+            {  
                 if (touch.State == TouchLocationState.Pressed)
                 {
                     MediaPlayer.Stop();
