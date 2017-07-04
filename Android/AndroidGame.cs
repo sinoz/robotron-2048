@@ -22,7 +22,7 @@ namespace Android
         /// <summary>
         /// The virtual width and height to scale to.
         /// </summary>
-        public const int VirtualWidth = 1366, VirtualHeight = 768;
+        public const int VirtualWidth = 800, VirtualHeight = 600;
 
         /// <summary>
         /// The stage.
@@ -94,6 +94,7 @@ namespace Android
             LoadedContent.characterRightTex = Content.Load<Texture2D>("Image/characterrightfinalized");
 
             LoadedContent.RobotTex = Content.Load<Texture2D>("Image/RobotTex");
+            LoadedContent.RobotBossTex = Content.Load<Texture2D>("Image/RobotBossTex");
 
             LoadedContent.humanDownTex = Content.Load<Texture2D>("Image/humanDown");
             LoadedContent.humanUpTex = Content.Load<Texture2D>("Image/humanUp");
@@ -102,6 +103,7 @@ namespace Android
 
             LoadedContent.gameBackground = Content.Load<Texture2D>("Image/Stars");
             LoadedContent.font = Content.Load<SpriteFont>("Score");
+            LoadedContent.titelFont = Content.Load<SpriteFont>("TitelFont");
 
             LoadedContent.SquareMine = Content.Load<Texture2D>("Image/SquareMine");
 
