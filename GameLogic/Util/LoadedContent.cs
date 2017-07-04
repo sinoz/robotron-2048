@@ -19,7 +19,7 @@ namespace GameLogic.Util
         /// The default SpriteFont to utilize for drawing labels.
         /// </summary>
         public static SpriteFont font;
-
+        public static SpriteFont titelFont;
         /// <summary>
         /// The game scene background texture.
         /// </summary>

@@ -26,22 +26,26 @@ namespace GameLogic.Scene
         /// </summary>
         private Color Color { get; set; }
 
+        
+        private SpriteFont CurrentFont;
         /// <summary>
         /// Creates a new Label.
         /// </summary>
         /// <param name="text">The text content.</param>
         /// <param name="x">The X coordinate.</param>
         /// <param name="y">The Y coordinate.</param>
-        public Label(string text, int x, int y) : base(new Vector2(x, y))
+        public Label(SpriteFont CurrentFont, string text, int x, int y) : base(new Vector2(x, y))
         {
+            this.CurrentFont = CurrentFont;
             this.Text = text;
             this.Color = Color.White;
+            
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            batch.DrawString(LoadedContent.font, Text, relative, Color);
-
+            batch.DrawString(CurrentFont, Text, relative, Color);
+            
             base.Draw(batch, gameTime);
         }
     }

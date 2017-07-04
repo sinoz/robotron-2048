@@ -23,14 +23,14 @@ namespace GameLogic.Scene
         /// TODO
         /// </summary>
         private Label label;
-
+        private SpriteFont CurrentFont;
         /// <summary>
         /// Creates a new TextButton.
         /// </summary>
-        public TextButton(string text, Vector2 position, int width, int height, Action action) : base(position)
+        public TextButton(SpriteFont CurrentFont ,string text, Vector2 position, int width, int height, Action action) : base(position)
         {
             this.button = new Button(position, width, height, action);
-            this.label = new GameLogic.Scene.Label(text, 0, 0);
+            this.label = new GameLogic.Scene.Label(CurrentFont, text, 0, 0);
         }
 
         public override void Update(GameTime gameTime)

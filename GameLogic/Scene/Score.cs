@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using GameLogic.Scene;
+using GameLogic.Util;
 
 namespace GameLogic.Model
 {
@@ -25,13 +26,14 @@ namespace GameLogic.Model
         /// The draw position of the score.
         /// </summary>
         private Label scoreLabel;
-
+        private SpriteFont Font = LoadedContent.titelFont;
+        private SpriteFont normalFont = LoadedContent.font;
         /// <summary>
         /// Creates a new Score.
         /// </summary>
         public Score(GameScene scene)
         {
-            scoreLabel = new Label("Score: " + value, 15, 8);
+            scoreLabel = new Label(normalFont,"Score: " + value, 15, 8);
 
             scene.Add(scoreLabel);
         }

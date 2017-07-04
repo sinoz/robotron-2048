@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using GameLogic.Scene;
+using GameLogic.Util;
 
 namespace GameLogic.Model
 {
@@ -28,13 +29,14 @@ namespace GameLogic.Model
         /// The draw position of the score.
         /// </summary>
         private Label scoreLabel;
-
+        private SpriteFont Font = LoadedContent.titelFont;
+        private SpriteFont normalFont = LoadedContent.font;
         /// <summary>
         /// Creates a new Score.
         /// </summary>
         public Wave(GameScene scene)
         {
-            scoreLabel = new Label("Wave: " + value, (int)(AppConfig.appWidth * 0.895F), 8);
+            scoreLabel = new Label(normalFont ,"Wave: " + value, (int)(AppConfig.appWidth * 0.895F), 8);
             scene.Add(scoreLabel);
         }
 
