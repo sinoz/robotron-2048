@@ -123,11 +123,8 @@ namespace GameLogic.Scene
             this.level4 = new LevelFour(this);
             this.level5 = new LevelFive(this);
             this.level6 = new LevelSix(this);
-<<<<<<< HEAD
-            this.The_Current_Level = this.level6;
-=======
+
             this.currentLevel = level6;
->>>>>>> 6533197e595a50016ea8a9878019d87c578ddaf7
 
             #endregion
 
@@ -347,7 +344,6 @@ namespace GameLogic.Scene
                     
                     while (robotCount < robots.Count)
                     {
-                        
                         Robot robot = robots[robotCount];
                         if (robot != null)
                         {
@@ -395,10 +391,10 @@ namespace GameLogic.Scene
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
                                 }
-                                if (The_Current_Level == level5 && robots.Count == 0)
+                                if (currentLevel == level5 && robots.Count == 0)
                                 {
-                                    The_Current_Level = level6;
-                                    TransitionInto(The_Current_Level);
+                                    currentLevel = level6;
+                                    TransitionInto(currentLevel);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
@@ -416,14 +412,8 @@ namespace GameLogic.Scene
                                     lives.RemoveAt(lives.Count - 1);
                                     currentLevel.CharacterCollidedWithRobot(robot);
                                     LoadedContent.lifeLossSound.Play();
-<<<<<<< HEAD
-                                    TransitionInto(The_Current_Level);
-                                    
-                                }          
-=======
                                     TransitionInto(currentLevel);
                                 }
->>>>>>> 6533197e595a50016ea8a9878019d87c578ddaf7
                                 else
                                 {
                                     LoadedContent.characterDeathSound.Play();
