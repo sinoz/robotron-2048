@@ -38,7 +38,7 @@ namespace GameLogic.Scene
 
             this.graphicsDevice = graphicsDevice;
            
-            Add(titelLabel = new Label(Font,"  Robotron 2048", AppConfig.appWidth / 3, AppConfig.appHeight / 4));
+            Add(titelLabel = new Label(Font,"  Robotron 2048", AppConfig.appWidth / 6, AppConfig.appHeight / 4));
 
             if (AppConfig.deviceType == DeviceType.Android)
             {
@@ -46,7 +46,7 @@ namespace GameLogic.Scene
             }
             else
             {
-                Add(menuLabel = new Label(normalFont, "PRESS ENTER TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2));
+                Add(menuLabel = new Label(normalFont, "PRESS ENTER TO START GAME: ", AppConfig.appWidth / 2.5f , AppConfig.appHeight / 1.5f));
             }
         }
 

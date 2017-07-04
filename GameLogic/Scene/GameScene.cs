@@ -124,7 +124,7 @@ namespace GameLogic.Scene
             this.level4 = new LevelFour(this);
             this.level5 = new LevelFive(this);
             this.level6 = new LevelSix(this);
-            this.The_Current_Level = level6;
+            this.The_Current_Level = this.level1;
 
             #endregion
 
