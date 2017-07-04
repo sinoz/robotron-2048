@@ -57,7 +57,7 @@ using GameLogic;
 
                 IMobBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
 
-                StrongRobot boss = RobotFactory.Produce<StrongRobot>(RobotType.Strong, new Vector2(x, y), null, 100);
+                StrongRobot boss = RobotFactory.Produce<StrongRobot>(RobotType.Strong, new Vector2(x, y), null, 10);
                 boss.velocity = 0;
 
                 Add(boss);
@@ -119,9 +119,17 @@ using GameLogic;
 
         public override void BulletCollidedWithRobot(Robot boss)
         {
-            
-            remove(boss);
-            scene.score.Increment(amount: 10);
+        if (boss.robotType() == RobotType.Strong)
+        {
+            StrongRobot strongRobot = (StrongRobot)boss;
+            strongRobot.maxHealthpoints -= 1;
+            if (strongRobot.maxHealthpoints <= 0)
+            {
+                remove(boss);
+                scene.score.Increment(amount: 100);
+            }
+        }
+
         }
 
         public override void BulletCollidedWithMine(Mine mine)
