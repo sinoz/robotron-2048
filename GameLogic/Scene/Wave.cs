@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-
-
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -29,13 +26,22 @@ namespace GameLogic.Model
         /// The draw position of the score.
         /// </summary>
         private Label scoreLabel;
+
         private SpriteFont Font = LoadedContent.titelFont;
         private SpriteFont normalFont = LoadedContent.font;
+
+        /// <summary>
+        /// The game scene.
+        /// </summary>
+        private GameScene scene;
+
         /// <summary>
         /// Creates a new Score.
         /// </summary>
         public Wave(GameScene scene)
         {
+            this.scene = scene;
+
             scoreLabel = new Label(normalFont ,"Wave: " + value, (int)(AppConfig.appWidth * 0.895F), 8);
             scene.Add(scoreLabel);
         }
@@ -45,7 +51,7 @@ namespace GameLogic.Model
         /// </summary>
         public void Refresh()
         {
-            scoreLabel.Text = "Wave: " + value;
+            scoreLabel.Text = scene.currentLevel.displayAs();
         }
     }
 }

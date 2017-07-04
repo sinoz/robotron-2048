@@ -119,5 +119,10 @@ namespace GameLogic.Model
         /// </summary>
         public abstract void CharacterCollidedWithMine(Mine mine);
 
+        /// <summary>
+        /// Describes what to present this level as in the top right corner.
+        /// </summary>
+        public abstract string displayAs();
+
     }
 }
