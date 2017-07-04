@@ -42,7 +42,7 @@ namespace GameLogic.Model
         /// <summary>
         /// The current texture frame.
         /// </summary>
-        private Texture2D currentTexture = LoadedContent.characterDownTex;
+        public Texture2D currentTexture = LoadedContent.characterDownTex;
 
         /// <summary>
         /// The current frame being rendered.
