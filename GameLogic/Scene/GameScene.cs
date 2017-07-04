@@ -438,6 +438,7 @@ namespace GameLogic.Scene
                                     lives.RemoveAt(lives.Count - 1);
                                     currentLevel.CharacterCollidedWithMine(mine);
                                     LoadedContent.lifeLossSound.Play();
+                                    TransitionInto(The_Current_Level);
                                 }
                                 else
                                 {
@@ -563,7 +564,7 @@ namespace GameLogic.Scene
         /// <param name="gameTime">The delta time.</param>
         private void TransitionToMainMenuOnKey(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+            if (Keyboard.GetState().IsKeyDown(Keys.Back))
             {
                 stage.TransitionInto(new MainMenu(graphicsDevice));
             }

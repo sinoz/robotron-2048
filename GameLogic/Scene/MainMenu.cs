@@ -32,7 +32,7 @@ namespace GameLogic.Scene
         {
             MediaPlayer.Play(LoadedContent.mainMenuSong);
             this.graphicsDevice = graphicsDevice;
-            Add(menuLabel = new Label("PRESS BACKSPACE TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2));
+            Add(menuLabel = new Label("PRESS ENTER TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2));
         }
 
         public override void Update(GameTime gameTime)
@@ -44,7 +44,7 @@ namespace GameLogic.Scene
 
         private void TransitionToGameSceneOnKey(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Back))
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
             {
                 MediaPlayer.Stop();
 
