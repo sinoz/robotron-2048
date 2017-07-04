@@ -65,6 +65,9 @@ namespace Android
 
             base.Initialize();
 
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+
             AppConfig.appWidth = VirtualWidth;
             AppConfig.appHeight = VirtualHeight;
 
@@ -83,9 +86,6 @@ namespace Android
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
             // TODO: use this.Content to load your game content here
 
             LoadedContent.characterDownTex = Content.Load<Texture2D>("Image/characterdownfinalized");
@@ -113,6 +113,7 @@ namespace Android
             LoadedContent.humanPickup = Content.Load<SoundEffect>("Sound/humanPickup");
             LoadedContent.nextLevelSound = Content.Load<SoundEffect>("Sound/nextLevel");
             LoadedContent.mineExplosionSound = Content.Load<SoundEffect>("Sound/mineExplosion");
+            LoadedContent.lifeLossSound = Content.Load<SoundEffect>("Sound/lifeLoss");
             LoadedContent.mainMenuSong = Content.Load<Song>("Sound/mainMenuSong");
         }
 

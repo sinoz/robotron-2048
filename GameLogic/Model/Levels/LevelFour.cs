@@ -76,8 +76,8 @@ namespace GameLogic.Model.Levels
         {
             for (int i = 1; i <= MineSpawnCount; i++)
             {
-                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
-                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, AppConfig.appWidth);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, AppConfig.appHeight);
 
                 Add(new Mine(new Vector2(x, y)));
             }
