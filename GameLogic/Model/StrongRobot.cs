@@ -56,6 +56,8 @@ namespace GameLogic.Model
         /// </summary>
         private Texture2D currentTexture = LoadedContent.RobotBossTex;
 
+        private Texture2D healthBar = LoadedContent.healthBar;
+
         /// <summary>
         /// Creates a new StrongRobot.
         /// </summary>
@@ -79,8 +81,11 @@ namespace GameLogic.Model
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
+            Rectangle healthRectangle = new Rectangle((int)150, (int)70, maxHealthpoints, 30);
 
             batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
+            batch.Draw(healthBar, healthRectangle, Color.Red);
+
             // TODO
         }
 

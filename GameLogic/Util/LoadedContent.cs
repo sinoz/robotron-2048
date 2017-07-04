@@ -51,6 +51,11 @@ namespace GameLogic.Util
         public static SoundEffect bulletSound, characterDeathSound, robotDeathSound, humanPickup, nextLevelSound, mineExplosionSound, lifeLossSound;
 
         /// <summary>
+        /// Health bar
+        /// </summary>
+        public static Texture2D healthBar;
+
+        /// <summary>
         /// Sound music
         /// </summary>
         public static Song mainMenuSong;

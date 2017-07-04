@@ -62,7 +62,7 @@ namespace DesktopGL
             // TODO check if on windows or android
             graphics.PreferredBackBufferHeight = VirtualHeight;
             graphics.PreferredBackBufferWidth = VirtualWidth;
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
 
             AppConfig.appWidth = graphics.PreferredBackBufferWidth;
             AppConfig.appHeight = graphics.PreferredBackBufferHeight;
@@ -133,6 +133,9 @@ namespace DesktopGL
             LoadedContent.mineExplosionSound = Content.Load<SoundEffect>("Sound/mineExplosion");
             LoadedContent.lifeLossSound = Content.Load<SoundEffect>("Sound/lifeLoss");
             LoadedContent.mainMenuSong = Content.Load<Song>("Sound/mainMenuSong");
+
+            LoadedContent.healthBar = new Texture2D(GraphicsDevice, 1, 1);
+            LoadedContent.healthBar.SetData(new[] { Color.Red });
 
         }
 

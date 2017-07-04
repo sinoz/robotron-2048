@@ -23,7 +23,7 @@ namespace GameLogic.Scene
         /// TODO
         /// </summary>
         private Label label;
-        private SpriteFont CurrentFont;
+
         /// <summary>
         /// Creates a new TextButton.
         /// </summary>

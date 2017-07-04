@@ -124,7 +124,7 @@ namespace GameLogic.Scene
             this.level4 = new LevelFour(this);
             this.level5 = new LevelFive(this);
             this.level6 = new LevelSix(this);
-            this.The_Current_Level = this.level1;
+            this.The_Current_Level = this.level6;
 
             #endregion
 
@@ -352,7 +352,11 @@ namespace GameLogic.Scene
                             {
                                 bullets.Remove(bullet);
                                 currentLevel.BulletCollidedWithRobot(robot);
+                                if (currentLevel != level6)
+                                {
                                 gainlife = gainlife + 10;
+                                }
+                               
                                 LoadedContent.robotDeathSound.Play();
                                 #region switching levels
                                 if (The_Current_Level == level1 && robots.Count == 0)
@@ -388,6 +392,14 @@ namespace GameLogic.Scene
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
                                 }
+                                if (The_Current_Level == level5 && robots.Count == 0)
+                                {
+                                    The_Current_Level = level6;
+                                    TransitionInto(The_Current_Level);
+                                    character.MoveTo(x: 390, y: 290);
+                                    wave.value += 1;
+                                    LoadedContent.nextLevelSound.Play();
+                                }
 
                                 wave.Refresh();
                                 #endregion
@@ -403,11 +415,7 @@ namespace GameLogic.Scene
                                     LoadedContent.lifeLossSound.Play();
                                     TransitionInto(The_Current_Level);
                                     
-                                }
-                               
-
-                                    
-                                
+                                }          
                                 else
 
                                 {
@@ -415,8 +423,7 @@ namespace GameLogic.Scene
                                     stage.TransitionInto(new MainMenu(graphicsDevice)); // TODO game over
                                 }
                                 #endregion
-                            }
-                            
+                            }           
                         }
 
                         robotCount += 1;
