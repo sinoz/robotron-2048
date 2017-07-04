@@ -64,7 +64,7 @@ namespace GameLogic.Model.Levels
                 IMobBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
 
                 MinionRobot minion = RobotFactory.Produce<MinionRobot>(RobotType.Minion, new Vector2(x, y), behaviour);
-                minion.velocity = 190;
+                minion.velocity = 210;
 
                 Add(minion);
             }

@@ -417,7 +417,7 @@ namespace GameLogic.Scene
                                 else
                                 {
                                     LoadedContent.characterDeathSound.Play();
-                                    stage.TransitionInto(new MainMenu(graphicsDevice)); // TODO game over
+                                    stage.TransitionInto(new GameOverScreen(graphicsDevice)); // TODO game over
                                 }
                                 #endregion
                             }           
@@ -448,6 +448,8 @@ namespace GameLogic.Scene
                                 }
                                 else
                                 {
+                                    LoadedContent.characterDeathSound.Play();
+                                    stage.TransitionInto(new GameOverScreen(graphicsDevice));
                                     // TODO game over
                                 }
                                 #endregion
@@ -538,6 +540,8 @@ namespace GameLogic.Scene
                         }
                         else
                         {
+                            LoadedContent.characterDeathSound.Play();
+                            stage.TransitionInto(new GameOverScreen(graphicsDevice));
                             // TODO game over
                         }
                         #endregion

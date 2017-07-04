@@ -53,6 +53,7 @@
     <Compile Include="Model\Robot.cs" />
     <Compile Include="Model\StrongRobot.cs" />
     <Compile Include="Scene\Button.cs" />
+    <Compile Include="Scene\GameOverScreen.cs" />
     <Compile Include="Scene\Score.cs" />
     <Compile Include="Scene\TextButton.cs" />
     <Compile Include="Scene\Wave.cs" />

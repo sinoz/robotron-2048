@@ -34,11 +34,11 @@ namespace GameLogic.Scene
         /// <param name="text">The text content.</param>
         /// <param name="x">The X coordinate.</param>
         /// <param name="y">The Y coordinate.</param>
-        public Label(SpriteFont CurrentFont, string text, float x, float y) : base(new Vector2(x, y))
+        public Label(SpriteFont CurrentFont, string text, float x, float y, Color color) : base(new Vector2(x, y))
         {
             this.CurrentFont = CurrentFont;
             this.Text = text;
-            this.Color = Color.White;
+            this.Color = color;
             
         }
 

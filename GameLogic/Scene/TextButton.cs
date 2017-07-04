@@ -30,7 +30,7 @@ namespace GameLogic.Scene
         public TextButton(SpriteFont CurrentFont ,string text, Vector2 position, int width, int height, Action action) : base(position)
         {
             this.button = new Button(position, width, height, action);
-            this.label = new GameLogic.Scene.Label(CurrentFont, text, 0, 0);
+            this.label = new GameLogic.Scene.Label(CurrentFont, text, 0, 0, Color.White);
         }
 
         public override void Update(GameTime gameTime)

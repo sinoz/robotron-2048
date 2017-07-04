@@ -78,16 +78,18 @@ namespace GameLogic.Scene
             this.female = new Character();
             this.robot = new Character();
             this.robot2 = new Character();
-            Add(titelLabel = new Label(Font, "  Robotron 2048", AppConfig.appWidth / 6, AppConfig.appHeight / 4));
+            Add(titelLabel = new Label(Font, "  Robotron 2048", AppConfig.appWidth / 6, AppConfig.appHeight / 4, Color.White));
 
             if (AppConfig.deviceType == DeviceType.Android)
             {
-                Add(menuLabel = new Label(normalFont, "TOUCH TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2));
+                Add(menuLabel = new Label(normalFont, "TOUCH TO START GAME: ", AppConfig.appWidth / 3, AppConfig.appHeight / 2, Color.White));
             }
             else
             {
-                Add(menuLabel = new Label(normalFont, "PRESS ENTER TO START GAME: ", AppConfig.appWidth / 2.5f, AppConfig.appHeight / 1.5f));
+                Add(menuLabel = new Label(normalFont, "PRESS ENTER TO START GAME: ", AppConfig.appWidth / 2.5f, AppConfig.appHeight / 1.5f, Color.White));
+
             }
+
             character.currentTexture = LoadedContent.characterRightTex;
             female.currentTexture = LoadedContent.humanLeftTex;
             female.position.X = AppConfig.appWidth / 2.2f;
@@ -179,6 +181,7 @@ namespace GameLogic.Scene
                     MediaPlayer.Stop();
 
                     stage.TransitionInto(new GameScene(graphicsDevice));
+
                 }
             }
 
