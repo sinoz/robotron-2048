@@ -110,7 +110,7 @@ namespace GameLogic.Scene
         {
             this.graphicsDevice = device;
             
-            this.character = new Character();
+            this.character = new Character(new ControllableThroughInputBehaviour());
 
             this.score = new Score(this);
 
@@ -123,7 +123,8 @@ namespace GameLogic.Scene
             this.level4 = new LevelFour(this);
             this.level5 = new LevelFive(this);
             this.level6 = new LevelSix(this);
-            this.currentLevel = level6;
+
+            this.currentLevel = level1;
 
             #endregion
 
@@ -343,7 +344,6 @@ namespace GameLogic.Scene
                     
                     while (robotCount < robots.Count)
                     {
-                        
                         Robot robot = robots[robotCount];
                         if (robot != null)
                         {
@@ -351,14 +351,18 @@ namespace GameLogic.Scene
                             {
                                 bullets.Remove(bullet);
                                 currentLevel.BulletCollidedWithRobot(robot);
+                                if (currentLevel != level6)
+                                {
                                 gainlife = gainlife + 10;
+                                }
+                               
                                 LoadedContent.robotDeathSound.Play();
                                 #region switching levels
                                 if (currentLevel == level1 && robots.Count == 0)
                                 {
                                     currentLevel = level2;
                                     TransitionInto(currentLevel);
-                                    character.MoveTo(x: 390, y: 290);
+                                    character.MoveTo(AppConfig.appWidth / 2 , AppConfig.appHeight / 2);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
 
@@ -367,7 +371,7 @@ namespace GameLogic.Scene
                                 {
                                     currentLevel = level3;
                                     TransitionInto(currentLevel);
-                                    character.MoveTo(x: 390, y: 290);
+                                    character.MoveTo(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
                                 }
@@ -375,13 +379,21 @@ namespace GameLogic.Scene
                                 {
                                     currentLevel = level4;
                                     TransitionInto(currentLevel);
-                                    character.MoveTo(x: 390, y: 290);
+                                    character.MoveTo(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
                                 }
                                 if (currentLevel == level4 && robots.Count == 0)
                                 {
                                     currentLevel = level5;
+                                    TransitionInto(currentLevel);
+                                    character.MoveTo(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
+                                    wave.value += 1;
+                                    LoadedContent.nextLevelSound.Play();
+                                }
+                                if (currentLevel == level5 && robots.Count == 0)
+                                {
+                                    currentLevel = level6;
                                     TransitionInto(currentLevel);
                                     character.MoveTo(x: 390, y: 290);
                                     wave.value += 1;
@@ -405,11 +417,10 @@ namespace GameLogic.Scene
                                 else
                                 {
                                     LoadedContent.characterDeathSound.Play();
-                                    stage.TransitionInto(new MainMenu(graphicsDevice)); // TODO game over
+                                    stage.TransitionInto(new GameOverScreen(graphicsDevice)); // TODO game over
                                 }
                                 #endregion
-                            }
-                            
+                            }           
                         }
 
                         robotCount += 1;
@@ -437,6 +448,8 @@ namespace GameLogic.Scene
                                 }
                                 else
                                 {
+                                    LoadedContent.characterDeathSound.Play();
+                                    stage.TransitionInto(new GameOverScreen(graphicsDevice));
                                     // TODO game over
                                 }
                                 #endregion
@@ -527,6 +540,8 @@ namespace GameLogic.Scene
                         }
                         else
                         {
+                            LoadedContent.characterDeathSound.Play();
+                            stage.TransitionInto(new GameOverScreen(graphicsDevice));
                             // TODO game over
                         }
                         #endregion

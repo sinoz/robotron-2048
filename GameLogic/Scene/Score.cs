@@ -33,7 +33,7 @@ namespace GameLogic.Model
         /// </summary>
         public Score(GameScene scene)
         {
-            scoreLabel = new Label(normalFont,"Score: " + value, 15, 8);
+            scoreLabel = new Label(normalFont,"Score: " + value, 15, 8, Color.White);
 
             scene.Add(scoreLabel);
         }

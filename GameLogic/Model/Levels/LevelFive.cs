@@ -61,10 +61,10 @@ namespace GameLogic.Model.Levels
                 int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, AppConfig.appHeight);
 
 
-                IMobBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
+                IEntityBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
 
                 MinionRobot minion = RobotFactory.Produce<MinionRobot>(RobotType.Minion, new Vector2(x, y), behaviour);
-                minion.velocity = 190;
+                minion.velocity = 210;
 
                 Add(minion);
             }

@@ -49,7 +49,7 @@ namespace GameLogic.Model
         /// <summary>
         /// Produces a type of Robot.
         /// </summary>
-        public static T Produce<T>(RobotType robotType, Vector2 position, IMobBehaviour robotBehaviour, int maxHealthpoints = 0) where T : Robot
+        public static T Produce<T>(RobotType robotType, Vector2 position, IEntityBehaviour robotBehaviour, int maxHealthpoints = 0) where T : Robot
         {
             Robot robot = null;
 

@@ -57,7 +57,7 @@ namespace GameLogic.Model
         /// <summary>
         /// The behaviour of this Human.
         /// </summary>
-        private IMobBehaviour behaviour;
+        private IEntityBehaviour behaviour;
 
         /// <summary>
         /// The velocity at which the character can currently move.
@@ -69,7 +69,7 @@ namespace GameLogic.Model
         /// </summary>
         /// <param name="pos">The initial position of this Human. The given position is copied.</param>
         /// <param name="behaviour">The behaviour of this Human.</param>
-        public Human(Vector2 pos, IMobBehaviour behaviour) : base(new Vector2(pos.X, pos.Y))
+        public Human(Vector2 pos, IEntityBehaviour behaviour) : base(new Vector2(pos.X, pos.Y))
         {
             this.behaviour = behaviour;
         }
@@ -105,7 +105,10 @@ namespace GameLogic.Model
                 }
             }
 
-            behaviour.Act(this, gameTime);
+            if (behaviour != null)
+            {
+                behaviour.Act(this, gameTime);
+            }
         }
 
         /// <summary>

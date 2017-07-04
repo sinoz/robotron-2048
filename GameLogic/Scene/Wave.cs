@@ -42,7 +42,7 @@ namespace GameLogic.Model
         {
             this.scene = scene;
 
-            scoreLabel = new Label(normalFont ,"Wave: " + value, (int)(AppConfig.appWidth * 0.895F), 8);
+            scoreLabel = new Label(normalFont ,"Wave: " + value, (int)(AppConfig.appWidth * 0.895F), 8, Color.White);
             scene.Add(scoreLabel);
         }
 

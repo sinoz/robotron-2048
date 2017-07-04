@@ -50,7 +50,7 @@ namespace GameLogic.Model
         /// <summary>
         /// The current texture frame.
         /// </summary>
-        private Texture2D currentTexture = LoadedContent.RobotTex;
+        public Texture2D currentTexture = LoadedContent.RobotTex;
 
         /// <summary>
         /// The current frame being rendered.
@@ -66,14 +66,14 @@ namespace GameLogic.Model
         /// <summary>
         /// The behaviour of this robot.
         /// </summary>
-        private IMobBehaviour behaviour;
+        private IEntityBehaviour behaviour;
 
         /// <summary>
         /// Creates a new Robot.
         /// </summary>
         /// <param name="pos">The initial position of this Robot. The given position is copied.</param>
         /// <param name="behaviour">The behaviour of this Robot.</param>
-        public MinionRobot(Vector2 pos, IMobBehaviour behaviour) : base(new Vector2(pos.X, pos.Y), MovementVelocity)
+        public MinionRobot(Vector2 pos, IEntityBehaviour behaviour) : base(new Vector2(pos.X, pos.Y), MovementVelocity)
         {
             this.behaviour = behaviour;
         }
@@ -108,7 +108,10 @@ namespace GameLogic.Model
                 }
             }
 
-            behaviour.Act(this, gameTime);
+            if (behaviour != null)
+            {
+                behaviour.Act(this, gameTime);
+            }
         }
 
         /// <summary>

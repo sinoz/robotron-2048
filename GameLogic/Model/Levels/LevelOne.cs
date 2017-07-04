@@ -17,7 +17,7 @@ namespace GameLogic.Model.Levels
         /// <summary>
         /// The initial amount of robots to spawn in this level.
         /// </summary>
-        private const int RobotSpawnCount = 3;
+        private const int RobotSpawnCount = 5;
 
         /// <summary>
         /// The initial amount of mines to spawn in this level.
@@ -60,7 +60,7 @@ namespace GameLogic.Model.Levels
                 int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, AppConfig.appWidth);
                 int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, AppConfig.appHeight);
 
-                IMobBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
+                IEntityBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
                 MinionRobot minion = RobotFactory.Produce<MinionRobot>(RobotType.Minion, new Vector2(x, y), behaviour);
 
                 Add(minion);

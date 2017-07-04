@@ -11,7 +11,6 @@ using GameLogic;
 
     sealed class LevelSix : Level
     {
-
         /// <summary>
         /// The initial amount of robots to spawn in this level.
         /// </summary>
@@ -45,19 +44,20 @@ using GameLogic;
             AddHumans();
             AddMines();
         }
-
+        
         /// <summary>
         /// Adds all of the robots corresponding to this level.
         /// </summary>
         private void AddRobots()
         {
         #region Adding the robots
+
                 int x = AppConfig.appWidth / 2;
                 int y = AppConfig.appHeight / 2;
 
-                IMobBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
+                IEntityBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
 
-                StrongRobot boss = RobotFactory.Produce<StrongRobot>(RobotType.Strong, new Vector2(x, y), null, 10);
+                StrongRobot boss = RobotFactory.Produce<StrongRobot>(RobotType.Strong, new Vector2(x, y), null, 1000);
                 boss.velocity = 0;
 
                 Add(boss);
@@ -122,7 +122,7 @@ using GameLogic;
         if (boss.robotType() == RobotType.Strong)
         {
             StrongRobot strongRobot = (StrongRobot)boss;
-            strongRobot.maxHealthpoints -= 1;
+            strongRobot.maxHealthpoints -= 10;
             if (strongRobot.maxHealthpoints <= 0)
             {
                 remove(boss);

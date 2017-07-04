@@ -39,7 +39,7 @@
     <Compile Include="Model\Character.cs" />
     <Compile Include="Model\Human.cs" />
     <Compile Include="Model\IEntity.cs" />
-    <Compile Include="Model\IMobBehaviour.cs" />
+    <Compile Include="Model\IEntityBehaviour.cs" />
     <Compile Include="Model\Level.cs" />
     <Compile Include="Model\Levels\LevelFive.cs" />
     <Compile Include="Model\Levels\LevelFour.cs" />
@@ -53,6 +53,7 @@
     <Compile Include="Model\Robot.cs" />
     <Compile Include="Model\StrongRobot.cs" />
     <Compile Include="Scene\Button.cs" />
+    <Compile Include="Scene\GameOverScreen.cs" />
     <Compile Include="Scene\Score.cs" />
     <Compile Include="Scene\TextButton.cs" />
     <Compile Include="Scene\Wave.cs" />

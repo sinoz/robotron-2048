@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 using GameLogic.Util;
 using GameLogic.Scene;
-using Microsoft.Xna.Framework.Input.Touch;
 
 namespace GameLogic.Model
 {
@@ -61,11 +59,16 @@ namespace GameLogic.Model
         public int velocity = MovementVelocity;
 
         /// <summary>
+        /// The corresponding behaviour.
+        /// </summary>
+        private IEntityBehaviour behaviour;
+
+        /// <summary>
         /// Creates a new Character.
         /// </summary>
-        public Character() : base(new Vector2(AppConfig.appWidth / 2, AppConfig.appHeight / 2))
+        public Character(IEntityBehaviour behaviour) : base(new Vector2(AppConfig.appWidth / 2, AppConfig.appHeight / 2))
         {
-            // nothing
+            this.behaviour = behaviour;
         }
 
         public override void Update(GameTime gameTime)
@@ -85,62 +88,10 @@ namespace GameLogic.Model
                 }
             }
 
-            var x = position.X;
-            var y = position.Y;
-
-            if (AppConfig.deviceType == DeviceType.Android)
+            if (behaviour != null)
             {
-                // TODO
+                behaviour.Act(this, gameTime);
             }
-            else
-            {
-                if (Keyboard.GetState().IsKeyDown(Keys.W))
-                {
-                    y -= (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                    currentTexture = LoadedContent.characterUpTex;
-                }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.S))
-                {
-                    y += (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                    currentTexture = LoadedContent.characterDownTex;
-                }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.A))
-                {
-                    x -= (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                    currentTexture = LoadedContent.characterLeftTex;
-
-                }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.D))
-                {
-                    x += (int)(velocity * gameTime.ElapsedGameTime.TotalSeconds);
-                    currentTexture = LoadedContent.characterRightTex;
-                }
-            }
-
-            if (x < 0)
-            {
-                x = 0;
-            }
-
-            if (y < 35)
-            {
-                y = 35;
-            }
-
-            if (y > AppConfig.appHeight - currentTexture.Height)
-            {
-                y = AppConfig.appHeight - currentTexture.Height;
-            }
-
-            if (x > AppConfig.appWidth - (currentTexture.Width / 3))
-            {
-                x = AppConfig.appWidth - (currentTexture.Width / 3);
-            }
-
-            MoveTo((int)x, (int)y);
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
