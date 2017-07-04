@@ -119,5 +119,10 @@ namespace GameLogic.Model
         {
             return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width / 3, currentTexture.Height);
         }
+
+        public override RobotType robotType()
+        {
+            return RobotType.Minion;
+        }
     }
 }

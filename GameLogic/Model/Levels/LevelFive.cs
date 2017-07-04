@@ -128,6 +128,15 @@ namespace GameLogic.Model.Levels
         {
             remove(robot);
             scene.score.Increment(amount: 10);
+
+            #region Sample code casting Robot to StrongRobot if RobotType is of type Strong
+            if (robot.robotType() == RobotType.Strong)
+            {
+                StrongRobot strongRobot = (StrongRobot)robot;
+                
+                // TODO
+            }
+            #endregion
         }
 
         public override void BulletCollidedWithMine(Mine mine)

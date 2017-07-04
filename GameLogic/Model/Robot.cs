@@ -37,6 +37,8 @@ namespace GameLogic.Model
         public abstract override Rectangle EntityRectangle();
 
         public abstract override void Update(GameTime gameTime);
+
+        public abstract RobotType robotType();
     }
 
     /// <summary>

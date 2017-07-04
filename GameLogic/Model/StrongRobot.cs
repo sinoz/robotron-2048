@@ -48,5 +48,10 @@ namespace GameLogic.Model
         {
             // TODO
         }
+
+        public override RobotType robotType()
+        {
+            return RobotType.Strong;
+        }
     }
 }
