@@ -65,7 +65,7 @@ namespace GameLogic.Model
             this.maxHealthpoints = maxHealthpoints;
         }
 
-        public override void Draw(SpriteBatch batch, GameTime gameTime)
+        public override Rectangle EntityRectangle()
         {
             int width = currentTexture.Width / Columns;
             int height = currentTexture.Height / Rows;
@@ -78,9 +78,11 @@ namespace GameLogic.Model
             batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
         }
 
-        public override Rectangle EntityRectangle()
+        public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
+
             return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width / 3, currentTexture.Height);
+            // TODO
         }
 
         public override void Update(GameTime gameTime)
@@ -99,6 +101,12 @@ namespace GameLogic.Model
                     currentFrame = 0;
                 }
             }
+            // TODO
+        }
+
+        public override RobotType robotType()
+        {
+            return RobotType.Strong;
         }
 
     }

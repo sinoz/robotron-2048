@@ -18,14 +18,14 @@ namespace DesktopGL
     public sealed class DesktopGame : Game
     {
         /// <summary>
-        /// The default width and height of the application on the desktop.
+        /// The virtual width and height to scale to.
         /// </summary>
-        public const int DesktopWidth = 800, DesktopHeight = 600;
+        public const int VirtualWidth = 1000, VirtualHeight = 600;
         
         /// <summary>
         /// The initial title of the application.
         /// </summary>
-        public const string DesktopAppTitle = "Robotron 2048";
+        public const string DesktopAppTitle = "Robotron 2084";
 
         /// <summary>
         /// The graphics device manager.
@@ -36,6 +36,16 @@ namespace DesktopGL
         /// The frames-per-second counter.
         /// </summary>
         private readonly FPSCounter fpsCounter;
+
+        /// <summary>
+        /// The sprite batch.
+        /// </summary>
+        private SpriteBatch batch;
+
+        /// <summary>
+        /// The render target.
+        /// </summary>
+        private RenderTarget2D renderTarget;
 
         /// <summary>
         /// The stage.
@@ -50,8 +60,8 @@ namespace DesktopGL
             graphics = new GraphicsDeviceManager(this);
 
             // TODO check if on windows or android
-            graphics.PreferredBackBufferHeight = DesktopHeight;
-            graphics.PreferredBackBufferWidth = DesktopWidth;
+            graphics.PreferredBackBufferHeight = VirtualHeight;
+            graphics.PreferredBackBufferWidth = VirtualWidth;
 
             AppConfig.appWidth = graphics.PreferredBackBufferWidth;
             AppConfig.appHeight = graphics.PreferredBackBufferHeight;
@@ -75,12 +85,17 @@ namespace DesktopGL
         {
             // First we call base.Initialize() which automatically calls LoadContent() to load all our resources.
             base.Initialize();
+            
+            batch = new SpriteBatch(GraphicsDevice);
 
             // Now that all of our resources have been loaded into memory, we can do what we need to do.
-            stage = new Stage(GraphicsDevice);
+            stage = new Stage(batch);
             stage.TransitionInto(new MainMenu(GraphicsDevice));
 
-            Console.WriteLine(GraphicsDevice.DisplayMode.Width + " " + GraphicsDevice.DisplayMode.Height);
+            PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
+
+            renderTarget = new RenderTarget2D(graphics.GraphicsDevice, VirtualWidth, VirtualHeight, false,
+            SurfaceFormat.Color, DepthFormat.None, pp.MultiSampleCount, RenderTargetUsage.DiscardContents);
         }
 
         /// <summary>
@@ -160,7 +175,44 @@ namespace DesktopGL
         {
             GraphicsDevice.Clear(Color.Black);
 
+            #region Assign the RenderTarget to the GraphicsDevice and draw our scenery
+            graphics.GraphicsDevice.SetRenderTarget(renderTarget);
+
             stage.Draw(gameTime);
+            #endregion
+
+            #region Borrowed code to fix scaling issues
+            // draw render target
+            float outputAspect = Window.ClientBounds.Width / (float)Window.ClientBounds.Height;
+            float preferredAspect = VirtualWidth / (float)VirtualHeight;
+
+            Rectangle dst;
+
+            if (outputAspect <= preferredAspect)
+            {
+                // output is taller than it is wider, bars on top/bottom
+                int presentHeight = (int)((Window.ClientBounds.Width / preferredAspect) + 0.5f);
+                int barHeight = (Window.ClientBounds.Height - presentHeight) / 2;
+
+                dst = new Rectangle(0, barHeight, Window.ClientBounds.Width, presentHeight);
+            }
+            else
+            {
+                // output is wider than it is tall, bars left/right
+                int presentWidth = (int)((Window.ClientBounds.Height * preferredAspect) + 0.5f);
+                int barWidth = (Window.ClientBounds.Width - presentWidth) / 2;
+
+                dst = new Rectangle(barWidth, 0, presentWidth, Window.ClientBounds.Height);
+            }
+            #endregion
+
+            #region Nullify the RenderTarget and draw everything to the SpriteBatch
+            graphics.GraphicsDevice.SetRenderTarget(null);
+
+            batch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
+            batch.Draw(renderTarget, dst, Color.White);
+            batch.End();
+            #endregion
 
             base.Draw(gameTime);
         }

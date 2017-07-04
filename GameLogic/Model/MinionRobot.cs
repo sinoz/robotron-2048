@@ -12,7 +12,10 @@ using GameLogic.Util;
 
 namespace GameLogic.Model
 {
-    public class MinionRobot : Robot
+    /// <summary>
+    /// A minion Robot.
+    /// </summary>
+    public sealed class MinionRobot : Robot
     {
         /// <summary>
         /// The default velocity at which a Robot can move across the screen.
@@ -115,6 +118,11 @@ namespace GameLogic.Model
         public override Rectangle EntityRectangle()
         {
             return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width / 3, currentTexture.Height);
+        }
+
+        public override RobotType robotType()
+        {
+            return RobotType.Minion;
         }
     }
 }

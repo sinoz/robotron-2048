@@ -3,6 +3,7 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Media;
@@ -19,6 +20,11 @@ namespace Android
     public sealed class AndroidGame : Game
     {
         /// <summary>
+        /// The virtual width and height to scale to.
+        /// </summary>
+        public const int VirtualWidth = 1366, VirtualHeight = 768;
+
+        /// <summary>
         /// The stage.
         /// </summary>
         private Stage stage;
@@ -26,15 +32,23 @@ namespace Android
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        /// <summary>
+        /// TODO
+        /// </summary>
+        private RenderTarget2D renderTarget;
+
         public AndroidGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             graphics.IsFullScreen = true;
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 480;
+            graphics.PreferredBackBufferWidth = VirtualWidth;
+            graphics.PreferredBackBufferHeight = VirtualHeight;
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft;
+
+            TouchPanel.DisplayWidth = VirtualWidth;
+            TouchPanel.DisplayHeight = VirtualHeight;
 
             AppConfig.deviceType = DeviceType.Android;
         }
@@ -51,10 +65,18 @@ namespace Android
 
             base.Initialize();
 
-            AppConfig.appWidth = GraphicsDevice.DisplayMode.Width;
-            AppConfig.appHeight = GraphicsDevice.DisplayMode.Height;
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            stage = new Stage(GraphicsDevice);
+            AppConfig.appWidth = VirtualWidth;
+            AppConfig.appHeight = VirtualHeight;
+
+            PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
+
+            renderTarget = new RenderTarget2D(graphics.GraphicsDevice, VirtualWidth, VirtualHeight, false,
+            SurfaceFormat.Color, DepthFormat.None, pp.MultiSampleCount, RenderTargetUsage.DiscardContents);
+
+            stage = new Stage(spriteBatch);
             stage.TransitionInto(new MainMenu(GraphicsDevice));
         }
 
@@ -64,9 +86,6 @@ namespace Android
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
             // TODO: use this.Content to load your game content here
 
             LoadedContent.characterDownTex = Content.Load<Texture2D>("Image/characterdownfinalized");
@@ -94,6 +113,7 @@ namespace Android
             LoadedContent.humanPickup = Content.Load<SoundEffect>("Sound/humanPickup");
             LoadedContent.nextLevelSound = Content.Load<SoundEffect>("Sound/nextLevel");
             LoadedContent.mineExplosionSound = Content.Load<SoundEffect>("Sound/mineExplosion");
+            LoadedContent.lifeLossSound = Content.Load<SoundEffect>("Sound/lifeLoss");
             LoadedContent.mainMenuSong = Content.Load<Song>("Sound/mainMenuSong");
         }
 
@@ -141,9 +161,40 @@ namespace Android
         {
             GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
+            graphics.GraphicsDevice.SetRenderTarget(renderTarget);
 
             stage.Draw(gameTime);
+
+            #region Borrowed code
+            // draw render target
+            float outputAspect = Window.ClientBounds.Width / (float)Window.ClientBounds.Height;
+            float preferredAspect = VirtualWidth / (float)VirtualHeight;
+
+            Rectangle dst;
+
+            if (outputAspect <= preferredAspect)
+            {
+                // output is taller than it is wider, bars on top/bottom
+                int presentHeight = (int)((Window.ClientBounds.Width / preferredAspect) + 0.5f);
+                int barHeight = (Window.ClientBounds.Height - presentHeight) / 2;
+
+                dst = new Rectangle(0, barHeight, Window.ClientBounds.Width, presentHeight);
+            }
+            else
+            {
+                // output is wider than it is tall, bars left/right
+                int presentWidth = (int)((Window.ClientBounds.Height * preferredAspect) + 0.5f);
+                int barWidth = (Window.ClientBounds.Width - presentWidth) / 2;
+
+                dst = new Rectangle(barWidth, 0, presentWidth, Window.ClientBounds.Height);
+            }
+            #endregion
+
+            graphics.GraphicsDevice.SetRenderTarget(null);
+
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Opaque);
+            spriteBatch.Draw(renderTarget, dst, Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -22,12 +22,12 @@ namespace GameLogic.Model.Levels
         /// <summary>
         /// The initial amount of mines to spawn in this level.
         /// </summary>
-        private const int MineSpawnCount = 10;
+        private const int MineSpawnCount = 60;
 
         /// <summary>
         /// The initial amount of humans to spawn in this level.
         /// </summary>
-        private const int HumanSpawnCount = 1;
+        private const int HumanSpawnCount = 4;
 
         /// <summary>
         /// The random number generator.
@@ -63,6 +63,7 @@ namespace GameLogic.Model.Levels
                 IMobBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
 
                 MinionRobot minion = RobotFactory.Produce<MinionRobot>(RobotType.Minion, new Vector2(x, y), behaviour);
+                minion.velocity = 130;
                 Add(minion);
             }
             #endregion
@@ -75,8 +76,8 @@ namespace GameLogic.Model.Levels
         {
             for (int i = 1; i <= MineSpawnCount; i++)
             {
-                int x = random.Next(0, AppConfig.appWidth);
-                int y = random.Next(35, AppConfig.appHeight);
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, AppConfig.appWidth);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, AppConfig.appHeight);
 
                 Add(new Mine(new Vector2(x, y)));
             }
