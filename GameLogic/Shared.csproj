@@ -44,6 +44,7 @@
     <Compile Include="Model\Levels\LevelFive.cs" />
     <Compile Include="Model\Levels\LevelFour.cs" />
     <Compile Include="Model\Levels\LevelOne.cs" />
+    <Compile Include="Model\Levels\LevelSix.cs" />
     <Compile Include="Model\Levels\LevelThree.cs" />
     <Compile Include="Model\Levels\LevelTwo.cs" />
     <Compile Include="Model\Life.cs" />
