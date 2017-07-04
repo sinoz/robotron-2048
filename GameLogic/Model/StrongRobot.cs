@@ -67,6 +67,11 @@ namespace GameLogic.Model
 
         public override Rectangle EntityRectangle()
         {
+            return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width / 3, currentTexture.Height);
+        }
+
+        public override void Draw(SpriteBatch batch, GameTime gameTime)
+        {
             int width = currentTexture.Width / Columns;
             int height = currentTexture.Height / Rows;
             int row = (int)((float)currentFrame / Columns);
@@ -76,12 +81,6 @@ namespace GameLogic.Model
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
 
             batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
-        }
-
-        public override void Draw(SpriteBatch batch, GameTime gameTime)
-        {
-
-            return new Rectangle((int)position.X, (int)position.Y, currentTexture.Width / 3, currentTexture.Height);
             // TODO
         }
 
