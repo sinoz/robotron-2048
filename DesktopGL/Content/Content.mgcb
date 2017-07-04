@@ -284,3 +284,10 @@
 /processorParam:TextureFormat=Color
 /build:Image/RobotBossTex.png
 
+#begin TitelFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:TitelFont.spritefont
+

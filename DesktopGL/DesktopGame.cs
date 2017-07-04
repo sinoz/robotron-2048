@@ -20,7 +20,7 @@ namespace DesktopGL
         /// <summary>
         /// The virtual width and height to scale to.
         /// </summary>
-        public const int VirtualWidth = 1000, VirtualHeight = 600;
+        public const int VirtualWidth = 2880, VirtualHeight = 1800;
         
         /// <summary>
         /// The initial title of the application.
@@ -119,7 +119,7 @@ namespace DesktopGL
 
             LoadedContent.gameBackground = Content.Load<Texture2D>("Image/Stars");
             LoadedContent.font = Content.Load<SpriteFont>("Score");
-
+            LoadedContent.titelFont = Content.Load<SpriteFont>("TitelFont");
             LoadedContent.SquareMine = Content.Load<Texture2D>("Image/SquareMine");
 
             LoadedContent.Life = Content.Load<Texture2D>("Image/Life");
