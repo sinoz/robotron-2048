@@ -30,9 +30,9 @@ namespace GameLogic.Scene
         /// Creates a new Stage.
         /// </summary>
         /// <param name="device">The graphics device.</param>
-        public Stage(GraphicsDevice device)
+        public Stage(SpriteBatch batch)
         {
-            this.batch = new SpriteBatch(device);
+            this.batch = batch;
         }
 
         /// <summary>
