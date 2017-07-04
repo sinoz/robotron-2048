@@ -35,11 +35,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AppConfig.cs" />
+    <Compile Include="DeviceType.cs" />
+    <Compile Include="Model\Behaviours\AttractedToPlayerCharacterBehaviour.cs" />
+    <Compile Include="Model\Behaviours\ControllableThroughInputBehaviour.cs" />
+    <Compile Include="Model\Behaviours\WalkAroundBehaviour.cs" />
     <Compile Include="Model\Bullet.cs" />
     <Compile Include="Model\Character.cs" />
     <Compile Include="Model\Human.cs" />
-    <Compile Include="Model\IEntity.cs" />
-    <Compile Include="Model\IEntityBehaviour.cs" />
+    <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\Level.cs" />
     <Compile Include="Model\Levels\LevelFive.cs" />
     <Compile Include="Model\Levels\LevelFour.cs" />

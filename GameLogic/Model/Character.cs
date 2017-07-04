@@ -15,7 +15,7 @@ namespace GameLogic.Model
     /// <summary>
     /// The player character.
     /// </summary>
-    public sealed class Character : IEntity
+    public sealed class Character : Entity
     {
         /// <summary>
         /// The default velocity at which a character can move across the screen.
@@ -66,7 +66,7 @@ namespace GameLogic.Model
         /// <summary>
         /// Creates a new Character.
         /// </summary>
-        public Character(IEntityBehaviour behaviour) : base(new Vector2(AppConfig.appWidth / 2, AppConfig.appHeight / 2))
+        public Character(IEntityBehaviour behaviour = null) : base(new Vector2(AppConfig.appWidth / 2, AppConfig.appHeight / 2))
         {
             this.behaviour = behaviour;
         }
@@ -105,15 +105,6 @@ namespace GameLogic.Model
             Rectangle destinationRectangle = new Rectangle((int) position.X, (int) position.Y, width, height);
 
             batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
-        }
-
-        /// <summary>
-        /// Moves the position of this character to the specified coordinates.
-        /// </summary>
-        public void MoveTo(int x, int y)
-        {
-            position.X = x;
-            position.Y = y;
         }
 
         /// <summary>

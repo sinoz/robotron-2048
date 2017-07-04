@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Audio;
 
-
 using GameLogic.Scene;
 using GameLogic.Util;
 
@@ -16,7 +15,7 @@ namespace GameLogic.Model
     /// <summary>
     /// A fired bullet interpolating in a specific direction.
     /// </summary>
-    public sealed class Bullet : IEntity
+    public sealed class Bullet : Entity
     {
         /// <summary>
         /// The default length of a bullet line.
@@ -31,7 +30,7 @@ namespace GameLogic.Model
         /// <summary>
         /// The entity that fired this bullet.
         /// </summary>
-        private IEntity entity;
+        private Entity entity;
 
         /// <summary>
         /// The color of the bullet line.
@@ -46,7 +45,7 @@ namespace GameLogic.Model
         /// <summary>
         /// Creates a new Bullet.
         /// </summary>
-        public Bullet(IEntity entity, Vector2 direction) : base(new Vector2(entity.position.X + 10, entity.position.Y + 10))
+        public Bullet(Entity entity, Vector2 direction) : base(new Vector2(entity.position.X + 10, entity.position.Y + 10))
         {
             this.entity = entity;
             this.direction = direction;
@@ -60,8 +59,7 @@ namespace GameLogic.Model
         /// <returns>Whether the bullet is a candidate for removal.</returns>
         public bool isOutOfBounds()
         {
-            return position.X < -Bullet.Length || position.Y < -Bullet.Length
-                        || position.X > AppConfig.appWidth || position.Y > AppConfig.appHeight;   
+            return position.X < -Bullet.Length || position.Y < -Bullet.Length || position.X > AppConfig.appWidth || position.Y > AppConfig.appHeight;   
         }
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)

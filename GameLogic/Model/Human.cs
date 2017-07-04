@@ -16,7 +16,7 @@ namespace GameLogic.Model
     /// <summary>
     /// TODO
     /// </summary>
-    public sealed class Human : IEntity
+    public sealed class Human : Entity
     {
         /// <summary>
         /// The default velocity at which a Human can move across the screen.

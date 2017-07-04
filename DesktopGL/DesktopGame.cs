@@ -21,12 +21,7 @@ namespace DesktopGL
         /// <summary>
         /// The virtual width and height to scale to.
         /// </summary>
-        public const int VirtualWidth = 800, VirtualHeight = 600;
-        
-        /// <summary>
-        /// The initial title of the application.
-        /// </summary>
-        public const string DesktopAppTitle = "Robotron 2084";
+        public const int VirtualWidth = 1366, VirtualHeight = 768;
 
         /// <summary>
         /// The graphics device manager.
@@ -70,7 +65,7 @@ namespace DesktopGL
 
             AppConfig.deviceType = DeviceType.Desktop;
 
-            Window.Title = DesktopAppTitle;
+            Window.Title = AppConfig.ApplicationTitle;
 
             TouchPanel.EnableMouseTouchPoint = true;
 

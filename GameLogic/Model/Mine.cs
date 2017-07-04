@@ -16,7 +16,7 @@ namespace GameLogic.Model
     /// <summary>
     /// The enemy mine character.
     /// </summary>
-    public sealed class Mine : IEntity
+    public sealed class Mine : Entity
     {
         /// <summary>
         /// The width of a single frame of a Mine.

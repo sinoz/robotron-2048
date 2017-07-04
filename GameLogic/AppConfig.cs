@@ -12,6 +12,11 @@ namespace GameLogic
     public sealed class AppConfig
     {
         /// <summary>
+        /// The title of the application.
+        /// </summary>
+        public const string ApplicationTitle = "Robotron: 2084";
+
+        /// <summary>
         /// The set resolution of the application.
         /// </summary>
         public static int appWidth, appHeight;
@@ -20,13 +25,5 @@ namespace GameLogic
         /// The device type.
         /// </summary>
         public static DeviceType deviceType;
-    }
-
-    /// <summary>
-    /// The type of device.
-    /// </summary>
-    public enum DeviceType
-    {
-        Android, Desktop
     }
 }

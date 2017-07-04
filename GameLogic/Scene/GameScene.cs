@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using GameLogic.Model;
+using GameLogic.Model.Behaviours;
 using GameLogic.Model.Levels;
 using GameLogic.Util;
 
@@ -362,7 +363,7 @@ namespace GameLogic.Scene
                                 {
                                     currentLevel = level2;
                                     TransitionInto(currentLevel);
-                                    character.MoveTo(AppConfig.appWidth / 2 , AppConfig.appHeight / 2);
+                                    character.UpdatePosition(AppConfig.appWidth / 2 , AppConfig.appHeight / 2);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
 
@@ -371,7 +372,7 @@ namespace GameLogic.Scene
                                 {
                                     currentLevel = level3;
                                     TransitionInto(currentLevel);
-                                    character.MoveTo(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
+                                    character.UpdatePosition(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
                                 }
@@ -379,7 +380,7 @@ namespace GameLogic.Scene
                                 {
                                     currentLevel = level4;
                                     TransitionInto(currentLevel);
-                                    character.MoveTo(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
+                                    character.UpdatePosition(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
                                 }
@@ -387,7 +388,7 @@ namespace GameLogic.Scene
                                 {
                                     currentLevel = level5;
                                     TransitionInto(currentLevel);
-                                    character.MoveTo(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
+                                    character.UpdatePosition(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
                                 }
@@ -395,7 +396,7 @@ namespace GameLogic.Scene
                                 {
                                     currentLevel = level6;
                                     TransitionInto(currentLevel);
-                                    character.MoveTo(x: 390, y: 290);
+                                    character.UpdatePosition(x: 390, y: 290);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
                                 }

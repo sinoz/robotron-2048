@@ -8,7 +8,13 @@ using Microsoft.Xna.Framework;
 using GameLogic.Scene;
 using GameLogic.Model;
 using GameLogic;
+using GameLogic.Model.Behaviours;
 
+namespace GameLogic.Model.Levels
+{
+    /// <summary>
+    /// Describes the sixth level in the game.
+    /// </summary>
     sealed class LevelSix : Level
     {
         /// <summary>
@@ -44,23 +50,23 @@ using GameLogic;
             AddHumans();
             AddMines();
         }
-        
+
         /// <summary>
         /// Adds all of the robots corresponding to this level.
         /// </summary>
         private void AddRobots()
         {
-        #region Adding the robots
+            #region Adding the robots
 
-                int x = AppConfig.appWidth / 2;
-                int y = AppConfig.appHeight / 2;
+            int x = AppConfig.appWidth / 2;
+            int y = AppConfig.appHeight / 2;
 
-                IEntityBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
+            IEntityBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
 
-                StrongRobot boss = RobotFactory.Produce<StrongRobot>(RobotType.Strong, new Vector2(x, y), null, 1000);
-                boss.velocity = 0;
+            StrongRobot boss = RobotFactory.Produce<StrongRobot>(RobotType.Strong, new Vector2(x, y), null, 1000);
+            boss.velocity = 0;
 
-                Add(boss);
+            Add(boss);
             #endregion
         }
 
@@ -114,21 +120,21 @@ using GameLogic;
             var centerX = AppConfig.appWidth / 3;
             var centerY = AppConfig.appHeight / 3;
 
-            scene.character.MoveTo(x: centerX, y: centerY);
+            scene.character.UpdatePosition(x: centerX, y: centerY);
         }
 
         public override void BulletCollidedWithRobot(Robot boss)
         {
-        if (boss.robotType() == RobotType.Strong)
-        {
-            StrongRobot strongRobot = (StrongRobot)boss;
-            strongRobot.maxHealthpoints -= 10;
-            if (strongRobot.maxHealthpoints <= 0)
+            if (boss.robotType() == RobotType.Strong)
             {
-                remove(boss);
-                scene.score.Increment(amount: 100);
+                StrongRobot strongRobot = (StrongRobot)boss;
+                strongRobot.maxHealthpoints -= 10;
+                if (strongRobot.maxHealthpoints <= 0)
+                {
+                    remove(boss);
+                    scene.score.Increment(amount: 100);
+                }
             }
-        }
 
         }
 
@@ -149,8 +155,9 @@ using GameLogic;
             MoveCharacterToCenter();
         }
 
-    public override string displayAs()
-    {
-        return "Wave: 6";
+        public override string displayAs()
+        {
+            return "Wave: 6";
+        }
     }
 }

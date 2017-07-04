@@ -78,7 +78,7 @@ namespace GameLogic.Scene
             this.female = new Human(new Vector2(AppConfig.appWidth / 2, AppConfig.appHeight / 2), behaviour: null);
             this.robot = new MinionRobot(new Vector2(AppConfig.appWidth / 2, AppConfig.appHeight / 2), behaviour: null);
             this.robot2 = new MinionRobot(new Vector2(AppConfig.appWidth / 2, AppConfig.appHeight / 2), behaviour: null);
-            Add(titelLabel = new Label(Font, "  Robotron 2048", AppConfig.appWidth / 6, AppConfig.appHeight / 4, Color.White));
+            Add(titelLabel = new Label(Font, AppConfig.ApplicationTitle, AppConfig.appWidth / 6, AppConfig.appHeight / 4, Color.White));
 
             if (AppConfig.deviceType == DeviceType.Android)
             {
@@ -107,15 +107,14 @@ namespace GameLogic.Scene
 
         public override void Update(GameTime gameTime)
         {
-            UpdateChars(gameTime);
+            UpdateEntities(gameTime);
 
             TransitionToGameSceneOnKey(gameTime);
 
             base.Update(gameTime);
-
         }
 
-        private void UpdateChars(GameTime gameTime)
+        private void UpdateEntities(GameTime gameTime)
         {
             timeSinceLastFrame += gameTime.ElapsedGameTime.Milliseconds;
             robot2.currentTexture = LoadedContent.RobotTex;
@@ -151,7 +150,6 @@ namespace GameLogic.Scene
             }
             if (character.position.X < AppConfig.appWidth - AppConfig.appWidth + 400)
             {
-
                 velocity = 2; female.currentTexture = LoadedContent.humanLeftTex;
                 character.currentTexture = LoadedContent.characterRightTex;
 

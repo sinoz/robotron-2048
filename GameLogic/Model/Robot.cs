@@ -16,7 +16,7 @@ namespace GameLogic.Model
     /// <summary>
     /// The enemy robot character.
     /// </summary>
-    public abstract class Robot : IEntity
+    public abstract class Robot : Entity
     {
         /// <summary>
         /// The velocity at which the character can currently move.

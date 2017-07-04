@@ -16,7 +16,7 @@ namespace GameLogic.Model
     /// <summary>
     /// A representation of a single life.
     /// </summary>
-    public sealed class Life : IEntity
+    public sealed class Life : Entity
     {
         /// <summary>
         /// The width of a single frame of a life texture.

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 
 using GameLogic.Scene;
+using GameLogic.Model.Behaviours;
 
 namespace GameLogic.Model.Levels
 {
@@ -109,7 +110,7 @@ namespace GameLogic.Model.Levels
             var centerX = AppConfig.appWidth / 2;
             var centerY = AppConfig.appHeight / 2;
 
-            scene.character.MoveTo(x: centerX, y: centerY);
+            scene.character.UpdatePosition(x: centerX, y: centerY);
         }
 
         public override void BulletCollidedWithRobot(Robot robot)

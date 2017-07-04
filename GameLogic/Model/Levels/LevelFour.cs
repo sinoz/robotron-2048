@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 
+using GameLogic.Model.Behaviours;
 using GameLogic.Scene;
 
 namespace GameLogic.Model.Levels
@@ -112,7 +113,7 @@ namespace GameLogic.Model.Levels
             var centerX = AppConfig.appWidth / 2;
             var centerY = AppConfig.appHeight / 2;
 
-            scene.character.MoveTo(x: centerX, y: centerY);
+            scene.character.UpdatePosition(x: centerX, y: centerY);
         }
 
         public override void Update(GameTime gameTime)
