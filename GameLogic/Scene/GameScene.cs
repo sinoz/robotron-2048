@@ -125,11 +125,10 @@ namespace GameLogic.Scene
             this.level5 = new LevelFive(this);
             this.level6 = new LevelSix(this);
 
-            this.currentLevel = level1
-                ;
+            this.currentLevel = level1;
             #endregion
 
-            TransitionInto(level1);
+            TransitionInto(level6);
 
             #region Appends the initial amount of lives for display
             for (int i = 0; i < InitialAmountOfLives; i++)
