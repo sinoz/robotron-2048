@@ -148,5 +148,10 @@ namespace GameLogic.Model.Levels
         {
             return "Wave: 4";
         }
+
+        public override void BulletCollidedWithCharacter(Character character)
+        {
+            // TODO
+        }
     }
 }

@@ -30,7 +30,7 @@ namespace GameLogic.Model
         /// <summary>
         /// The entity that fired this bullet.
         /// </summary>
-        private Entity entity;
+        public Entity shooter;
 
         /// <summary>
         /// The color of the bullet line.
@@ -43,13 +43,31 @@ namespace GameLogic.Model
         private Vector2 direction;
 
         /// <summary>
+        /// The thickness of the bullet.
+        /// </summary>
+        private float thickness;
+
+        /// <summary>
         /// Creates a new Bullet.
         /// </summary>
-        public Bullet(Entity entity, Vector2 direction) : base(new Vector2(entity.position.X + 10, entity.position.Y + 10))
+        public Bullet(Entity shooter, Vector2 direction, float thickness = 1F) : base(new Vector2(shooter.position.X, shooter.position.Y))
         {
-            this.entity = entity;
+            this.shooter = shooter;
             this.direction = direction;
             this.color = Color.White;
+            this.thickness = thickness;
+
+            CenterBullet();
+        }
+
+        private void CenterBullet()
+        {
+            Rectangle rect = shooter.EntityRectangle();
+
+            float x = position.X + rect.Width / 2;
+            float y = position.Y + rect.Height / 2;
+
+            position = new Vector2(x, y);
         }
 
         /// <summary>
@@ -64,7 +82,7 @@ namespace GameLogic.Model
 
         public override void Draw(SpriteBatch batch, GameTime gameTime)
         {
-            batch.DrawLine(position, new Vector2(position.X + (direction.X * Length), position.Y + (direction.Y * Length)), color);
+            batch.DrawLine(position, new Vector2(position.X + (direction.X * Length), position.Y + (direction.Y * Length)), color, thickness);
         }
 
         public override void Update(GameTime gameTime)

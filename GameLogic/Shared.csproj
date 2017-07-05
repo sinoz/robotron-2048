@@ -70,6 +70,7 @@
     <Compile Include="Scene\Widget.cs" />
     <Compile Include="Util\FPSCounter.cs" />
     <Compile Include="Util\LoadedContent.cs" />
+    <Compile Include="Util\Option.cs" />
     <Compile Include="Util\SpriteBatchExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

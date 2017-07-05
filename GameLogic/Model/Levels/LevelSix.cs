@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using GameLogic.Scene;
 using GameLogic.Model;
 using GameLogic;
+using GameLogic.Util;
 using GameLogic.Model.Behaviours;
 
 namespace GameLogic.Model.Levels
@@ -18,6 +19,12 @@ namespace GameLogic.Model.Levels
     sealed class LevelSix : Level
     {
         /// <summary>
+        /// The time since the last frame.
+        /// </summary>
+        private int timeSinceLastBullet = 0;
+        private int millisecondsPerBullet = 2000;
+
+        /// <summary>
         /// The initial amount of robots to spawn in this level.
         /// </summary>
         private const int RobotSpawnCount = 0;
@@ -25,7 +32,7 @@ namespace GameLogic.Model.Levels
         /// <summary>
         /// The initial amount of mines to spawn in this level.
         /// </summary>
-        private const int MineSpawnCount = 0;
+        private const int MineSpawnCount = 20;
 
         /// <summary>
         /// The initial amount of humans to spawn in this level.
@@ -35,6 +42,11 @@ namespace GameLogic.Model.Levels
         /// The random number generator.
         /// </summary>
         private static Random random = new Random();
+
+        /// <summary>
+        /// The boss robot.
+        /// </summary>
+        private StrongRobot boss;
 
         /// <summary>
         /// Creates the first level in the game.
@@ -63,8 +75,8 @@ namespace GameLogic.Model.Levels
 
             IEntityBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
 
-            StrongRobot boss = RobotFactory.Produce<StrongRobot>(RobotType.Strong, new Vector2(x, y), null, 1000);
-            boss.velocity = 0;
+            boss = RobotFactory.Produce<StrongRobot>(RobotType.Strong, new Vector2(x, y), behaviour, 1000);
+            boss.velocity = 150;
 
             Add(boss);
             #endregion
@@ -77,8 +89,8 @@ namespace GameLogic.Model.Levels
         {
             for (int i = 1; i <= MineSpawnCount; i++)
             {
-                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, 750);
-                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, 550);
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, AppConfig.appWidth);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, AppConfig.appHeight);
 
                 Add(new Mine(new Vector2(x, y)));
             }
@@ -109,7 +121,23 @@ namespace GameLogic.Model.Levels
 
         public override void Update(GameTime gameTime)
         {
-            // nothing
+            if (boss != null)
+            {
+                timeSinceLastBullet += gameTime.ElapsedGameTime.Milliseconds;
+                if (timeSinceLastBullet > millisecondsPerBullet)
+                {
+                    timeSinceLastBullet -= millisecondsPerBullet;
+
+                    for (int x = -1; x <= 1; x++)
+                    {
+                        for (int y = -1; y <= 1; y++)
+                        {
+                            scene.bullets.Add(new Bullet(boss, new Vector2(x, y), thickness: 10F));
+                        }
+                    }
+                    timeSinceLastBullet = 0;
+                }
+            }
         }
 
         /// <summary>
@@ -128,11 +156,13 @@ namespace GameLogic.Model.Levels
             if (boss.robotType() == RobotType.Strong)
             {
                 StrongRobot strongRobot = (StrongRobot)boss;
-                strongRobot.maxHealthpoints -= 10;
-                if (strongRobot.maxHealthpoints <= 0)
+                strongRobot.currentHealthpoints -= 100;
+                if (strongRobot.currentHealthpoints <= 0)
                 {
                     remove(boss);
-                    scene.score.Increment(amount: 100);
+                    this.boss = null;
+                    
+                    scene.score.Increment(amount: 1000000);
                 }
             }
 
@@ -158,6 +188,11 @@ namespace GameLogic.Model.Levels
         public override string displayAs()
         {
             return "Wave: 6";
+        }
+
+        public override void BulletCollidedWithCharacter(Character character)
+        {
+            // TODO
         }
     }
 }

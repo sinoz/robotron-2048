@@ -56,7 +56,7 @@ namespace GameLogic.Model
             switch (robotType)
             {
                 case RobotType.Strong:
-                    robot = new StrongRobot(position, maxHealthpoints);
+                    robot = new StrongRobot(position, maxHealthpoints, robotBehaviour);
 
                     break;
 

@@ -126,9 +126,15 @@ namespace GameLogic.Model.Levels
             remove(robot);
             scene.score.Increment(amount: 10);
         }
+
         public override void BulletCollidedWithMine(Mine mine)
         {
             remove(mine);
+        }
+
+        public override void BulletCollidedWithCharacter(Character character)
+        {
+            // TODO
         }
 
         public override void HumanCollidedWithCharacter(Human human)

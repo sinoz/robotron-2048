@@ -100,6 +100,12 @@ namespace GameLogic.Model
         public abstract void CharacterCollidedWithRobot(Robot robot);
 
         /// <summary>
+        /// TODO
+        /// </summary>
+        /// <param name="character"></param>
+        public abstract void BulletCollidedWithCharacter(Character character);
+
+        /// <summary>
         /// Describes what to do when a bullet has collided with a robot.
         /// </summary>
         public abstract void BulletCollidedWithRobot(Robot robot);

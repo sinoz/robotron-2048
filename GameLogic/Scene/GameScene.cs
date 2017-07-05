@@ -125,7 +125,7 @@ namespace GameLogic.Scene
             this.level5 = new LevelFive(this);
             this.level6 = new LevelSix(this);
 
-            this.currentLevel = level1;
+            this.currentLevel = level6;
 
             #endregion
 
@@ -348,7 +348,7 @@ namespace GameLogic.Scene
                         Robot robot = robots[robotCount];
                         if (robot != null)
                         {
-                            if (bullet.IntersectsWith(robot))
+                            if (bullet.IntersectsWith(robot) && !bullet.shooter.Equals(robot))
                             {
                                 bullets.Remove(bullet);
                                 currentLevel.BulletCollidedWithRobot(robot);
@@ -403,6 +403,12 @@ namespace GameLogic.Scene
 
                                 wave.Refresh();
                                 #endregion
+                            }
+
+                            if (bullet.IntersectsWith(character) && !bullet.shooter.Equals(character))
+                            {
+                                currentLevel.BulletCollidedWithCharacter(character);
+                                bullets.Remove(bullet);
                             }
 
                             if (robot.IntersectsWith(character))

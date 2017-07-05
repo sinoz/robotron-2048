@@ -145,6 +145,11 @@ namespace GameLogic.Model.Levels
             remove(mine);
         }
 
+        public override void BulletCollidedWithCharacter(Character character)
+        {
+            // TODO
+        }
+
         public override void HumanCollidedWithCharacter(Human human)
         {
             remove(human);

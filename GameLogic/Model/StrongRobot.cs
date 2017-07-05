@@ -59,10 +59,16 @@ namespace GameLogic.Model
         private Texture2D healthBar = LoadedContent.healthBar;
 
         /// <summary>
+        /// TODO
+        /// </summary>
+        private IEntityBehaviour behaviour;
+
+        /// <summary>
         /// Creates a new StrongRobot.
         /// </summary>
-        public StrongRobot(Vector2 position, int maxHealthpoints) : base(position, MovementVelocity)
+        public StrongRobot(Vector2 position, int maxHealthpoints, IEntityBehaviour behaviour = null) : base(position, MovementVelocity)
         {
+            this.behaviour = behaviour;
             this.currentHealthpoints = maxHealthpoints;
             this.maxHealthpoints = maxHealthpoints;
         }
@@ -81,7 +87,7 @@ namespace GameLogic.Model
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
-            Rectangle healthRectangle = new Rectangle((int)150, (int)70, maxHealthpoints, 30);
+            Rectangle healthRectangle = new Rectangle((int)150, (int)70, currentHealthpoints, 30);
 
             batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
             batch.Draw(healthBar, healthRectangle, Color.Red);
@@ -105,7 +111,11 @@ namespace GameLogic.Model
                     currentFrame = 0;
                 }
             }
-            // TODO
+
+            if (behaviour != null)
+            {
+                behaviour.Act(this, gameTime);
+            }
         }
 
         public override RobotType robotType()
