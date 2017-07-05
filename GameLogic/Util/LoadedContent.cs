@@ -33,7 +33,7 @@ namespace GameLogic.Util
         /// <summary>
         /// All of the Robot textures.
         /// </summary>
-        public static Texture2D RobotTex, RobotBossTex;
+        public static Texture2D RobotTex, RobotBossTex, RobotBossTexFinalForm;
 
         /// <summary>
         /// The mine texture.
