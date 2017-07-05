@@ -121,6 +121,9 @@ namespace Android
             LoadedContent.mineExplosionSound = Content.Load<SoundEffect>("Sound/mineExplosion");
             LoadedContent.lifeLossSound = Content.Load<SoundEffect>("Sound/lifeLoss");
             LoadedContent.mainMenuSong = Content.Load<Song>("Sound/mainMenuSong");
+
+            LoadedContent.healthBar = new Texture2D(GraphicsDevice, 1, 1);
+            LoadedContent.healthBar.SetData(new[] { Color.Red });
         }
 
         /// <summary>
