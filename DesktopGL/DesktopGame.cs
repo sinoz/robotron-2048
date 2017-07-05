@@ -58,7 +58,7 @@ namespace DesktopGL
             // TODO check if on windows or android
             graphics.PreferredBackBufferHeight = VirtualHeight;
             graphics.PreferredBackBufferWidth = VirtualWidth;
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
 
             AppConfig.appWidth = graphics.PreferredBackBufferWidth;
             AppConfig.appHeight = graphics.PreferredBackBufferHeight;
