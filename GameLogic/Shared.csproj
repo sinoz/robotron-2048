@@ -59,6 +59,7 @@
     <Compile Include="Scene\GameOverScreen.cs" />
     <Compile Include="Scene\Score.cs" />
     <Compile Include="Scene\TextButton.cs" />
+    <Compile Include="Scene\VictoryScreen.cs" />
     <Compile Include="Scene\Wave.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\Actor.cs" />

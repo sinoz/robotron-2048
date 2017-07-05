@@ -87,7 +87,7 @@ namespace GameLogic.Model
 
             Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
             Rectangle destinationRectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
-            Rectangle healthRectangle = new Rectangle((int)150, (int)70, currentHealthpoints, 30);
+            Rectangle healthRectangle = new Rectangle((int)190, (int)5, currentHealthpoints, 30);
 
             batch.Draw(currentTexture, destinationRectangle, sourceRectangle, Color.White);
             batch.Draw(healthBar, healthRectangle, Color.Red);
