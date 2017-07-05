@@ -125,7 +125,7 @@ namespace GameLogic.Scene
             this.level5 = new LevelFive(this);
             this.level6 = new LevelSix(this);
 
-            this.currentLevel = level6;
+            this.currentLevel = level5;
             #endregion
 
             TransitionInto(currentLevel);
@@ -266,7 +266,7 @@ namespace GameLogic.Scene
         private void UpdateEntities(GameTime gameTime)
         {
             #region gain life
-            if (gainlife >= 100)
+            if (gainlife >= 200)
             {
                 lives.Add(new Life(new Vector2(90 + (lives.Count * Life.Width), 0)));
                 gainlife = 0;
@@ -447,7 +447,7 @@ namespace GameLogic.Scene
                         {
                             if (bullet.IntersectsWith(mine))
                             {
-                                bullets.Remove(bullet);
+   
                                 currentLevel.BulletCollidedWithMine(mine);
                                 LoadedContent.mineExplosionSound.Play();
                             }
@@ -501,8 +501,57 @@ namespace GameLogic.Scene
                         {
                             if (mine.IntersectsWith(robot))
                             {
+
+                                mines.Remove(mine);
                                 currentLevel.RobotCollidedWithMine(robot, mine);
                                 LoadedContent.mineExplosionSound.Play();
+                                LoadedContent.robotDeathSound.Play();
+                                #region switching levels
+                                if (currentLevel == level1 && robots.Count == 0)
+                                {
+                                    currentLevel = level2;
+                                    TransitionInto(currentLevel);
+                                    character.UpdatePosition(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
+                                    wave.value += 1;
+                                    LoadedContent.nextLevelSound.Play();
+
+                                }
+                                if (currentLevel == level2 && robots.Count == 0)
+                                {
+                                    currentLevel = level3;
+                                    TransitionInto(currentLevel);
+                                    character.UpdatePosition(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
+                                    wave.value += 1;
+                                    LoadedContent.nextLevelSound.Play();
+                                }
+                                if (currentLevel == level3 && robots.Count == 0)
+                                {
+                                    currentLevel = level4;
+                                    TransitionInto(currentLevel);
+                                    character.UpdatePosition(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
+                                    wave.value += 1;
+                                    LoadedContent.nextLevelSound.Play();
+                                }
+                                if (currentLevel == level4 && robots.Count == 0)
+                                {
+                                    currentLevel = level5;
+                                    TransitionInto(currentLevel);
+                                    character.UpdatePosition(AppConfig.appWidth / 2, AppConfig.appHeight / 2);
+                                    wave.value += 1;
+                                    LoadedContent.nextLevelSound.Play();
+                                }
+                                if (currentLevel == level5 && robots.Count == 0)
+                                {
+                                    currentLevel = level6;
+                                    TransitionInto(currentLevel);
+                                    character.UpdatePosition(x: 390, y: 290);
+                                    wave.value += 1;
+                                    LoadedContent.nextLevelSound.Play();
+                                }
+
+                                wave.Refresh();
+                                #endregion
+
                             }
                         }
 

@@ -18,7 +18,7 @@ namespace GameLogic.Model.Levels
         /// <summary>
         /// The initial amount of robots to spawn in this level.
         /// </summary>
-        private const int RobotSpawnCount = 5;
+        private const int RobotSpawnCount = 7;
 
         /// <summary>
         /// The initial amount of mines to spawn in this level.
@@ -28,7 +28,7 @@ namespace GameLogic.Model.Levels
         /// <summary>
         /// The initial amount of humans to spawn in this level.
         /// </summary>
-        private const int HumanSpawnCount = 2;
+        private const int HumanSpawnCount = 7;
 
         /// <summary>
         /// The random number generator.
@@ -58,8 +58,8 @@ namespace GameLogic.Model.Levels
             #region Adding the robots
             for (int i = 1; i <= RobotSpawnCount; i++)
             {
-                int x = random.Next(1, 3) == 1 ? random.Next(0, 340) : random.Next(440, AppConfig.appWidth);
-                int y = random.Next(1, 3) == 1 ? random.Next(35, 240) : random.Next(340, AppConfig.appHeight);
+                int x = random.Next(1, 3) == 1 ? random.Next(0, 100) : random.Next(500, AppConfig.appWidth);
+                int y = random.Next(1, 3) == 1 ? random.Next(35, 100) : random.Next(500, AppConfig.appHeight);
 
                 IEntityBehaviour behaviour = new AttractedToPlayerCharacterBehaviour(scene.character);
                 MinionRobot minion = RobotFactory.Produce<MinionRobot>(RobotType.Minion, new Vector2(x, y), behaviour);
