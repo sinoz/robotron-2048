@@ -54,7 +54,7 @@ namespace GameLogic.Model
         /// <summary>
         /// The current texture frame.
         /// </summary>
-        private Texture2D currentTexture = LoadedContent.RobotBossTex;
+        public Texture2D currentTexture = LoadedContent.RobotBossTex;
 
         private Texture2D healthBar = LoadedContent.healthBar;
 
