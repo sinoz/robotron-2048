@@ -107,9 +107,10 @@ namespace DesktopGL
             LoadedContent.characterUpTex = Content.Load<Texture2D>("Image/characterupfinalized");
             LoadedContent.characterLeftTex = Content.Load<Texture2D>("Image/characterleftfinalized");
             LoadedContent.characterRightTex = Content.Load<Texture2D>("Image/characterrightfinalized");
-
+            
             LoadedContent.RobotTex = Content.Load<Texture2D>("Image/RobotTex");
             LoadedContent.RobotBossTex = Content.Load<Texture2D>("Image/RobotBossTex");
+            LoadedContent.RobotBossTexFinalForm = Content.Load<Texture2D>("Image/RobotBossTexFinalForm");
 
             LoadedContent.humanDownTex = Content.Load<Texture2D>("Image/humanDown");
             LoadedContent.humanUpTex = Content.Load<Texture2D>("Image/humanUp");

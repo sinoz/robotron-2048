@@ -129,7 +129,7 @@ namespace GameLogic.Scene
                 ;
             #endregion
 
-            TransitionInto(currentLevel);
+            TransitionInto(level1);
 
             #region Appends the initial amount of lives for display
             for (int i = 0; i < InitialAmountOfLives; i++)

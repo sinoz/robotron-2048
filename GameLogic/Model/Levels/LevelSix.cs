@@ -156,6 +156,7 @@ namespace GameLogic.Model.Levels
                 if (boss.currentHealthpoints <= 500)
                 {
                     boss.velocity = 400;
+                    boss.currentTexture = LoadedContent.RobotBossTexFinalForm;
                 }
             }
         }
