@@ -126,7 +126,6 @@ namespace GameLogic.Scene
             this.level6 = new LevelSix(this);
 
             this.currentLevel = level4;
-
             #endregion
 
             TransitionInto(currentLevel);
