@@ -92,6 +92,7 @@ namespace GameLogic.Model.Levels
 
             boss = RobotFactory.Produce<StrongRobot>(RobotType.Strong, new Vector2(x, y), behaviour, 1000);
             boss.velocity = 150;
+            
 
             Add(boss);
             #endregion
@@ -151,6 +152,10 @@ namespace GameLogic.Model.Levels
                         }
                     }
                     timeSinceLastBullet = 0;
+                }
+                if (boss.currentHealthpoints <= 500)
+                {
+                    boss.velocity = 400;
                 }
             }
         }
