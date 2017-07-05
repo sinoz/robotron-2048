@@ -147,6 +147,11 @@ namespace GameLogic.Model.Levels
             MoveCharacterToCenter();
         }
 
+        public override void RobotCollidedWithMine(Robot robot, Mine mine)
+        {
+            remove(robot);
+        }
+
         public override string displayAs()
         {
             return "Wave: 3";

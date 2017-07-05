@@ -100,9 +100,13 @@ namespace GameLogic.Model
         public abstract void CharacterCollidedWithRobot(Robot robot);
 
         /// <summary>
-        /// TODO
+        /// Describes what to do when a robot has collided with a mine.
         /// </summary>
-        /// <param name="character"></param>
+        public abstract void RobotCollidedWithMine(Robot robot, Mine mine);
+
+        /// <summary>
+        /// Describes what to do when a bullet has collided with a character.
+        /// </summary>
         public abstract void BulletCollidedWithCharacter(Character character);
 
         /// <summary>
@@ -129,6 +133,5 @@ namespace GameLogic.Model
         /// Describes what to present this level as in the top right corner.
         /// </summary>
         public abstract string displayAs();
-
     }
 }

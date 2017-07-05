@@ -37,8 +37,6 @@ namespace GameLogic.Model.Behaviours
 
         public void Act(Robot robot, GameTime gameTime)
         {
-            System.Diagnostics.Debug.WriteLine("LOL CHASIN U");
-
             Vector2 direction = character.position - robot.position;
             direction.Normalize();
             Vector2 velocity1 = direction * (int)(robot.velocity * gameTime.ElapsedGameTime.TotalSeconds) / 3;

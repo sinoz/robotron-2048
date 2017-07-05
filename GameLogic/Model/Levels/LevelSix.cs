@@ -22,7 +22,17 @@ namespace GameLogic.Model.Levels
         /// The time since the last frame.
         /// </summary>
         private int timeSinceLastBullet = 0;
-        private int millisecondsPerBullet = 2000;
+        private int millisecondsPerBullet = 2500;
+
+        /// <summary>
+        /// The amount of damage to inflict on the boss when it collides with a mine.
+        /// </summary>
+        private const int MineDamageOnBoss = 20;
+
+        /// <summary>
+        /// The amount of damage to inflict on the boss when it collides with a bullet from the player character.
+        /// </summary>
+        private const int BulletDamageOnBoss = 10;
 
         /// <summary>
         /// The initial amount of robots to spawn in this level.
@@ -61,6 +71,11 @@ namespace GameLogic.Model.Levels
             AddRobots();
             AddHumans();
             AddMines();
+
+            var centerX = AppConfig.appWidth / 4;
+            var centerY = AppConfig.appHeight / 4;
+
+            scene.character.UpdatePosition(x: centerX, y: centerY);
         }
 
         /// <summary>
@@ -116,7 +131,7 @@ namespace GameLogic.Model.Levels
 
         public override void CharacterCollidedWithRobot(Robot robot)
         {
-            MoveCharacterToCenter();
+            scene.GameOver();
         }
 
         public override void Update(GameTime gameTime)
@@ -140,32 +155,25 @@ namespace GameLogic.Model.Levels
             }
         }
 
-        /// <summary>
-        /// Instantly moves the player character back to the center.
-        /// </summary>
-        private void MoveCharacterToCenter()
+        public override void BulletCollidedWithRobot(Robot robot)
         {
-            var centerX = AppConfig.appWidth / 3;
-            var centerY = AppConfig.appHeight / 3;
-
-            scene.character.UpdatePosition(x: centerX, y: centerY);
-        }
-
-        public override void BulletCollidedWithRobot(Robot boss)
-        {
-            if (boss.robotType() == RobotType.Strong)
+            if (robot.robotType() == RobotType.Strong && robot.Equals(boss))
             {
-                StrongRobot strongRobot = (StrongRobot)boss;
-                strongRobot.currentHealthpoints -= 100;
-                if (strongRobot.currentHealthpoints <= 0)
-                {
-                    remove(boss);
-                    this.boss = null;
-                    
-                    scene.score.Increment(amount: 1000000);
-                }
+                DamageBoss(BulletDamageOnBoss);
             }
 
+        }
+
+        private void DamageBoss(int inflictAmount)
+        {
+            boss.currentHealthpoints -= inflictAmount;
+            if (boss.currentHealthpoints <= 0)
+            {
+                remove(boss);
+                this.boss = null;
+
+                scene.score.Increment(amount: 100);
+            }
         }
 
         public override void BulletCollidedWithMine(Mine mine)
@@ -182,7 +190,6 @@ namespace GameLogic.Model.Levels
         public override void CharacterCollidedWithMine(Mine mine)
         {
             remove(mine);
-            MoveCharacterToCenter();
         }
 
         public override string displayAs()
@@ -192,7 +199,18 @@ namespace GameLogic.Model.Levels
 
         public override void BulletCollidedWithCharacter(Character character)
         {
-            // TODO
+            scene.lives.RemoveAt(scene.lives.Count - 1);
+            LoadedContent.lifeLossSound.Play();
+        }
+
+        public override void RobotCollidedWithMine(Robot robot, Mine mine)
+        {
+            if (robot.robotType() == RobotType.Strong && robot.Equals(boss))
+            {
+                DamageBoss(MineDamageOnBoss);
+            }
+
+            remove(mine);
         }
     }
 }

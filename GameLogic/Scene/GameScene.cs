@@ -125,7 +125,7 @@ namespace GameLogic.Scene
             this.level5 = new LevelFive(this);
             this.level6 = new LevelSix(this);
 
-            this.currentLevel = level6;
+            this.currentLevel = level4;
 
             #endregion
 
@@ -407,8 +407,18 @@ namespace GameLogic.Scene
 
                             if (bullet.IntersectsWith(character) && !bullet.shooter.Equals(character))
                             {
-                                currentLevel.BulletCollidedWithCharacter(character);
-                                bullets.Remove(bullet);
+                                #region Removal of a remaining life
+                                if (lives.Count > 1)
+                                {
+                                    lives.RemoveAt(lives.Count - 1);
+                                    currentLevel.BulletCollidedWithCharacter(character);
+                                    bullets.Remove(bullet);
+                                }
+                                else
+                                {
+                                    GameOver();
+                                }
+                                #endregion
                             }
 
                             if (robot.IntersectsWith(character))
@@ -423,8 +433,7 @@ namespace GameLogic.Scene
                                 }
                                 else
                                 {
-                                    LoadedContent.characterDeathSound.Play();
-                                    stage.TransitionInto(new GameOverScreen(graphicsDevice)); // TODO game over
+                                    GameOver();
                                 }
                                 #endregion
                             }           
@@ -446,7 +455,7 @@ namespace GameLogic.Scene
                             if (mine.IntersectsWith(character))
                             {
                                 #region Removal of a remaining life
-                                if (lives.Count > 0)
+                                if (lives.Count > 1)
                                 {
                                     lives.RemoveAt(lives.Count - 1);
                                     currentLevel.CharacterCollidedWithMine(mine);
@@ -455,9 +464,7 @@ namespace GameLogic.Scene
                                 }
                                 else
                                 {
-                                    LoadedContent.characterDeathSound.Play();
-                                    stage.TransitionInto(new GameOverScreen(graphicsDevice));
-                                    // TODO game over
+                                    GameOver();
                                 }
                                 #endregion
                             }                            
@@ -487,6 +494,22 @@ namespace GameLogic.Scene
                 Robot robot = robots[count];
                 if (robot != null)
                 {
+                    int urmum = 0;
+                    while (urmum < mines.Count)
+                    {
+                        Mine mine = mines[urmum];
+                        if (mine != null)
+                        {
+                            if (mine.IntersectsWith(robot))
+                            {
+                                currentLevel.RobotCollidedWithMine(robot, mine);
+                                LoadedContent.mineExplosionSound.Play();
+                            }
+                        }
+
+                        urmum += 1;
+                    }
+
                     if (robot.IntersectsWith(character))
                     {
                         currentLevel.CharacterCollidedWithRobot(robot);
@@ -534,11 +557,10 @@ namespace GameLogic.Scene
                 Mine mine = mines[count];
                 if (mine != null)
                 {
-                   
                     if (mine.IntersectsWith(character))
                     {
                         #region Removal of a remaining life
-                        if (lives.Count > 0)
+                        if (lives.Count > 1)
                         {
                             LoadedContent.lifeLossSound.Play();
                             LoadedContent.mineExplosionSound.Play();
@@ -547,13 +569,12 @@ namespace GameLogic.Scene
                         }
                         else
                         {
-                            LoadedContent.characterDeathSound.Play();
-                            stage.TransitionInto(new GameOverScreen(graphicsDevice));
-                            // TODO game over
+                            GameOver();
                         }
                         #endregion
 
                     }
+                    
                     mine.Update(gameTime);
                 }
 
@@ -578,6 +599,15 @@ namespace GameLogic.Scene
             {
                 stage.TransitionInto(new MainMenu(graphicsDevice));
             }
+        }
+
+        /// <summary>
+        /// Transitions into the game over screen, ending the game.
+        /// </summary>
+        public void GameOver()
+        {
+            LoadedContent.characterDeathSound.Play();
+            stage.TransitionInto(new GameOverScreen(graphicsDevice));
         }
 
         /// <summary>

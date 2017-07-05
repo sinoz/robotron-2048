@@ -121,6 +121,11 @@ namespace GameLogic.Model.Levels
             // nothing
         }
 
+        public override void RobotCollidedWithMine(Robot robot, Mine mine)
+        {
+            remove(robot);
+        }
+
         public override void BulletCollidedWithRobot(Robot robot)
         {
             remove(robot);

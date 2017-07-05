@@ -145,9 +145,14 @@ namespace GameLogic.Model.Levels
             remove(mine);
         }
 
+        public override void RobotCollidedWithMine(Robot robot, Mine mine)
+        {
+            remove(robot);
+        }
+
         public override void BulletCollidedWithCharacter(Character character)
         {
-            // TODO
+            scene.TransitionInto(new LevelFive(scene));
         }
 
         public override void HumanCollidedWithCharacter(Human human)
