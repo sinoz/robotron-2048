@@ -128,7 +128,7 @@ namespace GameLogic.Scene
             this.currentLevel = level1;
             #endregion
 
-            TransitionInto(level6);
+            TransitionInto(currentLevel);
 
             #region Appends the initial amount of lives for display
             for (int i = 0; i < InitialAmountOfLives; i++)
@@ -399,6 +399,10 @@ namespace GameLogic.Scene
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
                                 }
+                                if(currentLevel == level6 && robots.Count == 0)
+                                {
+                                    stage.TransitionInto(new VictoryScreen(graphicsDevice));
+                                }
 
                                 wave.Refresh();
                                 #endregion
@@ -547,6 +551,10 @@ namespace GameLogic.Scene
                                     character.UpdatePosition(x: 390, y: 290);
                                     wave.value += 1;
                                     LoadedContent.nextLevelSound.Play();
+                                }
+                                if (currentLevel == level6 && robots.Count == 0)
+                                {
+                                    stage.TransitionInto(new VictoryScreen(graphicsDevice));
                                 }
 
                                 wave.Refresh();
